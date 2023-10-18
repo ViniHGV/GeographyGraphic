@@ -1,16 +1,6 @@
 "use client";
 import React from "react";
-
-type IDataNav = {
-  name: string;
-  url: string;
-};
-
-const dataNav: IDataNav[] = [
-  { name: "Publication", url: "" },
-  { name: "Citation", url: "" },
-  { name: "Download Data", url: "" },
-];
+import { dataNav } from "../../data/data";
 
 export const Nav = () => {
   return (

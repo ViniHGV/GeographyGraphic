@@ -1,6 +1,9 @@
 import React from "react";
 import { Button } from "./ui/button";
 import { Upload } from "lucide-react";
+import Image from "next/image";
+import PrimaryGraphic from "../../public/PrimaryGraphic.png";
+import SecondaryGraphic from "../../public/SecondaryGraphic.png";
 
 export const GraphicsSection = () => {
   return (
@@ -18,6 +21,14 @@ export const GraphicsSection = () => {
         >
           Export With CSV Format <Upload className="ml-2 w-5 h-5" />
         </Button>
+      </div>
+      <div className="grid gap-6 grid-cols-2">
+        <div className="w-full">
+          <Image alt="" className="w-[80%]" src={PrimaryGraphic}></Image>
+        </div>
+        <div className="w-full flex justify-end">
+          <Image alt="" className="w-[80%]" src={SecondaryGraphic}></Image>
+        </div>
       </div>
     </div>
   );

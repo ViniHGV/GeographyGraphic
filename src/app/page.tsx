@@ -1,3 +1,4 @@
+import { Footer } from "@/components/Footer";
 import { GraphicsSection } from "@/components/GraphicsSection";
 import { Header } from "@/components/Header";
 import { Options } from "@/components/Options";
@@ -16,6 +17,7 @@ export default function Home() {
           <GraphicsSection />
         </section>
       </main>
+      <Footer />
     </div>
   );
 }

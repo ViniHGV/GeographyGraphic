@@ -24,7 +24,9 @@ export const Options = () => {
           <ComboboxDemo name="Selected State" />
           <ComboboxDemo name="Selected Tecnologies" />
           <ComboboxDemo name="Selected Year of Data" />
-          <Button className="w-full py-6">Geerated Your Graphic</Button>
+          <Button className="w-full py-6 max-w-[455px]">
+            Geerated Your Graphic
+          </Button>
         </div>
       </div>
     </div>

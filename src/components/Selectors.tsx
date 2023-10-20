@@ -42,7 +42,7 @@ const frameworks = [
   },
 ];
 
-export function ComboboxDemo({ name }: IComboboxDemo) {
+export function ComboboxDemo({ name, data }: IComboboxDemo) {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("");
 
@@ -55,9 +55,7 @@ export function ComboboxDemo({ name }: IComboboxDemo) {
           aria-expanded={open}
           className="w-full max-w-[455px] justify-between "
         >
-          {value
-            ? frameworks.find((framework) => framework.value === value)?.label
-            : name}
+          {value ? data.find((data) => data.value === value)?.value : name}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
@@ -66,9 +64,9 @@ export function ComboboxDemo({ name }: IComboboxDemo) {
           <CommandInput placeholder={name} />
           <CommandEmpty>No {name} found.</CommandEmpty>
           <CommandGroup>
-            {frameworks.map((framework) => (
+            {data.map((data) => (
               <CommandItem
-                key={framework.value}
+                key={data.value}
                 onSelect={(currentValue) => {
                   setValue(currentValue === value ? "" : currentValue);
                   setOpen(false);
@@ -77,10 +75,10 @@ export function ComboboxDemo({ name }: IComboboxDemo) {
                 <Check
                   className={cn(
                     "mr-2 h-4 w-4",
-                    value === framework.value ? "opacity-100" : "opacity-0"
+                    value === data.value ? "opacity-100" : "opacity-0"
                   )}
                 />
-                {framework.label}
+                {data.value}
               </CommandItem>
             ))}
           </CommandGroup>

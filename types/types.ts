@@ -5,4 +5,9 @@ export type IDataNav = {
 
 export type IComboboxDemo = {
   name: string;
+  data: IOptionsData[];
+};
+
+export type IOptionsData = {
+  value: string;
 };

@@ -4,6 +4,7 @@ import { Upload } from "lucide-react";
 import Image from "next/image";
 import PrimaryGraphic from "../../public/PrimaryGraphic.png";
 import SecondaryGraphic from "../../public/SecondaryGraphic.png";
+import { Graphics } from "./Graphics";
 
 export const GraphicsSection = () => {
   return (
@@ -24,10 +25,12 @@ export const GraphicsSection = () => {
       </div>
       <div className="grid gap-6 grid-cols-2">
         <div className="w-full">
-          <Image alt="" className="w-[80%]" src={PrimaryGraphic}></Image>
+          {/* <Image alt="" className="w-[80%]" src={PrimaryGraphic}></Image> */}
+          <Graphics typeChart="bar" />
         </div>
         <div className="w-full flex justify-end">
-          <Image alt="" className="w-[80%]" src={SecondaryGraphic}></Image>
+          <Graphics typeChart="line" />
+          {/* <Image alt="" className="w-[80%]" src={SecondaryGraphic}></Image> */}
         </div>
       </div>
     </div>

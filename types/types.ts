@@ -17,3 +17,12 @@ export type IGraphics = {
   // values: IOptionsData[];
   // categories: IOptionsData[];
 };
+
+export type IDataBase = {
+  techs: string;
+  scenario: string;
+  state: string;
+  policy: string;
+  year: number;
+  capacity: number;
+};

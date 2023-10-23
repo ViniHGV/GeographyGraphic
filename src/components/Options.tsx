@@ -10,6 +10,7 @@ import {
   TechsOptions,
   YearData,
 } from "../../data/data";
+import { MapBrasil } from "./MapBrasil";
 
 export const Options = () => {
   return (
@@ -23,7 +24,8 @@ export const Options = () => {
       <div className="grid grid-cols-2 gap-52">
         <div className="flex flex-col gap-2">
           <p className="font-medium">Selected Capacity (GW)</p>
-          <Image alt="" src={Map}></Image>
+          {/* <Image alt="" src={Map}></Image> */}
+          <MapBrasil />
         </div>
         <div className="flex flex-col justify-between items-end">
           <ComboboxDemo name="Selected Scenarios" data={ScenariosData} />

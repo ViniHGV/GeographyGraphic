@@ -1,12 +1,20 @@
-import React from "react";
+"use client";
+import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import { Upload } from "lucide-react";
-import Image from "next/image";
-import PrimaryGraphic from "../../public/PrimaryGraphic.png";
-import SecondaryGraphic from "../../public/SecondaryGraphic.png";
 import { Graphics } from "./Graphics";
+import { DataBase } from "../../data/data";
 
 export const GraphicsSection = () => {
+  const [dataCapacity, setDataCapacity] = useState([0]);
+
+  useEffect(() => {
+    let dataCapacity = DataBase.map((data) => data.capacity);
+    if (dataCapacity.length > 99) {
+      setDataCapacity(dataCapacity);
+    }
+  }, []);
+
   return (
     <div className="pt-12 mt-16 px-36">
       <div className="flex items-center justify-between">
@@ -23,15 +31,15 @@ export const GraphicsSection = () => {
           Export With CSV Format <Upload className="ml-2 w-5 h-5" />
         </Button>
       </div>
-      <div className="grid gap-6 grid-cols-2">
+      <div className="grid gap-6 ">
         <div className="w-full">
           {/* <Image alt="" className="w-[80%]" src={PrimaryGraphic}></Image> */}
-          <Graphics typeChart="bar" />
+          <Graphics typeChart="bar" data={DataBase} />
         </div>
-        <div className="w-full flex justify-end">
-          <Graphics typeChart="line" />
-          {/* <Image alt="" className="w-[80%]" src={SecondaryGraphic}></Image> */}
-        </div>
+        {/* <div className="w-full flex justify-end">
+          <Graphics typeChart="line" data={DataBase} />
+          {/* <Image alt="" className="w-[80%]" src={SecondaryGraphic}></Image> }
+        </div> */}
       </div>
     </div>
   );

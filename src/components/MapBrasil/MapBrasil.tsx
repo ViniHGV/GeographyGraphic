@@ -119,8 +119,12 @@ export const MapBrasil = () => {
             transform: "translate(-50%, -100%)",
           }}
         >
-          State: {StateSelected} Capacity: {sumTotalCapacityState} Default:{" "}
-          {sumDefaut} +LC: {sumLC} 100% RE+LC: {REPlusLC} 100%RE: {fullRE}
+          <p> State: {StateSelected.toUpperCase()}</p>
+          <p>Capacity: {sumTotalCapacityState}</p>
+          <p> Default: {sumDefaut} </p>
+          <p>+LC: {sumLC}</p>
+          <p>100% RE+LC: {REPlusLC}</p>
+          <p>100%RE: {fullRE}</p>
         </div>
       )}
     </div>

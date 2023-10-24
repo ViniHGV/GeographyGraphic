@@ -16,7 +16,7 @@ export const Options = () => {
   const { StateSelected }: string | any = useContext(appContext);
 
   return (
-    <div className="pt-20 px-36 flex flex-col gap-8">
+    <div className="pt-20 px-36 flex flex-col gap-8 min-[450px]">
       <div className=" flex flex-col gap-2">
         <h2 className="text-5xl font-bold">Selected your options!</h2>
         <p className="font-medium text-gray-500">

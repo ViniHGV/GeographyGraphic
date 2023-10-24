@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Map from "../../public/Map.png";
 import Image from "next/image";
 import { ComboboxDemo } from "./Selectors";
@@ -12,11 +12,14 @@ import {
   YearData,
 } from "../../data/data";
 import { MapBrasil } from "./MapBrasil/MapBrasil";
+import { appContext } from "../../context/appContext";
 
 export const Options = () => {
-  const [StateSelected, setStateSelected] = useState("");
-  const [sumTotalCapacityState, setSumTotalCapacityState] = useState(0);
-  const [sumDefaut, setSumDefaut] = useState(0);
+  // const [StateSelected, setStateSelected] = useState("");
+  // const [sumTotalCapacityState, setSumTotalCapacityState] = useState(0);
+  // const [sumDefaut, setSumDefaut] = useState(0);
+
+  const { StateSelected }: string | any = useContext(appContext);
 
   return (
     <div className="pt-20 px-36 flex flex-col gap-8">
@@ -35,12 +38,12 @@ export const Options = () => {
           {/* <Image alt="" src={Map}></Image> */}
 
           <MapBrasil
-            sumTotalCapacityState={sumTotalCapacityState}
-            setSumTotalCapacityState={(ev) => setSumTotalCapacityState(ev)}
-            sumDefaut={sumDefaut}
-            setSumDefaut={(ev) => setSumDefaut(ev)}
-            State={StateSelected}
-            HandleStateProp={(ev: any) => setStateSelected(ev)}
+          // sumTotalCapacityState={sumTotalCapacityState}
+          // setSumTotalCapacityState={(ev) => setSumTotalCapacityState(ev)}
+          // sumDefaut={sumDefaut}
+          // setSumDefaut={(ev) => setSumDefaut(ev)}
+          // State={StateSelected}
+          // HandleStateProp={(ev: any) => setStateSelected(ev)}
           />
         </div>
         <div className="flex flex-col justify-between items-end">

@@ -14,20 +14,22 @@ type IMapBrasil = {
   setSumDefaut: React.Dispatch<React.SetStateAction<number>>;
 };
 
-export const MapBrasil = ({
-  HandleStateProp,
-  sumTotalCapacityState,
-  setSumTotalCapacityState,
-  sumDefaut,
-  setSumDefaut,
-}: IMapBrasil) => {
+export const MapBrasil = () => {
   const [tooltipState, setTooltipState] = useState({
     show: false,
     x: 0,
     y: 0,
     text: "",
   });
-  const { sumLC } = useContext(appContext);
+  const {
+    sumLC,
+    sumTotalCapacityState,
+    sumDefaut,
+    setSumTotalCapacityState,
+    setSumDefaut,
+    StateSelected,
+    setStateSelected,
+  }: any = useContext(appContext);
 
   console.log(sumLC);
 
@@ -76,7 +78,7 @@ export const MapBrasil = ({
         onLocationClick={(ev) => {
           setTooltipState({ show: false, x: 0, y: 0, text: "" });
           handleLocationMouseOver(ev);
-          HandleStateProp(ev.target.id);
+          setStateSelected(ev.target.id);
           setSumTotalCapacityState(SumArray(dataFilteredCapacityTotal));
           setSumDefaut(SumArray(dataFilteredCapacityDefaut));
         }}
@@ -91,7 +93,7 @@ export const MapBrasil = ({
             transform: "translate(-50%, -100%)",
           }}
         >
-          State: {tooltipState.text} Capacity: {sumTotalCapacityState} Default:{" "}
+          State: {StateSelected} Capacity: {sumTotalCapacityState} Default:{" "}
           {sumDefaut}
         </div>
       )}

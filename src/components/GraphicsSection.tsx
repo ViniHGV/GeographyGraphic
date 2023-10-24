@@ -1,7 +1,7 @@
 "use client";
 import { useContext, useEffect, useState } from "react";
-import { Button } from "./ui/button";
-import { Upload } from "lucide-react";
+// import { Button } from "./ui/button";
+// import { Upload } from "lucide-react";
 import { Graphics } from "./Graphics";
 import { appContext } from "../../context/appContext";
 
@@ -24,14 +24,14 @@ export const GraphicsSection = () => {
             Hand-picked themes that you can copy and paste into your apps.
           </p>
         </div>
-        <Button
+        {/* <Button
           variant="ghost"
           className="border-b-2 border-black rounded-none font-bold rounded-t-sm"
         >
           Export With CSV Format <Upload className="ml-2 w-5 h-5" />
-        </Button>
+        </Button> */}
       </div>
-      <div className="grid gap-6 ">
+      <div className="grid gap-6 mt-10">
         <div className="w-full">
           <Graphics
             dataDescriptions={[

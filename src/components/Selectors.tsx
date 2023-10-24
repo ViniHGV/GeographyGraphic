@@ -19,29 +19,6 @@ import {
 } from "@/components/ui/popover";
 import { IComboboxDemo } from "../../types/types";
 
-const frameworks = [
-  {
-    value: "next.js",
-    label: "Next.js",
-  },
-  {
-    value: "sveltekit",
-    label: "SvelteKit",
-  },
-  {
-    value: "nuxt.js",
-    label: "Nuxt.js",
-  },
-  {
-    value: "remix",
-    label: "Remix",
-  },
-  {
-    value: "astro",
-    label: "Astro",
-  },
-];
-
 export function ComboboxDemo({ name, data }: IComboboxDemo) {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("");

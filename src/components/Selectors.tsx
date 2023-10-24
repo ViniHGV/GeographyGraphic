@@ -45,7 +45,7 @@ export function ComboboxDemo({ name, data }: IComboboxDemo) {
               <CommandItem
                 key={data.value}
                 onSelect={(currentValue) => {
-                  setValue(currentValue === value ? "" : currentValue);
+                  setValue(currentValue === data.value ? "" : data.value);
                   setOpen(false);
                 }}
               >

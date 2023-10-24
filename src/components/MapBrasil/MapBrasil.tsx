@@ -30,6 +30,8 @@ export const MapBrasil = () => {
     setSumLC,
     StateSelected,
     setStateSelected,
+    REPlusLC,
+    setREPlusLC,
   }: any = useContext(appContext);
 
   console.log(sumLC);
@@ -48,6 +50,12 @@ export const MapBrasil = () => {
     (item) => item.state === tooltipState.text
   )
     .filter((item) => item.policy === "+LC")
+    .map((item) => item.capacity);
+
+  const dataFilteredRELC = DataBase.filter(
+    (item) => item.state === tooltipState.text
+  )
+    .filter((item) => item.policy === "100% RE+LC")
     .map((item) => item.capacity);
 
   function SumArray(dataFiltered: number[]) {
@@ -86,6 +94,7 @@ export const MapBrasil = () => {
           setTooltipState({ show: false, x: 0, y: 0, text: "" });
           handleLocationMouseOver(ev);
           setStateSelected(ev.target.id);
+          setREPlusLC(SumArray(dataFilteredRELC));
           setSumLC(SumArray(dataFilteredLC));
           setSumTotalCapacityState(SumArray(dataFilteredCapacityTotal));
           setSumDefaut(SumArray(dataFilteredCapacityDefaut));
@@ -102,7 +111,7 @@ export const MapBrasil = () => {
           }}
         >
           State: {StateSelected} Capacity: {sumTotalCapacityState} Default:{" "}
-          {sumDefaut} +LC: {sumLC}
+          {sumDefaut} +LC: {sumLC} 100% RE+LC: {REPlusLC}
         </div>
       )}
     </div>

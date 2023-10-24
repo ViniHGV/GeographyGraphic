@@ -8,22 +8,25 @@ type IAppContextProvider = {
 };
 
 export const AppContextProvider = ({ children }: IAppContextProvider) => {
-  const [sumLC, setSumLC] = useState(0);
   const [StateSelected, setStateSelected] = useState("");
+  const [sumLC, setSumLC] = useState(0);
   const [sumTotalCapacityState, setSumTotalCapacityState] = useState(0);
   const [sumDefaut, setSumDefaut] = useState(0);
+  const [REPlusLC, setREPlusLC] = useState(0);
 
   return (
     <appContext.Provider
       value={{
-        sumLC,
-        setSumLC,
         StateSelected,
         setStateSelected,
+        sumLC,
+        setSumLC,
         sumTotalCapacityState,
         setSumTotalCapacityState,
         sumDefaut,
         setSumDefaut,
+        REPlusLC,
+        setREPlusLC,
       }}
     >
       {children}

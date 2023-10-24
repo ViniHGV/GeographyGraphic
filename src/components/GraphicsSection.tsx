@@ -6,16 +6,13 @@ import { Graphics } from "./Graphics";
 import { appContext } from "../../context/appContext";
 
 export const GraphicsSection = () => {
-  const [dataCapacity, setDataCapacity] = useState([0]);
-  const { sumLC, StateSelected, sumTotalCapacityState, sumDefaut }: any =
-    useContext(appContext);
-
-  // useEffect(() => {
-  //   let dataCapacity = DataBase.map((data) => data.capacity);
-  //   if (dataCapacity.length > 99) {
-  //     setDataCapacity(dataCapacity);
-  //   }
-  // }, []);
+  const {
+    sumLC,
+    StateSelected,
+    sumTotalCapacityState,
+    sumDefaut,
+    REPlusLC,
+  }: any = useContext(appContext);
 
   return (
     <div className="pt-12 mt-16 px-36">
@@ -37,8 +34,8 @@ export const GraphicsSection = () => {
         <div className="w-full">
           {/* <Image alt="" className="w-[80%]" src={PrimaryGraphic}></Image> */}
           <Graphics
-            dataDescriptions={["+LC", "Default", "TotalCapacity"]}
-            dataNumbers={[sumLC, sumDefaut, sumTotalCapacityState]}
+            dataDescriptions={["100% RE+LC", "+LC", "Default", "TotalCapacity"]}
+            dataNumbers={[REPlusLC, sumLC, sumDefaut, sumTotalCapacityState]}
             typeChart="bar"
           />
         </div>

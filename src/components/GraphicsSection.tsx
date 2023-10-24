@@ -1,19 +1,21 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import { Upload } from "lucide-react";
 import { Graphics } from "./Graphics";
-import { DataBase } from "../../data/data";
+import { appContext } from "../../context/appContext";
 
 export const GraphicsSection = () => {
   const [dataCapacity, setDataCapacity] = useState([0]);
+  const { sumLC, StateSelected, sumTotalCapacityState, sumDefaut }: any =
+    useContext(appContext);
 
-  useEffect(() => {
-    let dataCapacity = DataBase.map((data) => data.capacity);
-    if (dataCapacity.length > 99) {
-      setDataCapacity(dataCapacity);
-    }
-  }, []);
+  // useEffect(() => {
+  //   let dataCapacity = DataBase.map((data) => data.capacity);
+  //   if (dataCapacity.length > 99) {
+  //     setDataCapacity(dataCapacity);
+  //   }
+  // }, []);
 
   return (
     <div className="pt-12 mt-16 px-36">
@@ -34,7 +36,11 @@ export const GraphicsSection = () => {
       <div className="grid gap-6 ">
         <div className="w-full">
           {/* <Image alt="" className="w-[80%]" src={PrimaryGraphic}></Image> */}
-          <Graphics typeChart="bar" data={DataBase} />
+          <Graphics
+            dataDescriptions={["+LC", "Default", "TotalCapacity"]}
+            dataNumbers={[sumLC, sumDefaut, sumTotalCapacityState]}
+            typeChart="bar"
+          />
         </div>
         {/* <div className="w-full flex justify-end">
           <Graphics typeChart="line" data={DataBase} />

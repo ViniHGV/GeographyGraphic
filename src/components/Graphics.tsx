@@ -2,24 +2,24 @@
 import React from "react";
 import Chart from "react-apexcharts";
 import { IGraphics } from "../../types/types";
-import { type } from "os";
-import { DataBase } from "../../data/data";
 
-export const Graphics = ({ typeChart, data }: IGraphics) => {
+export const Graphics = ({
+  typeChart,
+  dataNumbers,
+  dataDescriptions,
+}: IGraphics) => {
   const test = {
     options: {
       chart: {
         id: "basic-bar",
       },
       colors: ["#000"],
-      xaxis: {
-        categories: data.filter((item) => item.state === "SP"),
-      },
+      xaxis: { categories: dataDescriptions },
     },
     series: [
       {
-        name: "series-1",
-        data: [10, 20, 30],
+        name: `Total capacity`,
+        data: dataNumbers,
       },
     ],
   };

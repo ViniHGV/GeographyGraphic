@@ -13,7 +13,9 @@ export type IOptionsData = {
 };
 
 export type IGraphics = {
-  data: IDataBase[];
+  // data: IDataBase[];
+  dataNumbers: number[];
+  dataDescriptions: string[];
   typeChart: string | any;
 };
 

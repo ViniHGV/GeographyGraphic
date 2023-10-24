@@ -1,24 +1,35 @@
 "use client";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { SVGMap } from "react-svg-map";
 import Brazil from "@svg-maps/Brazil";
 import "./style.css";
 import { DataBase } from "../../../data/data";
+import { appContext } from "../../../context/appContext";
 
 type IMapBrasil = {
   HandleStateProp: (ev: any) => void;
+  sumTotalCapacityState: number;
+  setSumTotalCapacityState: React.Dispatch<React.SetStateAction<number>>;
+  sumDefaut: number;
+  setSumDefaut: React.Dispatch<React.SetStateAction<number>>;
 };
 
-export const MapBrasil = ({ HandleStateProp }: IMapBrasil) => {
+export const MapBrasil = ({
+  HandleStateProp,
+  sumTotalCapacityState,
+  setSumTotalCapacityState,
+  sumDefaut,
+  setSumDefaut,
+}: IMapBrasil) => {
   const [tooltipState, setTooltipState] = useState({
     show: false,
     x: 0,
     y: 0,
     text: "",
   });
-  const [sumTotalCapacityState, setSumTotalCapacityState] = useState(0);
-  const [sumDefaut, setSumDefaut] = useState(0);
-  const [sumLC, setSumLC] = useState(0);
+  const { sumLC } = useContext(appContext);
+
+  console.log(sumLC);
 
   const dataFilteredCapacityTotal = DataBase.filter(
     (item) => item.state === tooltipState.text
@@ -63,6 +74,7 @@ export const MapBrasil = ({ HandleStateProp }: IMapBrasil) => {
       <SVGMap
         map={Brazil}
         onLocationClick={(ev) => {
+          setTooltipState({ show: false, x: 0, y: 0, text: "" });
           handleLocationMouseOver(ev);
           HandleStateProp(ev.target.id);
           setSumTotalCapacityState(SumArray(dataFilteredCapacityTotal));
@@ -75,11 +87,11 @@ export const MapBrasil = ({ HandleStateProp }: IMapBrasil) => {
           className="absolute bg-black text-white p-2 rounded-lg shadow-lg"
           style={{
             left: tooltipState.x - 100,
-            top: tooltipState.y - 300,
+            top: tooltipState.y - 325,
             transform: "translate(-50%, -100%)",
           }}
         >
-          {tooltipState.text} Capacity: {sumTotalCapacityState} Default:{" "}
+          State: {tooltipState.text} Capacity: {sumTotalCapacityState} Default:{" "}
           {sumDefaut}
         </div>
       )}

@@ -15,6 +15,8 @@ import { MapBrasil } from "./MapBrasil/MapBrasil";
 
 export const Options = () => {
   const [StateSelected, setStateSelected] = useState("");
+  const [sumTotalCapacityState, setSumTotalCapacityState] = useState(0);
+  const [sumDefaut, setSumDefaut] = useState(0);
 
   return (
     <div className="pt-20 px-36 flex flex-col gap-8">
@@ -33,6 +35,10 @@ export const Options = () => {
           {/* <Image alt="" src={Map}></Image> */}
 
           <MapBrasil
+            sumTotalCapacityState={sumTotalCapacityState}
+            setSumTotalCapacityState={(ev) => setSumTotalCapacityState(ev)}
+            sumDefaut={sumDefaut}
+            setSumDefaut={(ev) => setSumDefaut(ev)}
             State={StateSelected}
             HandleStateProp={(ev: any) => setStateSelected(ev)}
           />

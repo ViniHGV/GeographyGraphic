@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import Map from "../../public/Map.png";
 import Image from "next/image";
 import { ComboboxDemo } from "./Selectors";
@@ -10,9 +11,11 @@ import {
   TechsOptions,
   YearData,
 } from "../../data/data";
-import { MapBrasil } from "./MapBrasil";
+import { MapBrasil } from "./MapBrasil/MapBrasil";
 
 export const Options = () => {
+  const [StateSelected, setStateSelected] = useState("");
+
   return (
     <div className="pt-20 px-36 flex flex-col gap-8">
       <div className=" flex flex-col gap-2">
@@ -23,9 +26,16 @@ export const Options = () => {
       </div>
       <div className="grid grid-cols-2 gap-52">
         <div className="flex flex-col gap-2">
-          <p className="font-medium">Selected Capacity (GW)</p>
+          <p className="font-medium">
+            Selected Capacity (GW){" "}
+            <span className="font-bold"> {StateSelected.toUpperCase()}</span>
+          </p>
           {/* <Image alt="" src={Map}></Image> */}
-          <MapBrasil />
+
+          <MapBrasil
+            State={StateSelected}
+            HandleStateProp={(ev: any) => setStateSelected(ev)}
+          />
         </div>
         <div className="flex flex-col justify-between items-end">
           <ComboboxDemo name="Selected Scenarios" data={ScenariosData} />

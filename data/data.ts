@@ -1346,7 +1346,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Hydrogen",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "AL",
     year: 2019,
     capacity: 107576750912377,
@@ -1354,7 +1354,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Hydrogen",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "BA",
     year: 2019,
     capacity: 369492216481999,
@@ -1362,7 +1362,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Hydrogen",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "CE",
     year: 2019,
     capacity: 22173804043607,
@@ -1370,7 +1370,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Hydrogen",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "ES",
     year: 2019,
     capacity: 557972751733333,
@@ -1378,7 +1378,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Hydrogen",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "GO",
     year: 2019,
     capacity: 0.009125,
@@ -1386,7 +1386,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Hydrogen",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "MG",
     year: 2019,
     capacity: 120219132129267,
@@ -1394,7 +1394,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Hydrogen",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "MT",
     year: 2019,
     capacity: 0.306328525765177,
@@ -1402,7 +1402,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Hydrogen",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "PA",
     year: 2019,
     capacity: 307086155932946,
@@ -1410,7 +1410,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Hydrogen",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "PB",
     year: 2019,
     capacity: 0.420400000000373,
@@ -1418,7 +1418,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Hydrogen",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "PE",
     year: 2019,
     capacity: 0.512299999999814,
@@ -1426,7 +1426,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Hydrogen",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "PI",
     year: 2019,
     capacity: 160613400000054,
@@ -1434,7 +1434,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Hydrogen",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "RJ",
     year: 2019,
     capacity: 157972223818744,
@@ -1442,7 +1442,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Hydrogen",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "RN",
     year: 2019,
     capacity: 0.167519299999811,
@@ -1450,7 +1450,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Hydrogen",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "RO",
     year: 2019,
     capacity: 137940364669288,
@@ -1458,7 +1458,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Hydrogen",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "RS",
     year: 2019,
     capacity: 0.00238818000070751,
@@ -1466,7 +1466,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Hydrogen",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "SC",
     year: 2019,
     capacity: 302566224042498,
@@ -1474,7 +1474,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Hydrogen",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "SP",
     year: 2019,
     capacity: 347775679135571,
@@ -1482,7 +1482,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Hydrogen",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "TO",
     year: 2019,
     capacity: 0.005,
@@ -1490,7 +1490,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Hydrogen",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "BA",
     year: 2019,
     capacity: 153598267999967,
@@ -1610,7 +1610,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Hydrogen",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "AL",
     year: 2019,
     capacity: 121595130632574,
@@ -1618,7 +1618,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Hydrogen",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "BA",
     year: 2019,
     capacity: 104109751684331,
@@ -1626,7 +1626,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Hydrogen",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "CE",
     year: 2019,
     capacity: 699326178929338,
@@ -1634,7 +1634,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Hydrogen",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "ES",
     year: 2019,
     capacity: 890460202,
@@ -1642,7 +1642,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Hydrogen",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "GO",
     year: 2019,
     capacity: 584564567172637,
@@ -1650,7 +1650,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Hydrogen",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "MG",
     year: 2019,
     capacity: 249734350924517,
@@ -1658,7 +1658,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Hydrogen",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "MT",
     year: 2019,
     capacity: 0.488328724631843,
@@ -1666,7 +1666,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Hydrogen",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "PA",
     year: 2019,
     capacity: 903047500334276,
@@ -1674,7 +1674,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Hydrogen",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "PB",
     year: 2019,
     capacity: 0.420400000000373,
@@ -1682,7 +1682,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Hydrogen",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "PE",
     year: 2019,
     capacity: 475195888947845,
@@ -1690,7 +1690,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Hydrogen",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "PI",
     year: 2019,
     capacity: 221011288276594,
@@ -1698,7 +1698,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Hydrogen",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "RJ",
     year: 2019,
     capacity: 57403839085948,
@@ -1706,7 +1706,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Hydrogen",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "RN",
     year: 2019,
     capacity: 0.167519299999811,
@@ -1714,7 +1714,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Hydrogen",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "RO",
     year: 2019,
     capacity: 222093144560024,
@@ -1722,7 +1722,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Hydrogen",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "RS",
     year: 2019,
     capacity: 0.00238818000070751,
@@ -1730,7 +1730,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Hydrogen",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "SC",
     year: 2019,
     capacity: 598594969717887,
@@ -1738,7 +1738,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Hydrogen",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "SP",
     year: 2019,
     capacity: 666703414316821,
@@ -1746,7 +1746,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Hydrogen",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "TO",
     year: 2019,
     capacity: 0.005,
@@ -1754,7 +1754,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Hydrogen",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "AC",
     year: 2019,
     capacity: 0.888250357575333,
@@ -2058,7 +2058,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Nuclear",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "RJ",
     year: 2019,
     capacity: 3.34,
@@ -2074,7 +2074,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Nuclear",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "RJ",
     year: 2019,
     capacity: 257597521163474,
@@ -2698,7 +2698,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Onshore wind",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "CE",
     year: 2019,
     capacity: 253362,
@@ -2706,7 +2706,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Onshore wind",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "MA",
     year: 2019,
     capacity: 0.426,
@@ -2714,7 +2714,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Onshore wind",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "MG",
     year: 2019,
     capacity: 316024035015998,
@@ -2722,7 +2722,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Onshore wind",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "MS",
     year: 2019,
     capacity: 522173251195418,
@@ -2730,7 +2730,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Onshore wind",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "PB",
     year: 2019,
     capacity: 0.91809,
@@ -2738,7 +2738,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Onshore wind",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "PE",
     year: 2019,
     capacity: 1049785,
@@ -2746,7 +2746,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Onshore wind",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "PI",
     year: 2019,
     capacity: 322765,
@@ -2754,7 +2754,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Onshore wind",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "RJ",
     year: 2019,
     capacity: 0.02805,
@@ -2762,7 +2762,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Onshore wind",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "RN",
     year: 2019,
     capacity: 475149725464373,
@@ -2770,7 +2770,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Onshore wind",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "RR",
     year: 2019,
     capacity: 52546048943928,
@@ -2778,7 +2778,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Onshore wind",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "RS",
     year: 2019,
     capacity: 132225369542864,
@@ -2786,7 +2786,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Onshore wind",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "SC",
     year: 2019,
     capacity: 0.4768035,
@@ -2794,7 +2794,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Onshore wind",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "SE",
     year: 2019,
     capacity: 231954160315791,
@@ -2802,7 +2802,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Onshore wind",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "SP",
     year: 2019,
     capacity: 0.1905422,
@@ -2810,7 +2810,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Onshore wind",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "BA",
     year: 2019,
     capacity: 478453853311093,
@@ -2938,7 +2938,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Onshore wind",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "CE",
     year: 2019,
     capacity: 253362,
@@ -2946,7 +2946,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Onshore wind",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "MA",
     year: 2019,
     capacity: 0.426,
@@ -2954,7 +2954,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Onshore wind",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "MG",
     year: 2019,
     capacity: 59927932867377,
@@ -2962,7 +2962,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Onshore wind",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "MS",
     year: 2019,
     capacity: 11395186655342,
@@ -2970,7 +2970,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Onshore wind",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "PB",
     year: 2019,
     capacity: 0.91809,
@@ -2978,7 +2978,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Onshore wind",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "PE",
     year: 2019,
     capacity: 1049785,
@@ -2986,7 +2986,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Onshore wind",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "PI",
     year: 2019,
     capacity: 322765,
@@ -2994,7 +2994,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Onshore wind",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "RJ",
     year: 2019,
     capacity: 0.02805,
@@ -3002,7 +3002,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Onshore wind",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "RN",
     year: 2019,
     capacity: 465364820186099,
@@ -3010,7 +3010,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Onshore wind",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "RR",
     year: 2019,
     capacity: 865992735916384,
@@ -3018,7 +3018,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Onshore wind",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "RS",
     year: 2019,
     capacity: 241415024384069,
@@ -3026,7 +3026,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Onshore wind",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "SC",
     year: 2019,
     capacity: 0.4768035,
@@ -3034,7 +3034,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Onshore wind",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "SE",
     year: 2019,
     capacity: 432122476602887,
@@ -3042,7 +3042,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Onshore wind",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "SP",
     year: 2019,
     capacity: 0.1905422,
@@ -3050,7 +3050,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Onshore wind",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "BA",
     year: 2019,
     capacity: 439350297907041,
@@ -4338,7 +4338,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "AL",
     year: 2019,
     capacity: 0.09122726,
@@ -4346,7 +4346,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "AM",
     year: 2019,
     capacity: 0.07522965,
@@ -4354,7 +4354,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "AP",
     year: 2019,
     capacity: 0.01845963,
@@ -4362,7 +4362,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "BA",
     year: 2019,
     capacity: 142180153,
@@ -4370,7 +4370,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "CE",
     year: 2019,
     capacity: 15509436,
@@ -4378,7 +4378,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "ES",
     year: 2019,
     capacity: 0.31768544,
@@ -4386,7 +4386,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "GO",
     year: 2019,
     capacity: 0.60196824,
@@ -4394,7 +4394,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "MA",
     year: 2019,
     capacity: 0.28815421,
@@ -4402,7 +4402,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "MG",
     year: 2019,
     capacity: 362406892,
@@ -4410,7 +4410,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "MS",
     year: 2019,
     capacity: 0.34411733,
@@ -4418,7 +4418,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "MT",
     year: 2019,
     capacity: 0.92017855,
@@ -4426,7 +4426,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "PA",
     year: 2019,
     capacity: 0.3687481,
@@ -4434,7 +4434,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "PB",
     year: 2019,
     capacity: 0.554699,
@@ -4442,7 +4442,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "PE",
     year: 2019,
     capacity: 0.9301371,
@@ -4450,7 +4450,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "PI",
     year: 2019,
     capacity: 25907057,
@@ -4458,7 +4458,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "PR",
     year: 2019,
     capacity: 143258468,
@@ -4466,7 +4466,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "RJ",
     year: 2019,
     capacity: 0.56021904,
@@ -4474,7 +4474,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "RN",
     year: 2019,
     capacity: 0.5292012,
@@ -4482,7 +4482,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "RO",
     year: 2019,
     capacity: 0.16413816,
@@ -4490,7 +4490,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "RR",
     year: 2019,
     capacity: 0.01268231,
@@ -4498,7 +4498,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "RS",
     year: 2019,
     capacity: 141541251,
@@ -4506,7 +4506,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "SC",
     year: 2019,
     capacity: 0.777094,
@@ -4514,7 +4514,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "SE",
     year: 2019,
     capacity: 0.07411207,
@@ -4522,7 +4522,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "SP",
     year: 2019,
     capacity: 274589681,
@@ -4530,7 +4530,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "TO",
     year: 2019,
     capacity: 0.22559705,
@@ -4538,7 +4538,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "AC",
     year: 2019,
     capacity: 0.03997,
@@ -4754,7 +4754,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "AL",
     year: 2019,
     capacity: 0.09122726,
@@ -4762,7 +4762,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "AM",
     year: 2019,
     capacity: 0.07522965,
@@ -4770,7 +4770,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "AP",
     year: 2019,
     capacity: 0.01845963,
@@ -4778,7 +4778,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "BA",
     year: 2019,
     capacity: 142180153,
@@ -4786,7 +4786,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "CE",
     year: 2019,
     capacity: 15509436,
@@ -4794,7 +4794,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "ES",
     year: 2019,
     capacity: 0.31768544,
@@ -4802,7 +4802,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "GO",
     year: 2019,
     capacity: 0.60196824,
@@ -4810,7 +4810,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "MA",
     year: 2019,
     capacity: 0.28815421,
@@ -4818,7 +4818,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "MG",
     year: 2019,
     capacity: 362406892,
@@ -4826,7 +4826,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "MS",
     year: 2019,
     capacity: 0.34411733,
@@ -4834,7 +4834,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "MT",
     year: 2019,
     capacity: 0.92017855,
@@ -4842,7 +4842,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "PA",
     year: 2019,
     capacity: 0.3687481,
@@ -4850,7 +4850,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "PB",
     year: 2019,
     capacity: 0.554699,
@@ -4858,7 +4858,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "PE",
     year: 2019,
     capacity: 0.9301371,
@@ -4866,7 +4866,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "PI",
     year: 2019,
     capacity: 25907057,
@@ -4874,7 +4874,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "PR",
     year: 2019,
     capacity: 143258468,
@@ -4882,7 +4882,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "RJ",
     year: 2019,
     capacity: 0.56021904,
@@ -4890,7 +4890,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "RN",
     year: 2019,
     capacity: 0.5292012,
@@ -4898,7 +4898,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "RO",
     year: 2019,
     capacity: 0.16413816,
@@ -4906,7 +4906,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "RR",
     year: 2019,
     capacity: 0.01268231,
@@ -4914,7 +4914,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "RS",
     year: 2019,
     capacity: 141541251,
@@ -4922,7 +4922,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "SC",
     year: 2019,
     capacity: 0.777094,
@@ -4930,7 +4930,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "SE",
     year: 2019,
     capacity: 0.07411207,
@@ -4938,7 +4938,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "SP",
     year: 2019,
     capacity: 274589681,
@@ -4946,7 +4946,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "TO",
     year: 2019,
     capacity: 0.22559705,
@@ -4954,7 +4954,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "PV-existing",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "AC",
     year: 2019,
     capacity: 0.03997,
@@ -5738,7 +5738,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Reservoir",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "GO",
     year: 2019,
     capacity: 695253506034367,
@@ -5746,7 +5746,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Reservoir",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "MG",
     year: 2019,
     capacity: 525626989415565,
@@ -5754,7 +5754,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Reservoir",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "MT",
     year: 2019,
     capacity: 0.98468,
@@ -5762,7 +5762,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Reservoir",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "PI",
     year: 2019,
     capacity: 0.2373,
@@ -5770,7 +5770,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Reservoir",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "PR",
     year: 2019,
     capacity: 7920168,
@@ -5778,7 +5778,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Reservoir",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "RS",
     year: 2019,
     capacity: 36659,
@@ -5786,7 +5786,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Reservoir",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "SP",
     year: 2019,
     capacity: 2731216,
@@ -5794,7 +5794,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Reservoir",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "TO",
     year: 2019,
     capacity: 1030875,
@@ -5802,7 +5802,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Reservoir",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "BA",
     year: 2019,
     capacity: 3114557,
@@ -5882,7 +5882,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Reservoir",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "GO",
     year: 2019,
     capacity: 695253506034367,
@@ -5890,7 +5890,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Reservoir",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "MG",
     year: 2019,
     capacity: 525626989415565,
@@ -5898,7 +5898,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Reservoir",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "MT",
     year: 2019,
     capacity: 0.98468,
@@ -5906,7 +5906,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Reservoir",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "PI",
     year: 2019,
     capacity: 0.2373,
@@ -5914,7 +5914,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Reservoir",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "PR",
     year: 2019,
     capacity: 7920168,
@@ -5922,7 +5922,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Reservoir",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "RS",
     year: 2019,
     capacity: 36659,
@@ -5930,7 +5930,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Reservoir",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "SP",
     year: 2019,
     capacity: 2731216,
@@ -5938,7 +5938,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Reservoir",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "TO",
     year: 2019,
     capacity: 1030875,
@@ -5946,7 +5946,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Reservoir",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "BA",
     year: 2019,
     capacity: 3114557,
@@ -6418,7 +6418,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Run-of-river",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "GO",
     year: 2019,
     capacity: 1021083,
@@ -6426,7 +6426,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Run-of-river",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "MG",
     year: 2019,
     capacity: 47910332,
@@ -6434,7 +6434,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Run-of-river",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "MT",
     year: 2019,
     capacity: 2090555,
@@ -6442,7 +6442,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Run-of-river",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "PR",
     year: 2019,
     capacity: 12376218,
@@ -6450,7 +6450,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Run-of-river",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "RS",
     year: 2019,
     capacity: 3525805,
@@ -6458,7 +6458,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Run-of-river",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "SP",
     year: 2019,
     capacity: 2529972,
@@ -6466,7 +6466,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Run-of-river",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "TO",
     year: 2019,
     capacity: 2289011,
@@ -6474,7 +6474,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Run-of-river",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "BA",
     year: 2019,
     capacity: 5347275,
@@ -6546,7 +6546,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Run-of-river",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "GO",
     year: 2019,
     capacity: 115785,
@@ -6554,7 +6554,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Run-of-river",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "MG",
     year: 2019,
     capacity: 47328543,
@@ -6562,7 +6562,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Run-of-river",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "MT",
     year: 2019,
     capacity: 2090555,
@@ -6570,7 +6570,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Run-of-river",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "PR",
     year: 2019,
     capacity: 12376218,
@@ -6578,7 +6578,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Run-of-river",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "RS",
     year: 2019,
     capacity: 32367834,
@@ -6586,7 +6586,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Run-of-river",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "SP",
     year: 2019,
     capacity: 2521194,
@@ -6594,7 +6594,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Run-of-river",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "TO",
     year: 2019,
     capacity: 2289011,
@@ -6602,7 +6602,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Run-of-river",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "BA",
     year: 2019,
     capacity: 5579514,
@@ -7106,7 +7106,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Utility-scale PV",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "GO",
     year: 2019,
     capacity: 706614870743649,
@@ -7114,7 +7114,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Utility-scale PV",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "MG",
     year: 2019,
     capacity: 272343295699124,
@@ -7122,7 +7122,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Utility-scale PV",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "RS",
     year: 2019,
     capacity: 387809513090637,
@@ -7130,7 +7130,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Utility-scale PV",
     scenario: " Limited elec.",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "AL",
     year: 2019,
     capacity: 418420136060749,
@@ -7210,7 +7210,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Utility-scale PV",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "GO",
     year: 2019,
     capacity: 175465303924172,
@@ -7218,7 +7218,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Utility-scale PV",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "MG",
     year: 2019,
     capacity: 356837698183456,
@@ -7226,7 +7226,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Utility-scale PV",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "MS",
     year: 2019,
     capacity: 283415282243398,
@@ -7234,7 +7234,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Utility-scale PV",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "PB",
     year: 2019,
     capacity: 717936447039505,
@@ -7242,7 +7242,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Utility-scale PV",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "PE",
     year: 2019,
     capacity: 203201077496056,
@@ -7250,7 +7250,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Utility-scale PV",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "PI",
     year: 2019,
     capacity: 634230119432548,
@@ -7258,7 +7258,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Utility-scale PV",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "RS",
     year: 2019,
     capacity: 59371055172348,
@@ -7266,7 +7266,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Utility-scale PV",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "SP",
     year: 2019,
     capacity: 292625870973613,
@@ -7274,7 +7274,7 @@ export const DataBase: IDataBase[] = [
   {
     techs: "Utility-scale PV",
     scenario: " Net zero",
-    policy: " 100% RE",
+    policy: "100% RE",
     state: "BA",
     year: 2019,
     capacity: 12089788447268,

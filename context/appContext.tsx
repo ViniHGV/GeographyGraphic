@@ -13,10 +13,13 @@ export const AppContextProvider = ({ children }: IAppContextProvider) => {
   const [sumTotalCapacityState, setSumTotalCapacityState] = useState(0);
   const [sumDefaut, setSumDefaut] = useState(0);
   const [REPlusLC, setREPlusLC] = useState(0);
+  const [fullRE, setFullRE] = useState(0);
 
   return (
     <appContext.Provider
       value={{
+        fullRE,
+        setFullRE,
         StateSelected,
         setStateSelected,
         sumLC,

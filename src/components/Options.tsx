@@ -1,7 +1,5 @@
 "use client";
-import React, { useContext, useState } from "react";
-import Map from "../../public/Map.png";
-import Image from "next/image";
+import React, { useContext } from "react";
 import { ComboboxDemo } from "./Selectors";
 import { Button } from "./ui/button";
 import {
@@ -15,10 +13,6 @@ import { MapBrasil } from "./MapBrasil/MapBrasil";
 import { appContext } from "../../context/appContext";
 
 export const Options = () => {
-  // const [StateSelected, setStateSelected] = useState("");
-  // const [sumTotalCapacityState, setSumTotalCapacityState] = useState(0);
-  // const [sumDefaut, setSumDefaut] = useState(0);
-
   const { StateSelected }: string | any = useContext(appContext);
 
   return (
@@ -35,16 +29,8 @@ export const Options = () => {
             Selected Capacity (GW){" "}
             <span className="font-bold"> {StateSelected.toUpperCase()}</span>
           </p>
-          {/* <Image alt="" src={Map}></Image> */}
 
-          <MapBrasil
-          // sumTotalCapacityState={sumTotalCapacityState}
-          // setSumTotalCapacityState={(ev) => setSumTotalCapacityState(ev)}
-          // sumDefaut={sumDefaut}
-          // setSumDefaut={(ev) => setSumDefaut(ev)}
-          // State={StateSelected}
-          // HandleStateProp={(ev: any) => setStateSelected(ev)}
-          />
+          <MapBrasil />
         </div>
         <div className="flex flex-col justify-between items-end">
           <ComboboxDemo name="Selected Scenarios" data={ScenariosData} />

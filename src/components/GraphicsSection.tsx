@@ -12,6 +12,7 @@ export const GraphicsSection = () => {
     sumTotalCapacityState,
     sumDefaut,
     REPlusLC,
+    fullRE,
   }: any = useContext(appContext);
 
   return (
@@ -32,17 +33,24 @@ export const GraphicsSection = () => {
       </div>
       <div className="grid gap-6 ">
         <div className="w-full">
-          {/* <Image alt="" className="w-[80%]" src={PrimaryGraphic}></Image> */}
           <Graphics
-            dataDescriptions={["100% RE+LC", "+LC", "Default", "TotalCapacity"]}
-            dataNumbers={[REPlusLC, sumLC, sumDefaut, sumTotalCapacityState]}
+            dataDescriptions={[
+              "100% RE",
+              "100% RE+LC",
+              "+LC",
+              "Default",
+              "TotalCapacity",
+            ]}
+            dataNumbers={[
+              fullRE.toFixed(2),
+              REPlusLC,
+              sumLC,
+              sumDefaut,
+              sumTotalCapacityState,
+            ]}
             typeChart="bar"
           />
         </div>
-        {/* <div className="w-full flex justify-end">
-          <Graphics typeChart="line" data={DataBase} />
-          {/* <Image alt="" className="w-[80%]" src={SecondaryGraphic}></Image> }
-        </div> */}
       </div>
     </div>
   );

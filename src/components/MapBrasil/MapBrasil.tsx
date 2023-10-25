@@ -119,12 +119,12 @@ export const MapBrasil = () => {
             transform: "translate(-50%, -100%)",
           }}
         >
-          <p> State: {StateSelected.toUpperCase()}</p>
-          <p>Capacity: {sumTotalCapacityState}</p>
-          <p> Default: {sumDefaut} </p>
-          <p>+LC: {sumLC}</p>
-          <p>100% RE+LC: {REPlusLC}</p>
-          <p>100%RE: {fullRE}</p>
+          <p className="text-sm py-1"> State: {StateSelected.toUpperCase()}</p>
+          <p className="text-sm py-1">Capacity: {sumTotalCapacityState}</p>
+          <p className="text-sm py-1">Default: {sumDefaut} </p>
+          <p className="text-sm py-1">+LC: {sumLC}</p>
+          <p className="text-sm py-1">100% RE+LC: {REPlusLC}</p>
+          <p className="text-sm py-1">100%RE: {fullRE}</p>
         </div>
       )}
     </div>

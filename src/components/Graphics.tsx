@@ -12,6 +12,11 @@ export const Graphics = ({
     options: {
       chart: {
         id: "basic-bar",
+        //Para  Stacked
+        // stacked: true,
+        // toolbar: {
+        //   show: true,
+        // },
       },
       colors: ["#000"],
       xaxis: { categories: dataDescriptions },

@@ -4,7 +4,7 @@ import { dataNav } from "../../data/data";
 
 export const Nav = () => {
   return (
-    <div className="flex gap-12 font-medium">
+    <div className="flex gap-12 font-medium text-md">
       {dataNav.map((data, index) => (
         <a key={index} href={data.url}>
           {data.name}

@@ -4,6 +4,8 @@ import { useContext, useEffect, useState } from "react";
 // import { Upload } from "lucide-react";
 import { Graphics } from "./Graphics";
 import { appContext } from "../../context/appContext";
+import { BarChartBig, LineChart, AreaChart } from "lucide-react";
+import { Button } from "./ui/button";
 
 export const GraphicsSection = () => {
   const {
@@ -23,6 +25,17 @@ export const GraphicsSection = () => {
           <p className="font-medium text-[#7F7F7F] ">
             Hand-picked themes that you can copy and paste into your apps.
           </p>
+        </div>
+        <div className="flex gap-2">
+          <Button>
+            <BarChartBig />
+          </Button>
+          <Button>
+            <LineChart />
+          </Button>
+          <Button>
+            <AreaChart />
+          </Button>
         </div>
       </div>
       <div className="grid gap-6 mt-10">

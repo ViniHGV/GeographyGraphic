@@ -14,6 +14,7 @@ export const AppContextProvider = ({ children }: IAppContextProvider) => {
   const [sumDefaut, setSumDefaut] = useState(0);
   const [REPlusLC, setREPlusLC] = useState(0);
   const [fullRE, setFullRE] = useState(0);
+  const [scenarioSelected, setScenarioSelected] = useState("");
 
   return (
     <appContext.Provider
@@ -30,6 +31,8 @@ export const AppContextProvider = ({ children }: IAppContextProvider) => {
         setSumDefaut,
         REPlusLC,
         setREPlusLC,
+        scenarioSelected,
+        setScenarioSelected,
       }}
     >
       {children}

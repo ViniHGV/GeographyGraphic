@@ -25,5 +25,5 @@ export type IDataBase = {
   state: string;
   policy: string;
   year: number;
-  capacity: number;
+  capacity: number ;
 };

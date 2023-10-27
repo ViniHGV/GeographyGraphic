@@ -74,6 +74,17 @@ export const MapBrasil = () => {
     return sum;
   }
 
+  const handleStatesMap = (ev: Event | any) => {
+    setTooltipState({ show: false, x: 0, y: 0, text: "" });
+    handleLocationMouseOver(ev);
+    setStateSelected(ev.target.id);
+    setFullRE(SumArray(dataFilteredFullRE));
+    setREPlusLC(SumArray(dataFilteredRELC));
+    setSumLC(SumArray(dataFilteredLC));
+    setSumTotalCapacityState(SumArray(dataFilteredCapacityTotal));
+    setSumDefaut(SumArray(dataFilteredCapacityDefaut));
+  };
+
   const handleLocationMouseOver = (e: any) => {
     const stateName = e.target.id;
 
@@ -99,16 +110,8 @@ export const MapBrasil = () => {
       <SVGMap
         map={Brazil}
         onLocationClick={(ev) => {
-          setTooltipState({ show: false, x: 0, y: 0, text: "" });
-          handleLocationMouseOver(ev);
-          setStateSelected(ev.target.id);
-          setFullRE(SumArray(dataFilteredFullRE));
-          setREPlusLC(SumArray(dataFilteredRELC));
-          setSumLC(SumArray(dataFilteredLC));
-          setSumTotalCapacityState(SumArray(dataFilteredCapacityTotal));
-          setSumDefaut(SumArray(dataFilteredCapacityDefaut));
+          handleStatesMap(ev);
         }}
-        // onLocationMouseOver={handleLocationMouseOver}
       />
       {tooltipState.show && (
         <div

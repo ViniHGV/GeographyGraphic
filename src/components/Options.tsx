@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { ComboboxDemo } from "./Selectors";
 import { Button } from "./ui/button";
 import {
@@ -13,7 +13,8 @@ import { MapBrasil } from "./MapBrasil/MapBrasil";
 import { appContext } from "../../context/appContext";
 
 export const Options = () => {
-  const { StateSelected }: string | any = useContext(appContext);
+  const { StateSelected, scenarioSelected, setScenarioSelected }: string | any =
+    useContext(appContext);
 
   return (
     <div className="pt-20 px-36 flex flex-col gap-8 min-[450px]">
@@ -33,11 +34,36 @@ export const Options = () => {
           <MapBrasil />
         </div>
         <div className="flex flex-col justify-between items-end">
-          <ComboboxDemo name="Selected Scenarios" data={ScenariosData} />
-          <ComboboxDemo name="Selected Policies" data={PolicyData} />
-          <ComboboxDemo name="Selected State" data={StateData} />
-          <ComboboxDemo name="Selected Tecnologies" data={TechsOptions} />
-          <ComboboxDemo name="Selected Year of Data" data={YearData} />
+          <ComboboxDemo
+            valueState={scenarioSelected}
+            setState={(ev) => setScenarioSelected(ev)}
+            name="Selected Scenarios"
+            data={ScenariosData}
+          />
+          <ComboboxDemo
+            valueState=""
+            setState={(ev) => ""}
+            name="Selected Policies"
+            data={PolicyData}
+          />
+          <ComboboxDemo
+            valueState=""
+            setState={(ev) => ""}
+            name="Selected State"
+            data={StateData}
+          />
+          <ComboboxDemo
+            valueState=""
+            setState={(ev) => ""}
+            name="Selected Tecnologies"
+            data={TechsOptions}
+          />
+          <ComboboxDemo
+            valueState=""
+            setState={(ev) => ""}
+            name="Selected Year of Data"
+            data={YearData}
+          />
           <Button className="w-full py-6 max-w-[455px]">
             Geerated Your Graphic
           </Button>

@@ -6,6 +6,8 @@ export type IDataNav = {
 export type IComboboxDemo = {
   name: string;
   data: IOptionsData[];
+  valueState: string;
+  setState: (ev: string) => void;
 };
 
 export type IOptionsData = {
@@ -25,5 +27,5 @@ export type IDataBase = {
   state: string;
   policy: string;
   year: number;
-  capacity: number ;
+  capacity: number;
 };

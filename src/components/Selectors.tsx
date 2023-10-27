@@ -19,7 +19,12 @@ import {
 } from "@/components/ui/popover";
 import { IComboboxDemo } from "../../types/types";
 
-export function ComboboxDemo({ name, data }: IComboboxDemo) {
+export function ComboboxDemo({
+  name,
+  data,
+  setState,
+  valueState,
+}: IComboboxDemo) {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("");
 
@@ -32,7 +37,9 @@ export function ComboboxDemo({ name, data }: IComboboxDemo) {
           aria-expanded={open}
           className="w-full max-w-[455px] justify-between "
         >
-          {value ? data.find((data) => data.value === value)?.value : name}
+          {valueState
+            ? data.find((data) => data.value === valueState)?.value
+            : name}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
@@ -45,14 +52,14 @@ export function ComboboxDemo({ name, data }: IComboboxDemo) {
               <CommandItem
                 key={data.value}
                 onSelect={(currentValue) => {
-                  setValue(currentValue === data.value ? "" : data.value);
+                  setState(currentValue === data.value ? "" : data.value);
                   setOpen(false);
                 }}
               >
                 <Check
                   className={cn(
                     "mr-2 h-4 w-4",
-                    value === data.value ? "opacity-100" : "opacity-0"
+                    valueState === data.value ? "opacity-100" : "opacity-0"
                   )}
                 />
                 {data.value}

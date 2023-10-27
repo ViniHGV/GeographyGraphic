@@ -24,12 +24,6 @@ export const GraphicsSection = () => {
             Hand-picked themes that you can copy and paste into your apps.
           </p>
         </div>
-        {/* <Button
-          variant="ghost"
-          className="border-b-2 border-black rounded-none font-bold rounded-t-sm"
-        >
-          Export With CSV Format <Upload className="ml-2 w-5 h-5" />
-        </Button> */}
       </div>
       <div className="grid gap-6 mt-10">
         <div className="w-full">
@@ -39,7 +33,7 @@ export const GraphicsSection = () => {
               "100% RE+LC",
               "+LC",
               "Default",
-              "TotalCapacity",
+              "Total Capacity",
             ]}
             dataNumbers={[
               fullRE.toFixed(2),

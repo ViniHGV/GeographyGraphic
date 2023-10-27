@@ -5,6 +5,7 @@ import Brazil from "@svg-maps/Brazil";
 import "./style.css";
 import { DataBase } from "../../../data/data";
 import { appContext } from "../../../context/appContext";
+import { toast } from "react-toastify";
 
 type IMapBrasil = {
   HandleStateProp: (ev: any) => void;
@@ -84,7 +85,17 @@ export const MapBrasil = () => {
       setSumLC(SumArray(dataFilteredLC));
       setSumTotalCapacityState(SumArray(dataFilteredCapacityTotal));
       setSumDefaut(SumArray(dataFilteredCapacityDefaut));
-    } else alert("Selecione o scenario e o policies");
+    } else
+      toast.error("Selecione um Scenario e uma Policie para Prosseguir!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
   };
 
   const handleLocationMouseOver = (e: any) => {

@@ -15,6 +15,10 @@ export const AppContextProvider = ({ children }: IAppContextProvider) => {
   const [REPlusLC, setREPlusLC] = useState(0);
   const [fullRE, setFullRE] = useState(0);
   const [scenarioSelected, setScenarioSelected] = useState("");
+  const [policiesSelected, setPoliciesSelected] = useState("");
+  // const [policiesSelected, setPoliciesSelected] = useState("");
+  // const [policiesSelected, setPoliciesSelected] = useState("");
+  // const [policiesSelected, setPoliciesSelected] = useState("");
 
   return (
     <appContext.Provider
@@ -33,6 +37,8 @@ export const AppContextProvider = ({ children }: IAppContextProvider) => {
         setREPlusLC,
         scenarioSelected,
         setScenarioSelected,
+        policiesSelected,
+        setPoliciesSelected,
       }}
     >
       {children}

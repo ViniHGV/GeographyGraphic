@@ -34,9 +34,9 @@ export const MapBrasil = () => {
     setREPlusLC,
     fullRE,
     setFullRE,
+    scenarioSelected,
+    policiesSelected,
   }: any = useContext(appContext);
-
-  console.log(sumLC);
 
   const dataFilteredCapacityTotal = DataBase.filter(
     (item) => item.state === tooltipState.text
@@ -75,14 +75,16 @@ export const MapBrasil = () => {
   }
 
   const handleStatesMap = (ev: Event | any) => {
-    setTooltipState({ show: false, x: 0, y: 0, text: "" });
-    handleLocationMouseOver(ev);
-    setStateSelected(ev.target.id);
-    setFullRE(SumArray(dataFilteredFullRE));
-    setREPlusLC(SumArray(dataFilteredRELC));
-    setSumLC(SumArray(dataFilteredLC));
-    setSumTotalCapacityState(SumArray(dataFilteredCapacityTotal));
-    setSumDefaut(SumArray(dataFilteredCapacityDefaut));
+    if (scenarioSelected && policiesSelected) {
+      setTooltipState({ show: false, x: 0, y: 0, text: "" });
+      handleLocationMouseOver(ev);
+      setStateSelected(ev.target.id);
+      setFullRE(SumArray(dataFilteredFullRE));
+      setREPlusLC(SumArray(dataFilteredRELC));
+      setSumLC(SumArray(dataFilteredLC));
+      setSumTotalCapacityState(SumArray(dataFilteredCapacityTotal));
+      setSumDefaut(SumArray(dataFilteredCapacityDefaut));
+    } else alert("Selecione o scenario e o policies");
   };
 
   const handleLocationMouseOver = (e: any) => {

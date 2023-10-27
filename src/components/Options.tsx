@@ -13,8 +13,13 @@ import { MapBrasil } from "./MapBrasil/MapBrasil";
 import { appContext } from "../../context/appContext";
 
 export const Options = () => {
-  const { StateSelected, scenarioSelected, setScenarioSelected }: string | any =
-    useContext(appContext);
+  const {
+    StateSelected,
+    scenarioSelected,
+    setScenarioSelected,
+    policiesSelected,
+    setPoliciesSelected,
+  }: string | any = useContext(appContext);
 
   return (
     <div className="pt-20 px-36 flex flex-col gap-8 min-[450px]">
@@ -41,8 +46,8 @@ export const Options = () => {
             data={ScenariosData}
           />
           <ComboboxDemo
-            valueState=""
-            setState={(ev) => ""}
+            valueState={policiesSelected}
+            setState={(ev) => setPoliciesSelected(ev)}
             name="Selected Policies"
             data={PolicyData}
           />

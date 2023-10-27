@@ -16,6 +16,7 @@ export const AppContextProvider = ({ children }: IAppContextProvider) => {
   const [fullRE, setFullRE] = useState(0);
   const [scenarioSelected, setScenarioSelected] = useState("");
   const [policiesSelected, setPoliciesSelected] = useState("");
+  const [typeChart, setTypeChart] = useState("bar");
   // const [policiesSelected, setPoliciesSelected] = useState("");
   // const [policiesSelected, setPoliciesSelected] = useState("");
   // const [policiesSelected, setPoliciesSelected] = useState("");
@@ -39,6 +40,8 @@ export const AppContextProvider = ({ children }: IAppContextProvider) => {
         setScenarioSelected,
         policiesSelected,
         setPoliciesSelected,
+        typeChart,
+        setTypeChart,
       }}
     >
       {children}

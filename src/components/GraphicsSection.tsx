@@ -15,7 +15,23 @@ export const GraphicsSection = () => {
     sumDefaut,
     REPlusLC,
     fullRE,
+    typeChart,
+    setTypeChart,
   }: any = useContext(appContext);
+
+  const [visible, setVisible] = useState(false);
+
+  const handleTypeChart = (value: string) => {
+    typeChart === value ? null : setTypeChart(value);
+    setVisible(false);
+  };
+
+  useEffect(() => {
+    if (!visible) {
+      console.log("Visivel");
+    }
+    setVisible(true);
+  }, [visible, typeChart]);
 
   return (
     <div className="pt-12 mt-16 px-36">
@@ -27,36 +43,38 @@ export const GraphicsSection = () => {
           </p>
         </div>
         <div className="flex gap-2">
-          <Button>
+          <Button onClick={() => handleTypeChart("bar")}>
             <BarChartBig />
           </Button>
-          <Button>
+          <Button onClick={() => handleTypeChart("line")}>
             <LineChart />
           </Button>
-          <Button>
+          <Button onClick={() => handleTypeChart("area")}>
             <AreaChart />
           </Button>
         </div>
       </div>
       <div className="grid gap-6 mt-10">
         <div className="w-full">
-          <Graphics
-            dataDescriptions={[
-              "100% RE",
-              "100% RE+LC",
-              "+LC",
-              "Default",
-              "Total Capacity",
-            ]}
-            dataNumbers={[
-              fullRE.toFixed(2),
-              REPlusLC,
-              sumLC,
-              sumDefaut,
-              sumTotalCapacityState,
-            ]}
-            typeChart="bar"
-          />
+          {visible && (
+            <Graphics
+              dataDescriptions={[
+                "100% RE",
+                "100% RE+LC",
+                "+LC",
+                "Default",
+                "Total Capacity",
+              ]}
+              dataNumbers={[
+                fullRE.toFixed(2),
+                REPlusLC,
+                sumLC,
+                sumDefaut,
+                sumTotalCapacityState,
+              ]}
+              typeChart={typeChart}
+            />
+          )}
         </div>
       </div>
     </div>

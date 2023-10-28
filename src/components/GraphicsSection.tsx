@@ -1,7 +1,5 @@
 "use client";
 import { useContext, useEffect, useState } from "react";
-// import { Button } from "./ui/button";
-// import { Upload } from "lucide-react";
 import { Graphics } from "./Graphics";
 import { appContext } from "../../context/appContext";
 import { BarChartBig, LineChart, AreaChart } from "lucide-react";
@@ -13,6 +11,7 @@ import {
   TechsOptions,
   YearData,
 } from "../../data/data";
+import { type } from "os";
 
 export const GraphicsSection = () => {
   const {
@@ -31,6 +30,7 @@ export const GraphicsSection = () => {
   const [visible, setVisible] = useState(false);
   const [dataDescription, setDataDescription] = useState([""]);
   const [dataNumbers, setDataNumbers] = useState([0]);
+  const StyleChartNotSelected = "bg-zinc-200 text-black hover:text-white";
 
   useEffect(() => {
     if (groupBySelected === "Scenario")
@@ -64,13 +64,22 @@ export const GraphicsSection = () => {
           </p>
         </div>
         <div className="flex gap-2">
-          <Button onClick={() => handleTypeChart("bar")}>
+          <Button
+            className={`${typeChart === "bar" ? "" : StyleChartNotSelected}`}
+            onClick={() => handleTypeChart("bar")}
+          >
             <BarChartBig />
           </Button>
-          <Button onClick={() => handleTypeChart("line")}>
+          <Button
+            className={`${typeChart === "line" ? "" : StyleChartNotSelected}`}
+            onClick={() => handleTypeChart("line")}
+          >
             <LineChart />
           </Button>
-          <Button onClick={() => handleTypeChart("area")}>
+          <Button
+            className={`${typeChart === "area" ? "" : StyleChartNotSelected}`}
+            onClick={() => handleTypeChart("area")}
+          >
             <AreaChart />
           </Button>
         </div>
@@ -85,7 +94,7 @@ export const GraphicsSection = () => {
                 REPlusLC,
                 sumLC,
                 sumDefaut,
-                sumTotalCapacityState,
+                // sumTotalCapacityState,
               ]}
               typeChart={typeChart}
             />

@@ -37,6 +37,7 @@ export const MapBrasil = () => {
     setFullRE,
     scenarioSelected,
     policiesSelected,
+    groupBySelected,
   }: any = useContext(appContext);
 
   const dataFilteredCapacityTotal = DataBase.filter(
@@ -76,7 +77,7 @@ export const MapBrasil = () => {
   }
 
   const handleStatesMap = (ev: Event | any) => {
-    if (scenarioSelected && policiesSelected) {
+    if (scenarioSelected && policiesSelected && groupBySelected) {
       setTooltipState({ show: false, x: 0, y: 0, text: "" });
       handleLocationMouseOver(ev);
       setStateSelectedToDoMap(ev.target.id);
@@ -86,16 +87,19 @@ export const MapBrasil = () => {
       setSumTotalCapacityState(SumArray(dataFilteredCapacityTotal));
       setSumDefaut(SumArray(dataFilteredCapacityDefaut));
     } else
-      toast.error("Selecione um Scenario e uma Policie para Prosseguir!", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
+      toast.error(
+        "Selecione Group By, Scenario e uma Policie para Prosseguir!",
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        }
+      );
   };
 
   const handleLocationMouseOver = (e: any) => {

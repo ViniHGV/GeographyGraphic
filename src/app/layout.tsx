@@ -6,8 +6,8 @@ import { AppContextProvider } from "../../context/appContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Geography Grafic",
-  description: "Geography Grafic",
+  title: "Geography Graphic",
+  description: "Geography Graphic",
 };
 
 export default function RootLayout({

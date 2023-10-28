@@ -21,6 +21,7 @@ export const GraphicsSection = () => {
     typeChart,
     setTypeChart,
     groupBySelected,
+    stateSelectedToDoMap,
   }: any = useContext(appContext);
 
   const [visible, setVisible] = useState(false);
@@ -33,13 +34,14 @@ export const GraphicsSection = () => {
       setDataDescription(ScenariosData.map((item) => item.value));
     if (groupBySelected === "Policy")
       setDataDescription(PolicyData.map((item) => item.value));
+    setDataNumbers([fullRE, REPlusLC, sumLC, sumDefaut]);
     if (groupBySelected === "State")
       setDataDescription(StateData.map((item) => item.value));
     if (groupBySelected === "Tecnologies")
       setDataDescription(TechsOptions.map((item) => item.value));
     if (groupBySelected === "Year of Data")
       setDataDescription(YearData.map((item) => item.value.toString()));
-  }, [groupBySelected]);
+  }, [groupBySelected, stateSelectedToDoMap]);
 
   const handleTypeChart = (value: string) => {
     typeChart === value ? null : setTypeChart(value);
@@ -85,14 +87,14 @@ export const GraphicsSection = () => {
           {visible && (
             <Graphics
               dataDescriptions={dataDescription}
-              dataNumbers={[fullRE, REPlusLC, sumLC, sumDefaut]}
+              dataNumbers={dataNumbers}
               typeChart={typeChart}
             />
           )}
           {!visible && (
             <Graphics
               dataDescriptions={dataDescription}
-              dataNumbers={[fullRE, REPlusLC, sumLC, sumDefaut]}
+              dataNumbers={[0, 0, 0, 0]}
               typeChart={typeChart}
             />
           )}

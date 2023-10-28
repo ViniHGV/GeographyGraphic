@@ -30,6 +30,7 @@ export const GraphicsSection = () => {
 
   const [visible, setVisible] = useState(false);
   const [dataDescription, setDataDescription] = useState([""]);
+  const [dataNumbers, setDataNumbers] = useState([0]);
 
   useEffect(() => {
     if (groupBySelected === "Scenario")
@@ -80,7 +81,7 @@ export const GraphicsSection = () => {
             <Graphics
               dataDescriptions={dataDescription}
               dataNumbers={[
-                fullRE.toFixed(2),
+                fullRE,
                 REPlusLC,
                 sumLC,
                 sumDefaut,

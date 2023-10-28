@@ -11,20 +11,16 @@ import {
   TechsOptions,
   YearData,
 } from "../../data/data";
-import { type } from "os";
 
 export const GraphicsSection = () => {
   const {
     sumLC,
-    StateSelected,
-    sumTotalCapacityState,
     sumDefaut,
     REPlusLC,
     fullRE,
     typeChart,
     setTypeChart,
     groupBySelected,
-    setGroupBySelected,
   }: any = useContext(appContext);
 
   const [visible, setVisible] = useState(false);
@@ -89,13 +85,14 @@ export const GraphicsSection = () => {
           {visible && (
             <Graphics
               dataDescriptions={dataDescription}
-              dataNumbers={[
-                fullRE,
-                REPlusLC,
-                sumLC,
-                sumDefaut,
-                // sumTotalCapacityState,
-              ]}
+              dataNumbers={[fullRE, REPlusLC, sumLC, sumDefaut]}
+              typeChart={typeChart}
+            />
+          )}
+          {!visible && (
+            <Graphics
+              dataDescriptions={dataDescription}
+              dataNumbers={[fullRE, REPlusLC, sumLC, sumDefaut]}
               typeChart={typeChart}
             />
           )}

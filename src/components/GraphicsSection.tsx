@@ -41,7 +41,7 @@ export const GraphicsSection = () => {
       setDataDescription(TechsOptions.map((item) => item.value));
     if (groupBySelected === "Year of Data")
       setDataDescription(YearData.map((item) => item.value.toString()));
-  }, [groupBySelected, stateSelectedToDoMap]);
+  }, [groupBySelected, stateSelectedToDoMap, fullRE]);
 
   const handleTypeChart = (value: string) => {
     typeChart === value ? null : setTypeChart(value);

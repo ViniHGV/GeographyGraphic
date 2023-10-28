@@ -44,29 +44,14 @@ export const MapBrasil = () => {
     (item) => item.state === tooltipState.text
   ).map((item) => item.capacity);
 
-  const dataFilteredCapacityDefaut = DataBase.filter(
-    (item) => item.state === tooltipState.text
-  )
-    .filter((item) => item.policy === "Default")
-    .map((item) => item.capacity);
-
-  const dataFilteredLC = DataBase.filter(
-    (item) => item.state === tooltipState.text
-  )
-    .filter((item) => item.policy === "+LC")
-    .map((item) => item.capacity);
-
-  const dataFilteredRELC = DataBase.filter(
-    (item) => item.state === tooltipState.text
-  )
-    .filter((item) => item.policy === "100% RE+LC")
-    .map((item) => item.capacity);
-
-  const dataFilteredFullRE = DataBase.filter(
-    (item) => item.state === tooltipState.text
-  )
-    .filter((item) => item.policy === "100% RE")
-    .map((item) => item.capacity);
+  const dataFilteredToDoPolicies = (condition: string): number[] => {
+    const dataFiltered = DataBase.filter(
+      (item) => item.state === tooltipState.text
+    )
+      .filter((item) => item.policy === condition)
+      .map((item) => item.capacity);
+    return dataFiltered;
+  };
 
   function SumArray(dataFiltered: number[]) {
     let sum = 0;
@@ -81,11 +66,11 @@ export const MapBrasil = () => {
       setTooltipState({ show: false, x: 0, y: 0, text: "" });
       handleLocationMouseOver(ev);
       setStateSelectedToDoMap(ev.target.id);
-      setFullRE(SumArray(dataFilteredFullRE));
-      setREPlusLC(SumArray(dataFilteredRELC));
-      setSumLC(SumArray(dataFilteredLC));
+      setFullRE(SumArray(dataFilteredToDoPolicies("100% RE")));
+      setREPlusLC(SumArray(dataFilteredToDoPolicies("100% RE+LC")));
+      setSumLC(SumArray(dataFilteredToDoPolicies("+LC")));
+      setSumDefaut(SumArray(dataFilteredToDoPolicies("Default")));
       setSumTotalCapacityState(SumArray(dataFilteredCapacityTotal));
-      setSumDefaut(SumArray(dataFilteredCapacityDefaut));
     } else
       toast.error(
         "Selecione Group By, Scenario e uma Policie para Prosseguir!",

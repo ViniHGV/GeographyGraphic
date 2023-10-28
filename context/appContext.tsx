@@ -18,9 +18,6 @@ export const AppContextProvider = ({ children }: IAppContextProvider) => {
   const [policiesSelected, setPoliciesSelected] = useState("");
   const [typeChart, setTypeChart] = useState("bar");
   const [groupBySelected, setGroupBySelected] = useState("");
-  // const [policiesSelected, setPoliciesSelected] = useState("");
-  // const [policiesSelected, setPoliciesSelected] = useState("");
-  // const [policiesSelected, setPoliciesSelected] = useState("");
 
   return (
     <appContext.Provider

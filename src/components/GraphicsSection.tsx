@@ -6,6 +6,13 @@ import { Graphics } from "./Graphics";
 import { appContext } from "../../context/appContext";
 import { BarChartBig, LineChart, AreaChart } from "lucide-react";
 import { Button } from "./ui/button";
+import {
+  PolicyData,
+  ScenariosData,
+  StateData,
+  TechsOptions,
+  YearData,
+} from "../../data/data";
 
 export const GraphicsSection = () => {
   const {
@@ -26,12 +33,15 @@ export const GraphicsSection = () => {
 
   useEffect(() => {
     if (groupBySelected === "Scenario")
-      setDataDescription([
-        "Baseline",
-        "Intensive elec.",
-        "Limited elec.",
-        "Net zero",
-      ]);
+      setDataDescription(ScenariosData.map((item) => item.value));
+    if (groupBySelected === "Policy")
+      setDataDescription(PolicyData.map((item) => item.value));
+    if (groupBySelected === "State")
+      setDataDescription(StateData.map((item) => item.value));
+    if (groupBySelected === "Tecnologies")
+      setDataDescription(TechsOptions.map((item) => item.value));
+    if (groupBySelected === "Year of Data")
+      setDataDescription(YearData.map((item) => item.value));
   }, [groupBySelected]);
 
   const handleTypeChart = (value: string) => {

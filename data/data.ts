@@ -11,7 +11,7 @@ export const GroupByData: IOptionsData[] = [
   { value: "Policy" },
   { value: "State" },
   { value: "Tecnologies" },
-  { value: "Year od Data" },
+  { value: "Year of Data" },
 ];
 
 export const ScenariosData: IOptionsData[] = [

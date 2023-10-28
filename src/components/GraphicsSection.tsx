@@ -17,9 +17,22 @@ export const GraphicsSection = () => {
     fullRE,
     typeChart,
     setTypeChart,
+    groupBySelected,
+    setGroupBySelected,
   }: any = useContext(appContext);
 
   const [visible, setVisible] = useState(false);
+  const [dataDescription, setDataDescription] = useState([""]);
+
+  useEffect(() => {
+    if (groupBySelected === "Scenario")
+      setDataDescription([
+        "Baseline",
+        "Intensive elec.",
+        "Limited elec.",
+        "Net zero",
+      ]);
+  }, [groupBySelected]);
 
   const handleTypeChart = (value: string) => {
     typeChart === value ? null : setTypeChart(value);
@@ -27,9 +40,6 @@ export const GraphicsSection = () => {
   };
 
   useEffect(() => {
-    if (!visible) {
-      console.log("Visivel");
-    }
     setVisible(true);
   }, [visible, typeChart]);
 
@@ -58,13 +68,7 @@ export const GraphicsSection = () => {
         <div className="w-full">
           {visible && (
             <Graphics
-              dataDescriptions={[
-                "100% RE",
-                "100% RE+LC",
-                "+LC",
-                "Default",
-                "Total Capacity",
-              ]}
+              dataDescriptions={dataDescription}
               dataNumbers={[
                 fullRE.toFixed(2),
                 REPlusLC,

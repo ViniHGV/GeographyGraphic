@@ -8,7 +8,7 @@ type IAppContextProvider = {
 };
 
 export const AppContextProvider = ({ children }: IAppContextProvider) => {
-  const [StateSelected, setStateSelected] = useState("");
+  const [stateSelectedToDoMap, setStateSelectedToDoMap] = useState("");
   const [sumLC, setSumLC] = useState(0);
   const [sumTotalCapacityState, setSumTotalCapacityState] = useState(0);
   const [sumDefaut, setSumDefaut] = useState(0);
@@ -16,6 +16,7 @@ export const AppContextProvider = ({ children }: IAppContextProvider) => {
   const [fullRE, setFullRE] = useState(0);
   const [scenarioSelected, setScenarioSelected] = useState("");
   const [policiesSelected, setPoliciesSelected] = useState("");
+  // const [stateSelected, setStateSelected] = useState("");
   const [typeChart, setTypeChart] = useState("bar");
   const [groupBySelected, setGroupBySelected] = useState("");
 
@@ -24,8 +25,8 @@ export const AppContextProvider = ({ children }: IAppContextProvider) => {
       value={{
         fullRE,
         setFullRE,
-        StateSelected,
-        setStateSelected,
+        stateSelectedToDoMap,
+        setStateSelectedToDoMap,
         sumLC,
         setSumLC,
         sumTotalCapacityState,

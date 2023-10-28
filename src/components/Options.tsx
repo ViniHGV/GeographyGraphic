@@ -15,7 +15,7 @@ import { appContext } from "../../context/appContext";
 
 export const Options = () => {
   const {
-    StateSelected,
+    stateSelectedToDoMap,
     scenarioSelected,
     setScenarioSelected,
     policiesSelected,
@@ -36,7 +36,10 @@ export const Options = () => {
         <div className="flex flex-col gap-2">
           <p className="font-medium">
             Selected Capacity (GW){" "}
-            <span className="font-bold"> {StateSelected.toUpperCase()}</span>
+            <span className="font-bold">
+              {" "}
+              {stateSelectedToDoMap.toUpperCase()}
+            </span>
           </p>
 
           <MapBrasil />

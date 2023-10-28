@@ -29,8 +29,8 @@ export const MapBrasil = () => {
     setSumTotalCapacityState,
     setSumDefaut,
     setSumLC,
-    StateSelected,
-    setStateSelected,
+    stateSelectedToDoMap,
+    setStateSelectedToDoMap,
     REPlusLC,
     setREPlusLC,
     fullRE,
@@ -79,7 +79,7 @@ export const MapBrasil = () => {
     if (scenarioSelected && policiesSelected) {
       setTooltipState({ show: false, x: 0, y: 0, text: "" });
       handleLocationMouseOver(ev);
-      setStateSelected(ev.target.id);
+      setStateSelectedToDoMap(ev.target.id);
       setFullRE(SumArray(dataFilteredFullRE));
       setREPlusLC(SumArray(dataFilteredRELC));
       setSumLC(SumArray(dataFilteredLC));
@@ -135,7 +135,10 @@ export const MapBrasil = () => {
             transform: "translate(-50%, -100%)",
           }}
         >
-          <p className="text-sm py-1"> State: {StateSelected.toUpperCase()}</p>
+          <p className="text-sm py-1">
+            {" "}
+            State: {stateSelectedToDoMap.toUpperCase()}
+          </p>
           <p className="text-sm py-1">Capacity: {sumTotalCapacityState}</p>
           <p className="text-sm py-1">Default: {sumDefaut} </p>
           <p className="text-sm py-1">+LC: {sumLC}</p>

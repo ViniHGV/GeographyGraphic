@@ -22,6 +22,12 @@ export const Options = () => {
     setPoliciesSelected,
     groupBySelected,
     setGroupBySelected,
+    stateSelectedToDoOption,
+    setStateSelectedToDoOption,
+    technologySelected,
+    setTechnologySelected,
+    yearSelected,
+    setYearSelected,
   }: string | any = useContext(appContext);
 
   return (
@@ -64,20 +70,20 @@ export const Options = () => {
             data={PolicyData}
           />
           <ComboboxDemo
-            valueState=""
-            setState={(ev) => ""}
+            valueState={stateSelectedToDoOption}
+            setState={(ev) => setStateSelectedToDoOption(ev)}
             name="Selected State"
             data={StateData}
           />
           <ComboboxDemo
-            valueState=""
-            setState={(ev) => ""}
+            valueState={technologySelected}
+            setState={(ev) => setTechnologySelected(ev)}
             name="Selected Tecnologies"
             data={TechsOptions}
           />
           <ComboboxDemo
-            valueState=""
-            setState={(ev) => ""}
+            valueState={yearSelected}
+            setState={(ev) => setYearSelected(ev)}
             name="Selected Year of Data"
             data={YearData}
           />

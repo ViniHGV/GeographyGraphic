@@ -16,7 +16,9 @@ export const AppContextProvider = ({ children }: IAppContextProvider) => {
   const [fullRE, setFullRE] = useState(0);
   const [scenarioSelected, setScenarioSelected] = useState("");
   const [policiesSelected, setPoliciesSelected] = useState("");
-  // const [stateSelected, setStateSelected] = useState("");
+  const [stateSelectedToDoOption, setStateSelectedToDoOption] = useState("");
+  const [technologySelected, setTechnologySelected] = useState("");
+  const [yearSelected, setYearSelected] = useState("");
   const [typeChart, setTypeChart] = useState("bar");
   const [groupBySelected, setGroupBySelected] = useState("");
 
@@ -43,6 +45,12 @@ export const AppContextProvider = ({ children }: IAppContextProvider) => {
         setTypeChart,
         groupBySelected,
         setGroupBySelected,
+        stateSelectedToDoOption,
+        setStateSelectedToDoOption,
+        technologySelected,
+        setTechnologySelected,
+        yearSelected,
+        setYearSelected,
       }}
     >
       {children}

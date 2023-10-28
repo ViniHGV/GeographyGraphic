@@ -5,13 +5,17 @@ export type IDataNav = {
 
 export type IComboboxDemo = {
   name: string;
-  data: IOptionsData[];
-  valueState: string;
-  setState: (ev: string) => void;
+  data: IOptionsData[] | IYearData[];
+  valueState: string | number;
+  setState: (ev: string | number) => void;
 };
 
 export type IOptionsData = {
   value: string;
+};
+
+export type IYearData = {
+  value: number;
 };
 
 export type IGraphics = {

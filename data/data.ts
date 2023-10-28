@@ -1,4 +1,4 @@
-import { IDataBase, IDataNav, IOptionsData } from "../types/types";
+import { IDataBase, IDataNav, IOptionsData, IYearData } from "../types/types";
 
 export const dataNav: IDataNav[] = [
   { name: "Publication", url: "" },
@@ -68,7 +68,7 @@ export const TechsOptions: IOptionsData[] = [
   { value: "Utility-scale PV" },
 ];
 
-export const YearData: IOptionsData[] = [{ value: "2019" }];
+export const YearData: IYearData[] = [{ value: 2019 },{ value: 2020 }];
 
 export const DataBase: IDataBase[] = [
   {

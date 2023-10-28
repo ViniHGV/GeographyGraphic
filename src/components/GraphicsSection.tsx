@@ -42,7 +42,7 @@ export const GraphicsSection = () => {
     if (groupBySelected === "Tecnologies")
       setDataDescription(TechsOptions.map((item) => item.value));
     if (groupBySelected === "Year of Data")
-      setDataDescription(YearData.map((item) => item.value));
+      setDataDescription(YearData.map((item) => item.value.toString()));
   }, [groupBySelected]);
 
   const handleTypeChart = (value: string) => {

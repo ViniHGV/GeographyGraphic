@@ -6,6 +6,14 @@ export const dataNav: IDataNav[] = [
   { name: "Download Data", url: "" },
 ];
 
+export const GroupByData: IOptionsData[] = [
+  { value: "Scenario" },
+  { value: "Policy" },
+  { value: "State" },
+  { value: "Tecnologies" },
+  { value: "Year od Data" },
+];
+
 export const ScenariosData: IOptionsData[] = [
   { value: "Baseline" },
   { value: "Intensive elec." },

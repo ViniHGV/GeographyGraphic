@@ -3,6 +3,7 @@ import React, { useContext, useEffect } from "react";
 import { ComboboxDemo } from "./Selectors";
 import { Button } from "./ui/button";
 import {
+  GroupByData,
   PolicyData,
   ScenariosData,
   StateData,
@@ -19,6 +20,8 @@ export const Options = () => {
     setScenarioSelected,
     policiesSelected,
     setPoliciesSelected,
+    groupBySelected,
+    setGroupBySelected,
   }: string | any = useContext(appContext);
 
   return (
@@ -39,6 +42,12 @@ export const Options = () => {
           <MapBrasil />
         </div>
         <div className="flex flex-col justify-between items-end">
+          <ComboboxDemo
+            valueState={groupBySelected}
+            setState={(ev) => setGroupBySelected(ev)}
+            name="Selected Group By"
+            data={GroupByData}
+          />
           <ComboboxDemo
             valueState={scenarioSelected}
             setState={(ev) => setScenarioSelected(ev)}

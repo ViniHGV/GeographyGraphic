@@ -49,7 +49,7 @@ export const MapBrasil = () => {
     setBaseline,
     setIntensiveElec,
     setLimitedElec,
-    setNetZero
+    setNetZero,
   }: any = useContext(appContext);
 
   const dataFilteredCapacityTotal = DataBase.filter(
@@ -78,7 +78,7 @@ export const MapBrasil = () => {
     const dataFiltered = DataBase.filter(
       (item) => item.state === stateSelectedToDoMap
     )
-      .filter((item) => item.techs === condition)
+      .filter((item) => item.scenario === condition)
       .map((item) => item.capacity);
     return dataFiltered;
   };
@@ -101,18 +101,20 @@ export const MapBrasil = () => {
       setSumLC(SumArray(dataFilteredToDoPolicies("+LC")));
       setSumDefaut(SumArray(dataFilteredToDoPolicies("Default")));
       setSumTotalCapacityState(SumArray(dataFilteredCapacityTotal));
-      setCCGT(SumArray(dataFilteredToDoTechnologies("CCGT")))
-      setHygrogen(SumArray(dataFilteredToDoTechnologies("Hydrogen")))
-      setNuclear(SumArray(dataFilteredToDoTechnologies("Nuclear")))
-      setOnshorewind(SumArray(dataFilteredToDoTechnologies("Onshore wind")))
-      setPVexisting(SumArray(dataFilteredToDoTechnologies("PV-existing")))
-      setReservoir(SumArray(dataFilteredToDoTechnologies("Reservoir")))
-      setRunofriver(SumArray(dataFilteredToDoTechnologies("Run-of-river")))
-      setUtilityscalePV(SumArray(dataFilteredToDoTechnologies("Utility-scale PV")))
-      setBaseline(SumArray(dataFilteredToDoScenarios("Baseline")))
-      setIntensiveElec(SumArray(dataFilteredToDoScenarios("Intensive elec.")))
-      setLimitedElec(SumArray(dataFilteredToDoScenarios("Limited elec.")))
-      setNetZero(SumArray(dataFilteredToDoScenarios("Net zero")))
+      setCCGT(SumArray(dataFilteredToDoTechnologies("CCGT")));
+      setHygrogen(SumArray(dataFilteredToDoTechnologies("Hydrogen")));
+      setNuclear(SumArray(dataFilteredToDoTechnologies("Nuclear")));
+      setOnshorewind(SumArray(dataFilteredToDoTechnologies("Onshore wind")));
+      setPVexisting(SumArray(dataFilteredToDoTechnologies("PV-existing")));
+      setReservoir(SumArray(dataFilteredToDoTechnologies("Reservoir")));
+      setRunofriver(SumArray(dataFilteredToDoTechnologies("Run-of-river")));
+      setUtilityscalePV(
+        SumArray(dataFilteredToDoTechnologies("Utility-scale PV"))
+      );
+      setBaseline(SumArray(dataFilteredToDoScenarios("Baseline")));
+      setIntensiveElec(SumArray(dataFilteredToDoScenarios("Intensive elec.")));
+      setLimitedElec(SumArray(dataFilteredToDoScenarios("Limited elec.")));
+      setNetZero(SumArray(dataFilteredToDoScenarios("Net zero")));
     } else
       toast.error(
         "Selecione Group By, Scenario e uma Policie para Prosseguir!",

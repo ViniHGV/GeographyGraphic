@@ -5,6 +5,7 @@ import { appContext } from "../../context/appContext";
 import { BarChartBig, LineChart, AreaChart } from "lucide-react";
 import { Button } from "./ui/button";
 import {
+  DataBase,
   PolicyData,
   ScenariosData,
   StateData,
@@ -22,6 +23,14 @@ export const GraphicsSection = () => {
     setTypeChart,
     groupBySelected,
     stateSelectedToDoMap,
+    CCGT,
+    hydrogen,
+    Nuclear,
+    Onshorewind,
+    PVexisting,
+    Reservoir,
+    Runofriver,
+    UtilityscalePV,
   }: any = useContext(appContext);
 
   const [visible, setVisible] = useState(false);
@@ -29,16 +38,47 @@ export const GraphicsSection = () => {
   const [dataNumbers, setDataNumbers] = useState([0]);
   const StyleChartNotSelected = "bg-zinc-200 text-black hover:text-white";
 
+  // function SumArray(dataFiltered: number[][] | any) {
+  //   let sum = 0;
+  //   for (let i = 0; i < dataFiltered.length; i++) {
+  //     for (let k = 0; k < dataFiltered[i].length; k++) {
+  //     // console.log dataFiltered[i][k];
+  //     sum += dataFiltered[i][k];
+  //     }
+  //   return sum;
+  //   }
+  // }
+
+  const dataFilteredCapacityTotal = StateData.map((data) =>
+    DataBase.filter((item) => item.state === data.value).map(
+      (item) => item.capacity
+    )
+  );
+
   useEffect(() => {
+    setDataNumbers([])
     if (groupBySelected === "Scenario")
       setDataDescription(ScenariosData.map((item) => item.value));
     if (groupBySelected === "Policy")
       setDataDescription(PolicyData.map((item) => item.value));
-    setDataNumbers([fullRE, REPlusLC, sumLC, sumDefaut]);
+      setDataNumbers([fullRE, REPlusLC, sumLC, sumDefaut]);
     if (groupBySelected === "State")
       setDataDescription(StateData.map((item) => item.value));
+    // let datatot = (SumArray(dataFilteredCapacityTotal))
+    // console.log(datatot)
+    // console.log(...dataFilteredCapacityTotal)
     if (groupBySelected === "Tecnologies")
       setDataDescription(TechsOptions.map((item) => item.value));
+      // setDataNumbers([
+      //   CCGT,
+      //   hydrogen,
+      //   Nuclear,
+      //   Onshorewind,
+      //   PVexisting,
+      //   Reservoir,
+      //   Runofriver,
+      //   UtilityscalePV,
+      // ]);
     if (groupBySelected === "Year of Data")
       setDataDescription(YearData.map((item) => item.value.toString()));
   }, [groupBySelected, stateSelectedToDoMap, fullRE]);
@@ -50,7 +90,7 @@ export const GraphicsSection = () => {
 
   useEffect(() => {
     setVisible(true);
-  }, [visible, typeChart]);
+  }, [visible, typeChart, stateSelectedToDoMap]);
 
   return (
     <div className="pt-12 mt-16 px-36">

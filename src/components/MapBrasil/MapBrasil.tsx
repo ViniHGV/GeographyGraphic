@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { SVGMap } from "react-svg-map";
 import Brazil from "@svg-maps/Brazil";
 import "./style.css";
@@ -38,17 +38,34 @@ export const MapBrasil = () => {
     scenarioSelected,
     policiesSelected,
     groupBySelected,
+    setCCGT,
+    setHygrogen,
+    setNuclear,
+    setOnshorewind,
+    setPVexisting,
+    setReservoir,
+    setRunofriver,
+    setUtilityscalePV,
   }: any = useContext(appContext);
 
   const dataFilteredCapacityTotal = DataBase.filter(
-    (item) => item.state === tooltipState.text
+    (item) => item.state === stateSelectedToDoMap
   ).map((item) => item.capacity);
 
   const dataFilteredToDoPolicies = (condition: string): number[] => {
     const dataFiltered = DataBase.filter(
-      (item) => item.state === tooltipState.text
+      (item) => item.state === stateSelectedToDoMap
     )
       .filter((item) => item.policy === condition)
+      .map((item) => item.capacity);
+    return dataFiltered;
+  };
+
+  const dataFilteredToDoTechnologies = (condition: string): number[] => {
+    const dataFiltered = DataBase.filter(
+      (item) => item.state === stateSelectedToDoMap
+    )
+      .filter((item) => item.techs === condition)
       .map((item) => item.capacity);
     return dataFiltered;
   };
@@ -65,12 +82,20 @@ export const MapBrasil = () => {
     if (scenarioSelected && policiesSelected && groupBySelected) {
       setTooltipState({ show: false, x: 0, y: 0, text: "" });
       handleLocationMouseOver(ev);
-      setStateSelectedToDoMap(ev.target.id);
+      setStateSelectedToDoMap(ev.target.id.toUpperCase());
       setFullRE(SumArray(dataFilteredToDoPolicies("100% RE")));
       setREPlusLC(SumArray(dataFilteredToDoPolicies("100% RE+LC")));
       setSumLC(SumArray(dataFilteredToDoPolicies("+LC")));
       setSumDefaut(SumArray(dataFilteredToDoPolicies("Default")));
       setSumTotalCapacityState(SumArray(dataFilteredCapacityTotal));
+      setCCGT(SumArray(dataFilteredToDoTechnologies("CCGT")))
+      setHygrogen(SumArray(dataFilteredToDoTechnologies("Hydrogen")))
+      setNuclear(SumArray(dataFilteredToDoTechnologies("Nuclear")))
+      setOnshorewind(SumArray(dataFilteredToDoTechnologies("Onshore wind")))
+      setPVexisting(SumArray(dataFilteredToDoTechnologies("PV-existing")))
+      setReservoir(SumArray(dataFilteredToDoTechnologies("Reservoir")))
+      setRunofriver(SumArray(dataFilteredToDoTechnologies("Run-of-river")))
+      setUtilityscalePV(SumArray(dataFilteredToDoTechnologies("Utility-scale PV")))
     } else
       toast.error(
         "Selecione Group By, Scenario e uma Policie para Prosseguir!",

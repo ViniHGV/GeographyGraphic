@@ -21,6 +21,14 @@ export const AppContextProvider = ({ children }: IAppContextProvider) => {
   const [yearSelected, setYearSelected] = useState("");
   const [typeChart, setTypeChart] = useState("bar");
   const [groupBySelected, setGroupBySelected] = useState("");
+  const [CCGT, setCCGT] = useState(0)
+  const [hydrogen, setHygrogen]  = useState(0)
+  const [Nuclear, setNuclear]  = useState(0)
+  const [Onshorewind, setOnshorewind]  = useState(0)
+  const [PVexisting, setPVexisting]  = useState(0)
+  const [Reservoir, setReservoir]  = useState(0)
+  const [Runofriver, setRunofriver]  = useState(0)
+  const [UtilityscalePV, setUtilityscalePV]  = useState(0)
 
   return (
     <appContext.Provider
@@ -51,6 +59,14 @@ export const AppContextProvider = ({ children }: IAppContextProvider) => {
         setTechnologySelected,
         yearSelected,
         setYearSelected,
+        CCGT, setCCGT,
+        hydrogen, setHygrogen,
+        Nuclear, setNuclear,
+        Onshorewind, setOnshorewind,
+        PVexisting, setPVexisting,
+        Reservoir, setReservoir,
+        Runofriver, setRunofriver,
+        UtilityscalePV, setUtilityscalePV
       }}
     >
       {children}

@@ -62,7 +62,11 @@ export const GraphicsSection = () => {
   useEffect(() => {
     setDataNumbers([])
     if (groupBySelected === "Scenario")
-      setDataDescription(ScenariosData.map((item) => item.value));
+    setDataDescription(ScenariosData.map((item) => item.value));
+    setDataNumbers([Baseline,
+      IntensiveElec, 
+      LimitedElec,
+      NetZero,])  
     if (groupBySelected === "Policy")
       setDataDescription(PolicyData.map((item) => item.value));
       setDataNumbers([fullRE, REPlusLC, sumLC, sumDefaut]);

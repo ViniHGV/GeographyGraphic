@@ -46,6 +46,10 @@ export const MapBrasil = () => {
     setReservoir,
     setRunofriver,
     setUtilityscalePV,
+    setBaseline,
+    setIntensiveElec,
+    setLimitedElec,
+    setNetZero
   }: any = useContext(appContext);
 
   const dataFilteredCapacityTotal = DataBase.filter(
@@ -62,6 +66,15 @@ export const MapBrasil = () => {
   };
 
   const dataFilteredToDoTechnologies = (condition: string): number[] => {
+    const dataFiltered = DataBase.filter(
+      (item) => item.state === stateSelectedToDoMap
+    )
+      .filter((item) => item.techs === condition)
+      .map((item) => item.capacity);
+    return dataFiltered;
+  };
+
+  const dataFilteredToDoScenarios = (condition: string): number[] => {
     const dataFiltered = DataBase.filter(
       (item) => item.state === stateSelectedToDoMap
     )
@@ -96,6 +109,10 @@ export const MapBrasil = () => {
       setReservoir(SumArray(dataFilteredToDoTechnologies("Reservoir")))
       setRunofriver(SumArray(dataFilteredToDoTechnologies("Run-of-river")))
       setUtilityscalePV(SumArray(dataFilteredToDoTechnologies("Utility-scale PV")))
+      setBaseline(SumArray(dataFilteredToDoScenarios("Baseline")))
+      setIntensiveElec(SumArray(dataFilteredToDoScenarios("Intensive elec.")))
+      setLimitedElec(SumArray(dataFilteredToDoScenarios("Limited elec.")))
+      setNetZero(SumArray(dataFilteredToDoScenarios("Net zero")))
     } else
       toast.error(
         "Selecione Group By, Scenario e uma Policie para Prosseguir!",

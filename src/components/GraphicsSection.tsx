@@ -31,6 +31,10 @@ export const GraphicsSection = () => {
     Reservoir,
     Runofriver,
     UtilityscalePV,
+    Baseline,
+    IntensiveElec, 
+    LimitedElec,
+    NetZero,
   }: any = useContext(appContext);
 
   const [visible, setVisible] = useState(false);

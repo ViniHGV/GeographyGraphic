@@ -29,6 +29,10 @@ export const AppContextProvider = ({ children }: IAppContextProvider) => {
   const [Reservoir, setReservoir]  = useState(0)
   const [Runofriver, setRunofriver]  = useState(0)
   const [UtilityscalePV, setUtilityscalePV]  = useState(0)
+  const [Baseline, setBaseline] = useState(0)
+  const [IntensiveElec, setIntensiveElec] = useState(0)
+  const [LimitedElec, setLimitedElec] = useState(0)
+  const [NetZero, setNetZero] = useState(0)
 
   return (
     <appContext.Provider
@@ -66,7 +70,11 @@ export const AppContextProvider = ({ children }: IAppContextProvider) => {
         PVexisting, setPVexisting,
         Reservoir, setReservoir,
         Runofriver, setRunofriver,
-        UtilityscalePV, setUtilityscalePV
+        UtilityscalePV, setUtilityscalePV,
+        Baseline, setBaseline,
+        IntensiveElec, setIntensiveElec,
+        LimitedElec, setLimitedElec,
+        NetZero, setNetZero
       }}
     >
       {children}

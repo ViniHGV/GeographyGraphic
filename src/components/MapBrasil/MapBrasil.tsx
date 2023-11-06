@@ -92,7 +92,7 @@ export const MapBrasil = () => {
   }
 
   const handleStatesMap = (ev: Event | any) => {
-    if (scenarioSelected && policiesSelected && groupBySelected) {
+    if (groupBySelected) {
       setTooltipState({ show: false, x: 0, y: 0, text: "" });
       handleLocationMouseOver(ev);
       setStateSelectedToDoMap(ev.target.id.toUpperCase());
@@ -116,19 +116,16 @@ export const MapBrasil = () => {
       setLimitedElec(SumArray(dataFilteredToDoScenarios("Limited elec.")));
       setNetZero(SumArray(dataFilteredToDoScenarios("Net zero")));
     } else
-      toast.error(
-        "Selecione Group By, Scenario e uma Policie para Prosseguir!",
-        {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        }
-      );
+      toast.error("Selecione o Group By para Prosseguir!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
   };
 
   const handleLocationMouseOver = (e: any) => {

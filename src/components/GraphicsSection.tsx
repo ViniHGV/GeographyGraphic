@@ -36,6 +36,9 @@ export const GraphicsSection = () => {
     IntensiveElec,
     LimitedElec,
     NetZero,
+    scenarioSelected,
+    policiesSelected,
+    technologySelected,
   }: any = useContext(appContext);
 
   const [visible, setVisible] = useState(false);
@@ -63,37 +66,73 @@ export const GraphicsSection = () => {
   useEffect(() => {
     if (groupBySelected === "Scenario") {
       setDataDescription(ScenariosData.map((item) => item.value));
-      setDataNumbers([Baseline, IntensiveElec, LimitedElec, NetZero]);
+      if (scenarioSelected === "Baseline") {
+        setDataNumbers([Baseline, 0, 0, 0]);
+      } else if (scenarioSelected === "Intensive elec.") {
+        setDataNumbers([0, IntensiveElec, 0, 0]);
+      } else if (scenarioSelected === "Limited elec.") {
+        setDataNumbers([0, 0, LimitedElec, 0]);
+      } else if (scenarioSelected === "Net zero") {
+        setDataNumbers([0, 0, 0, NetZero]);
+      } else {
+        setDataNumbers([Baseline, IntensiveElec, LimitedElec, NetZero]);
+      }
     } else if (groupBySelected === "Policy") {
       setDataDescription(PolicyData.map((item) => item.value));
-      setDataNumbers([
-        fullRE,
-        REPlusLC,
-        sumLC,
-        sumDefaut,
-        sumTotalCapacityState,
-      ]);
+      if (policiesSelected === "Default") {
+        setDataNumbers([sumDefaut, 0, 0, 0]);
+      } else if (policiesSelected === "+LC") {
+        setDataNumbers([0, sumLC, 0, 0]);
+      } else if (policiesSelected === "100% RE+LC") {
+        setDataNumbers([0, 0, REPlusLC, 0]);
+      } else if (policiesSelected === "100% RE") {
+        setDataNumbers([0, 0, 0, fullRE]);
+      } else {
+        setDataNumbers([sumDefaut, sumLC, REPlusLC, fullRE]);
+      }
     } else if (groupBySelected === "State") {
       setDataDescription(StateData.map((item) => item.value));
-      // let datatot = (SumArray(dataFilteredCapacityTotal))
-      // console.log(datatot)
-      // console.log(...dataFilteredCapacityTotal)
     } else if (groupBySelected === "Tecnologies") {
       setDataDescription(TechsOptions.map((item) => item.value));
-      setDataNumbers([
-        CCGT,
-        hydrogen,
-        Nuclear,
-        Onshorewind,
-        PVexisting,
-        Reservoir,
-        Runofriver,
-        UtilityscalePV,
-      ]);
+      if (technologySelected === "CCGT") {
+        setDataNumbers([CCGT, 0, 0, 0, 0, 0, 0, 0]);
+      } else if (technologySelected === "Hydrogen") {
+        setDataNumbers([0, hydrogen, 0, 0, 0, 0, 0, 0]);
+      } else if (technologySelected === "Nuclear") {
+        setDataNumbers([0, 0, Nuclear, 0, 0, 0, 0, 0]);
+      } else if (technologySelected === "Onshore wind") {
+        setDataNumbers([0, 0, 0, Onshorewind, 0, 0, 0, 0]);
+      } else if (technologySelected === "PV-existing") {
+        setDataNumbers([0, 0, 0, 0, PVexisting, 0, 0, 0]);
+      } else if (technologySelected === "Reservoir") {
+        setDataNumbers([0, 0, 0, 0, 0, Reservoir, 0, 0]);
+      } else if (technologySelected === "Run-of-river") {
+        setDataNumbers([0, 0, 0, 0, 0, 0, Runofriver, 0]);
+      } else if (technologySelected === "Utility-scale PV") {
+        setDataNumbers([0, 0, 0, 0, 0, 0, 0, UtilityscalePV]);
+      } else {
+        setDataNumbers([
+          CCGT,
+          hydrogen,
+          Nuclear,
+          Onshorewind,
+          PVexisting,
+          Reservoir,
+          Runofriver,
+          UtilityscalePV,
+        ]);
+      }
     } else if (groupBySelected === "Year of Data") {
       setDataDescription(YearData.map((item) => item.value.toString()));
     }
-  }, [groupBySelected, stateSelectedToDoMap, fullRE]);
+  }, [
+    groupBySelected,
+    stateSelectedToDoMap,
+    fullRE,
+    scenarioSelected,
+    policiesSelected,
+    technologySelected,
+  ]);
 
   const handleTypeChart = (value: string) => {
     typeChart === value ? null : setTypeChart(value);
@@ -102,7 +141,13 @@ export const GraphicsSection = () => {
 
   useEffect(() => {
     setVisible(true);
-  }, [visible, typeChart, stateSelectedToDoMap, groupBySelected]);
+  }, [
+    visible,
+    typeChart,
+    stateSelectedToDoMap,
+    groupBySelected,
+    policiesSelected,
+  ]);
 
   return (
     <div className="pt-12 mt-16 px-36">

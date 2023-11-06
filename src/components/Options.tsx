@@ -29,12 +29,12 @@ export const Options = () => {
     setTechnologySelected,
     yearSelected,
     setYearSelected,
-    setStateSelectedToDoMap
+    setStateSelectedToDoMap,
   }: string | any = useContext(appContext);
 
   const handleResultToDoButton = () => {
-    setStateSelectedToDoMap(stateSelectedToDoOption)
-  }
+    setStateSelectedToDoMap(stateSelectedToDoOption);
+  };
 
   return (
     <div className="pt-20 px-36 flex flex-col gap-8 min-[450px]">
@@ -65,7 +65,10 @@ export const Options = () => {
           />
           <ComboboxDemo
             valueState={scenarioSelected}
-            setState={(ev) => setScenarioSelected(ev)}
+            setState={(ev) => {
+              console.log(scenarioSelected);
+              setScenarioSelected(ev);
+            }}
             name="Selected Scenarios"
             data={ScenariosData}
           />
@@ -93,7 +96,10 @@ export const Options = () => {
             name="Selected Year of Data"
             data={YearData}
           />
-          <Button onClick={handleResultToDoButton}  className="w-full py-6 max-w-[455px]">
+          <Button
+            onClick={handleResultToDoButton}
+            className="w-full py-6 max-w-[455px]"
+          >
             Geerated Your Graphic
           </Button>
         </div>

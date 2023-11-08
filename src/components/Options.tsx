@@ -44,8 +44,8 @@ export const Options = () => {
           Hand-picked themes that you can copy and paste into your apps.
         </p>
       </div>
-      <div className="grid grid-cols-2 gap-52">
-        <div className="flex flex-col gap-2">
+      <div className="grid grid-cols-5 gap-24">
+        <div className="flex flex-col col-span-3 gap-2">
           <p className="font-medium">
             Selected Capacity (GW){" "}
             <span className="font-bold">
@@ -56,7 +56,7 @@ export const Options = () => {
 
           <MapBrasil />
         </div>
-        <div className="flex flex-col justify-between items-end">
+        <div className="flex flex-col w-full col-span-2 justify-between items-end">
           <ComboboxDemo
             valueState={groupBySelected}
             setState={(ev) => setGroupBySelected(ev)}
@@ -96,10 +96,7 @@ export const Options = () => {
             name="Selected Year of Data"
             data={YearData}
           />
-          <Button
-            onClick={handleResultToDoButton}
-            className="w-full py-6 max-w-[455px]"
-          >
+          <Button onClick={handleResultToDoButton} className="w-full py-6">
             Geerated Your Graphic
           </Button>
         </div>

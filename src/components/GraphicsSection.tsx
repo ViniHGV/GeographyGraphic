@@ -2,7 +2,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Graphics } from "./Graphics";
 import { appContext } from "../../context/appContext";
-import { BarChartBig, LineChart, AreaChart } from "lucide-react";
+import { BarChartBig, LineChart, AreaChart, Baseline } from "lucide-react";
 import { Button } from "./ui/button";
 import {
   DataBase,
@@ -64,20 +64,45 @@ export const GraphicsSection = () => {
   );
 
   useEffect(() => {
+    let TotalPolicies = 0;
+    let TotalScenarios = 0;
+    let TotalTechs = 0;
+
     if (groupBySelected === "Scenario") {
+      Baseline != 0
+        ? (TotalScenarios = Baseline + IntensiveElec + LimitedElec + NetZero)
+        : null;
       setDataDescription(ScenariosData.map((item) => item.value));
       if (scenarioSelected === "Baseline") {
-        setDataNumbers([Baseline, 0, 0, 0]);
+        setDataNumbers([0, Baseline, 0, 0, 0]);
       } else if (scenarioSelected === "Intensive elec.") {
-        setDataNumbers([0, IntensiveElec, 0, 0]);
+        setDataNumbers([0, 0, IntensiveElec, 0, 0]);
       } else if (scenarioSelected === "Limited elec.") {
-        setDataNumbers([0, 0, LimitedElec, 0]);
+        setDataNumbers([0, 0, 0, LimitedElec, 0]);
       } else if (scenarioSelected === "Net zero") {
-        setDataNumbers([0, 0, 0, NetZero]);
+        setDataNumbers([0, 0, 0, 0, NetZero]);
+      } else if (scenarioSelected === "All Scenarios") {
+        setDataNumbers([
+          TotalScenarios,
+          Baseline,
+          IntensiveElec,
+          LimitedElec,
+          NetZero,
+        ]);
       } else {
-        setDataNumbers([Baseline, IntensiveElec, LimitedElec, NetZero]);
+        setDataNumbers([
+          TotalScenarios,
+          Baseline,
+          IntensiveElec,
+          LimitedElec,
+          NetZero,
+        ]);
       }
     } else if (groupBySelected === "Policy") {
+      sumDefaut != 0
+        ? (TotalPolicies = sumDefaut + sumLC + REPlusLC + fullRE)
+        : null;
+      setDataNumbers([TotalPolicies, sumLC, REPlusLC, fullRE]);
       setDataDescription(PolicyData.map((item) => item.value));
       if (policiesSelected === "Default") {
         setDataNumbers([sumDefaut, 0, 0, 0]);
@@ -87,12 +112,25 @@ export const GraphicsSection = () => {
         setDataNumbers([0, 0, REPlusLC, 0]);
       } else if (policiesSelected === "100% RE") {
         setDataNumbers([0, 0, 0, fullRE]);
+      } else if (policiesSelected === "All Policies") {
+        setDataNumbers([TotalPolicies, sumDefaut, sumLC, REPlusLC, fullRE]);
       } else {
-        setDataNumbers([sumDefaut, sumLC, REPlusLC, fullRE]);
+        setDataNumbers([TotalPolicies, sumDefaut, sumLC, REPlusLC, fullRE]);
       }
     } else if (groupBySelected === "State") {
       setDataDescription(StateData.map((item) => item.value));
     } else if (groupBySelected === "Tecnologies") {
+      CCGT != 0 || CCGT == 0
+        ? (TotalTechs =
+            CCGT +
+            hydrogen +
+            Nuclear +
+            Onshorewind +
+            PVexisting +
+            Reservoir +
+            Runofriver +
+            UtilityscalePV)
+        : null;
       setDataDescription(TechsOptions.map((item) => item.value));
       if (technologySelected === "CCGT") {
         setDataNumbers([CCGT, 0, 0, 0, 0, 0, 0, 0]);
@@ -110,8 +148,21 @@ export const GraphicsSection = () => {
         setDataNumbers([0, 0, 0, 0, 0, 0, Runofriver, 0]);
       } else if (technologySelected === "Utility-scale PV") {
         setDataNumbers([0, 0, 0, 0, 0, 0, 0, UtilityscalePV]);
+      } else if (technologySelected === "All Techs") {
+        setDataNumbers([
+          TotalTechs,
+          CCGT,
+          hydrogen,
+          Nuclear,
+          Onshorewind,
+          PVexisting,
+          Reservoir,
+          Runofriver,
+          UtilityscalePV,
+        ]);
       } else {
         setDataNumbers([
+          TotalTechs,
           CCGT,
           hydrogen,
           Nuclear,

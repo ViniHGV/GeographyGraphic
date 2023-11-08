@@ -34,7 +34,7 @@ export function ComboboxDemo({
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-full max-w-[455px] justify-between "
+          className="w-full justify-between"
         >
           {valueState
             ? data.find((data) => data.value === valueState)?.value
@@ -42,7 +42,7 @@ export function ComboboxDemo({
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="p-0 w-full lg:w-[455px]">
+      <PopoverContent className="p-0">
         <Command>
           <CommandInput placeholder={name} />
           <CommandEmpty>No {name} found.</CommandEmpty>

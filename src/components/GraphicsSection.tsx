@@ -95,6 +95,76 @@ export const GraphicsSection = () => {
     }
   };
 
+  const dataFilteredToDoPolicies = (condition: string): number[] | any => {
+    if (!scenarioSelected && !technologySelected) {
+      const dataFiltered = DataBase.filter(
+        (item) => item.state === stateSelectedToDoMap
+      )
+        .filter((item) => item.policy === condition)
+        .map((item) => item.capacity);
+      return dataFiltered;
+    } else if (scenarioSelected) {
+      const dataFiltered = DataBase.filter(
+        (item) => item.state === stateSelectedToDoMap
+      )
+        .filter((item) => item.policy === condition)
+        .filter((item) => item.scenario === scenarioSelected)
+        .map((item) => item.capacity);
+      return dataFiltered;
+    } else if (technologySelected) {
+      const dataFiltered = DataBase.filter(
+        (item) => item.state === stateSelectedToDoMap
+      )
+        .filter((item) => item.policy === condition)
+        .filter((item) => item.techs === technologySelected)
+        .map((item) => item.capacity);
+      return dataFiltered;
+    } else if (technologySelected && scenarioSelected) {
+      const dataFiltered = DataBase.filter(
+        (item) => item.state === stateSelectedToDoMap
+      )
+        .filter((item) => item.policy === condition)
+        .filter((item) => item.techs === technologySelected)
+        .filter((item) => item.scenario === scenarioSelected)
+        .map((item) => item.capacity);
+      return dataFiltered;
+    }
+  };
+  const dataFilteredToDoTechnologies = (condition: string): number[] | any => {
+    if (!policiesSelected && !scenarioSelected) {
+      const dataFiltered = DataBase.filter(
+        (item) => item.state === stateSelectedToDoMap
+      )
+        .filter((item) => item.techs === condition)
+        .map((item) => item.capacity);
+      return dataFiltered;
+    } else if (scenarioSelected) {
+      const dataFiltered = DataBase.filter(
+        (item) => item.state === stateSelectedToDoMap
+      )
+        .filter((item) => item.techs === condition)
+        .filter((item) => item.scenario === scenarioSelected)
+        .map((item) => item.capacity);
+      return dataFiltered;
+    } else if (policiesSelected) {
+      const dataFiltered = DataBase.filter(
+        (item) => item.state === stateSelectedToDoMap
+      )
+        .filter((item) => item.techs === condition)
+        .filter((item) => item.policy === policiesSelected)
+        .map((item) => item.capacity);
+      return dataFiltered;
+    } else if (policiesSelected && scenarioSelected) {
+      const dataFiltered = DataBase.filter(
+        (item) => item.state === stateSelectedToDoMap
+      )
+        .filter((item) => item.techs === condition)
+        .filter((item) => item.policy === policiesSelected)
+        .filter((item) => item.scenario === scenarioSelected)
+        .map((item) => item.capacity);
+      return dataFiltered;
+    }
+  };
   const dataFilteredToDoScenarios = (condition: string): number[] | any => {
     if (!policiesSelected && !technologySelected) {
       const dataFiltered = DataBase.filter(
@@ -119,6 +189,15 @@ export const GraphicsSection = () => {
         .filter((item) => item.techs === technologySelected)
         .map((item) => item.capacity);
       return dataFiltered;
+    } else if (technologySelected && policiesSelected) {
+      const dataFiltered = DataBase.filter(
+        (item) => item.state === stateSelectedToDoMap
+      )
+        .filter((item) => item.scenario === condition)
+        .filter((item) => item.techs === technologySelected)
+        .filter((item) => item.policy === policiesSelected)
+        .map((item) => item.capacity);
+      return dataFiltered;
     }
   };
 
@@ -137,22 +216,26 @@ export const GraphicsSection = () => {
     let TotalScenarios = 0;
     let TotalTechs = 0;
 
-    if (policiesSelected || technologySelected) {
-      // setFullRE(SumArray(dataFilteredToDoFiltereds(policiesSelected)));
-      // setREPlusLC(SumArray(dataFilteredToDoFiltereds(policiesSelected)));
-      // setSumLC(SumArray(dataFilteredToDoFiltereds(policiesSelected)));
-      // setSumDefaut(SumArray(dataFilteredToDoFiltereds(policiesSelected)));
-      // setSumTotalCapacityState(
-      //   SumArray(dataFilteredToDoFiltereds(policiesSelected))
-      // );
-      // setCCGT(SumArray(dataFilteredToDoFiltereds(policiesSelected)));
-      // setHygrogen(SumArray(dataFilteredToDoFiltereds(policiesSelected)));
-      // setNuclear(SumArray(dataFilteredToDoFiltereds(policiesSelected)));
-      // setOnshorewind(SumArray(dataFilteredToDoFiltereds(policiesSelected)));
-      // setPVexisting(SumArray(dataFilteredToDoFiltereds(policiesSelected)));
-      // setReservoir(SumArray(dataFilteredToDoFiltereds(policiesSelected)));
-      // setRunofriver(SumArray(dataFilteredToDoFiltereds(policiesSelected)));
-      // setUtilityscalePV(SumArray(dataFilteredToDoFiltereds(policiesSelected)));
+    if (
+      policiesSelected ||
+      technologySelected ||
+      scenarioSelected ||
+      (policiesSelected && technologySelected && scenarioSelected)
+    ) {
+      setCCGT(SumArray(dataFilteredToDoTechnologies("CCGT")));
+      setHygrogen(SumArray(dataFilteredToDoTechnologies("Hydrogen")));
+      setNuclear(SumArray(dataFilteredToDoTechnologies("Nuclear")));
+      setOnshorewind(SumArray(dataFilteredToDoTechnologies("Onshore wind")));
+      setPVexisting(SumArray(dataFilteredToDoTechnologies("PV-existing")));
+      setReservoir(SumArray(dataFilteredToDoTechnologies("Reservoir")));
+      setRunofriver(SumArray(dataFilteredToDoTechnologies("Run-of-river")));
+      setUtilityscalePV(
+        SumArray(dataFilteredToDoTechnologies("Utility-scale PV"))
+      );
+      setFullRE(SumArray(dataFilteredToDoPolicies("100% RE")));
+      setREPlusLC(SumArray(dataFilteredToDoPolicies("100% RE+LC")));
+      setSumLC(SumArray(dataFilteredToDoPolicies("+LC")));
+      setSumDefaut(SumArray(dataFilteredToDoPolicies("Default")));
       setBaseline(SumArray(dataFilteredToDoScenarios("Baseline")));
       setIntensiveElec(SumArray(dataFilteredToDoScenarios("Intensive elec.")));
       setLimitedElec(SumArray(dataFilteredToDoScenarios("Limited elec.")));
@@ -264,6 +347,7 @@ export const GraphicsSection = () => {
           UtilityscalePV,
           technologySelected,
           policiesSelected,
+          scenarioSelected,
         ]);
       }
     } else if (groupBySelected === "Year of Data") {

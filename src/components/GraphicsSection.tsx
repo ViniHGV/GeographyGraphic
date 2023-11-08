@@ -95,13 +95,31 @@ export const GraphicsSection = () => {
     }
   };
 
-  const dataFilteredToDoScenarios = (condition: string): number[] => {
-    const dataFiltered = DataBase.filter(
-      (item) => item.state === stateSelectedToDoMap
-    )
-      .filter((item) => item.scenario === condition)
-      .map((item) => item.capacity);
-    return dataFiltered;
+  const dataFilteredToDoScenarios = (condition: string): number[] | any => {
+    if (!policiesSelected && !technologySelected) {
+      const dataFiltered = DataBase.filter(
+        (item) => item.state === stateSelectedToDoMap
+      )
+        .filter((item) => item.scenario === condition)
+        .map((item) => item.capacity);
+      return dataFiltered;
+    } else if (policiesSelected) {
+      const dataFiltered = DataBase.filter(
+        (item) => item.state === stateSelectedToDoMap
+      )
+        .filter((item) => item.scenario === condition)
+        .filter((item) => item.policy === policiesSelected)
+        .map((item) => item.capacity);
+      return dataFiltered;
+    } else if (technologySelected) {
+      const dataFiltered = DataBase.filter(
+        (item) => item.state === stateSelectedToDoMap
+      )
+        .filter((item) => item.scenario === condition)
+        .filter((item) => item.techs === technologySelected)
+        .map((item) => item.capacity);
+      return dataFiltered;
+    }
   };
 
   // console.log(dataFilteredToDoFiltereds("Default", "Baseline", "CCGT"));
@@ -119,7 +137,7 @@ export const GraphicsSection = () => {
     let TotalScenarios = 0;
     let TotalTechs = 0;
 
-    if (policiesSelected) {
+    if (policiesSelected || technologySelected) {
       // setFullRE(SumArray(dataFilteredToDoFiltereds(policiesSelected)));
       // setREPlusLC(SumArray(dataFilteredToDoFiltereds(policiesSelected)));
       // setSumLC(SumArray(dataFilteredToDoFiltereds(policiesSelected)));
@@ -244,6 +262,8 @@ export const GraphicsSection = () => {
           Reservoir,
           Runofriver,
           UtilityscalePV,
+          technologySelected,
+          policiesSelected,
         ]);
       }
     } else if (groupBySelected === "Year of Data") {

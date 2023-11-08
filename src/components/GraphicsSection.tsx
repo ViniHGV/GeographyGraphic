@@ -201,8 +201,6 @@ export const GraphicsSection = () => {
     }
   };
 
-  // console.log(dataFilteredToDoFiltereds("Default", "Baseline", "CCGT"));
-
   function SumArray(dataFiltered: number[]) {
     let sum = 0;
     for (let i = 0; i < dataFiltered.length; i++) {
@@ -215,13 +213,12 @@ export const GraphicsSection = () => {
     let TotalPolicies = 0;
     let TotalScenarios = 0;
     let TotalTechs = 0;
+    const primaryCondition =
+      policiesSelected || technologySelected || scenarioSelected;
+    const secondaryCondition =
+      policiesSelected && technologySelected && scenarioSelected;
 
-    if (
-      policiesSelected ||
-      technologySelected ||
-      scenarioSelected ||
-      (policiesSelected && technologySelected && scenarioSelected)
-    ) {
+    if (primaryCondition || secondaryCondition) {
       setCCGT(SumArray(dataFilteredToDoTechnologies("CCGT")));
       setHygrogen(SumArray(dataFilteredToDoTechnologies("Hydrogen")));
       setNuclear(SumArray(dataFilteredToDoTechnologies("Nuclear")));

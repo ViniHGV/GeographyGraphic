@@ -46,22 +46,47 @@ export const GraphicsSection = () => {
   const [dataNumbers, setDataNumbers] = useState([0]);
   const StyleChartNotSelected = "bg-zinc-200 text-black hover:text-white";
 
-  // function SumArray(dataFiltered: number[][] | any) {
-  //   let sum = 0;
-  //   for (let i = 0; i < dataFiltered.length; i++) {
-  //     for (let k = 0; k < dataFiltered[i].length; k++) {
-  //     // console.log dataFiltered[i][k];
-  //     sum += dataFiltered[i][k];
-  //     }
-  //   return sum;
-  //   }
-  // }
+  const dataFilteredToDoScenarios = (
+    primarycondition: string,
+    secondaryOption?: string,
+    terceryOption?: string
+  ): number[] => {
+    if (primarycondition && secondaryOption && terceryOption) {
+      const dataFiltered = DataBase.filter(
+        (item) => item.state === stateSelectedToDoMap
+      )
+        .filter((item) => item.policy === primarycondition)
+        .filter((item) => item.scenario === secondaryOption)
+        .filter((item) => item.techs === terceryOption)
+        .map((item) => item.capacity);
+      return dataFiltered;
+    } else if (primarycondition && secondaryOption) {
+      const dataFiltered = DataBase.filter(
+        (item) => item.state === stateSelectedToDoMap
+      )
+        .filter((item) => item.policy === primarycondition)
+        .filter((item) => item.techs === secondaryOption)
+        .map((item) => item.capacity);
+      return dataFiltered;
+    } else {
+      const dataFiltered = DataBase.filter(
+        (item) => item.state === stateSelectedToDoMap
+      )
+        .filter((item) => item.policy === primarycondition)
+        .map((item) => item.capacity);
+      return dataFiltered;
+    }
+  };
 
-  const dataFilteredCapacityTotal = StateData.map((data) =>
-    DataBase.filter((item) => item.state === data.value).map(
-      (item) => item.capacity
-    )
-  );
+  console.log(dataFilteredToDoScenarios("Default", "Baseline", "CCGT"));
+
+  function SumArray(dataFiltered: number[]) {
+    let sum = 0;
+    for (let i = 0; i < dataFiltered.length; i++) {
+      sum += dataFiltered[i];
+    }
+    return sum;
+  }
 
   useEffect(() => {
     let TotalPolicies = 0;

@@ -39,6 +39,23 @@ export const GraphicsSection = () => {
     scenarioSelected,
     policiesSelected,
     technologySelected,
+    setFullRE,
+    setREPlusLC,
+    setSumLC,
+    setSumDefaut,
+    setSumTotalCapacityState,
+    setCCGT,
+    setHygrogen,
+    setNuclear,
+    setOnshorewind,
+    setPVexisting,
+    setReservoir,
+    setRunofriver,
+    setUtilityscalePV,
+    setBaseline,
+    setIntensiveElec,
+    setLimitedElec,
+    setNetZero,
   }: any = useContext(appContext);
 
   const [visible, setVisible] = useState(false);
@@ -46,7 +63,7 @@ export const GraphicsSection = () => {
   const [dataNumbers, setDataNumbers] = useState([0]);
   const StyleChartNotSelected = "bg-zinc-200 text-black hover:text-white";
 
-  const dataFilteredToDoScenarios = (
+  const dataFilteredToDoFiltereds = (
     primarycondition: string,
     secondaryOption?: string,
     terceryOption?: string
@@ -78,7 +95,16 @@ export const GraphicsSection = () => {
     }
   };
 
-  console.log(dataFilteredToDoScenarios("Default", "Baseline", "CCGT"));
+  const dataFilteredToDoScenarios = (condition: string): number[] => {
+    const dataFiltered = DataBase.filter(
+      (item) => item.state === stateSelectedToDoMap
+    )
+      .filter((item) => item.scenario === condition)
+      .map((item) => item.capacity);
+    return dataFiltered;
+  };
+
+  // console.log(dataFilteredToDoFiltereds("Default", "Baseline", "CCGT"));
 
   function SumArray(dataFiltered: number[]) {
     let sum = 0;
@@ -92,6 +118,28 @@ export const GraphicsSection = () => {
     let TotalPolicies = 0;
     let TotalScenarios = 0;
     let TotalTechs = 0;
+
+    if (policiesSelected) {
+      // setFullRE(SumArray(dataFilteredToDoFiltereds(policiesSelected)));
+      // setREPlusLC(SumArray(dataFilteredToDoFiltereds(policiesSelected)));
+      // setSumLC(SumArray(dataFilteredToDoFiltereds(policiesSelected)));
+      // setSumDefaut(SumArray(dataFilteredToDoFiltereds(policiesSelected)));
+      // setSumTotalCapacityState(
+      //   SumArray(dataFilteredToDoFiltereds(policiesSelected))
+      // );
+      // setCCGT(SumArray(dataFilteredToDoFiltereds(policiesSelected)));
+      // setHygrogen(SumArray(dataFilteredToDoFiltereds(policiesSelected)));
+      // setNuclear(SumArray(dataFilteredToDoFiltereds(policiesSelected)));
+      // setOnshorewind(SumArray(dataFilteredToDoFiltereds(policiesSelected)));
+      // setPVexisting(SumArray(dataFilteredToDoFiltereds(policiesSelected)));
+      // setReservoir(SumArray(dataFilteredToDoFiltereds(policiesSelected)));
+      // setRunofriver(SumArray(dataFilteredToDoFiltereds(policiesSelected)));
+      // setUtilityscalePV(SumArray(dataFilteredToDoFiltereds(policiesSelected)));
+      setBaseline(SumArray(dataFilteredToDoScenarios("Baseline")));
+      setIntensiveElec(SumArray(dataFilteredToDoScenarios("Intensive elec.")));
+      setLimitedElec(SumArray(dataFilteredToDoScenarios("Limited elec.")));
+      setNetZero(SumArray(dataFilteredToDoScenarios("Net zero")));
+    }
 
     if (groupBySelected === "Scenario") {
       Baseline != 0

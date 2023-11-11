@@ -36,6 +36,14 @@ export const Options = () => {
     setStateSelectedToDoMap(stateSelectedToDoOption);
   };
 
+  const resetFilters = () => {
+    setGroupBySelected("Scenario");
+    setScenarioSelected("");
+    setPoliciesSelected("");
+    setTechnologySelected("");
+    setYearSelected("");
+  };
+
   return (
     <div className="pt-20 px-36 flex flex-col gap-8 min-[450px]">
       <div className=" flex flex-col gap-2">
@@ -80,7 +88,10 @@ export const Options = () => {
           />
           <ComboboxDemo
             valueState={stateSelectedToDoOption}
-            setState={(ev) => setStateSelectedToDoOption(ev)}
+            setState={(ev) => {
+              setStateSelectedToDoOption(ev);
+              setStateSelectedToDoMap(ev);
+            }}
             name="Selected State"
             data={StateData}
           />
@@ -96,9 +107,17 @@ export const Options = () => {
             name="Selected Year of Data"
             data={YearData}
           />
-          <Button onClick={handleResultToDoButton} className="w-full py-6">
-            Geerated Your Graphic
-          </Button>
+          <div className="w-full flex  gap-2">
+            <Button onClick={handleResultToDoButton} className="w-full py-6">
+              Geerated Your Graphic
+            </Button>
+            <Button
+              onClick={resetFilters}
+              className="w-full py-6 bg-red-600 hover:bg-red-700"
+            >
+              Reset Filters
+            </Button>
+          </div>
         </div>
       </div>
     </div>

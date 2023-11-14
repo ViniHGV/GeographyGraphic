@@ -101,46 +101,76 @@ export const GraphicsSection = () => {
     }
   };
 
+  // const dataFilteredToDoPolicies = (condition: string): number[] | any => {
+  //   if (!stateSelectedToDoMap) {
+  //     const dataFiltered = DataBase.filter(
+  //       (item) => item.policy === condition
+  //     ).map((item) => item.capacity);
+  //     return dataFiltered;
+  //   } if (!scenarioSelected && !technologySelected) {
+  //     const dataFiltered = DataBase.filter(
+  //       (item) => item.state === stateSelectedToDoMap
+  //     )
+  //       .filter((item) => item.policy === condition)
+  //       .map((item) => item.capacity);
+  //     return dataFiltered;
+  //   } if (scenarioSelected) {
+  //     const dataFiltered = DataBase.filter(
+  //       (item) => item.state === stateSelectedToDoMap
+  //     )
+  //       .filter((item) => item.policy === condition)
+  //       .filter((item) => item.scenario === scenarioSelected)
+  //       .map((item) => item.capacity);
+  //     return dataFiltered;
+  //   } if (technologySelected) {
+  //     const dataFiltered = DataBase.filter(
+  //       (item) => item.state === stateSelectedToDoMap
+  //     )
+  //       .filter((item) => item.policy === condition)
+  //       .filter((item) => item.techs === technologySelected)
+  //       .map((item) => item.capacity);
+  //     return dataFiltered;
+  //   } else if (technologySelected && scenarioSelected) {
+  //     const dataFiltered = DataBase.filter(
+  //       (item) => item.state === stateSelectedToDoMap
+  //     )
+  //       .filter((item) => item.policy === condition)
+  //       .filter((item) => item.techs === technologySelected)
+  //       .filter((item) => item.scenario === scenarioSelected)
+  //       .map((item) => item.capacity);
+  //     return dataFiltered;
+  //   }
+  // };
+
   const dataFilteredToDoPolicies = (condition: string): number[] | any => {
-    if (!stateSelectedToDoMap) {
-      const dataFiltered = DataBase.filter(
-        (item) => item.policy === condition
-      ).map((item) => item.capacity);
-      return dataFiltered;
-    } else if (!scenarioSelected && !technologySelected) {
-      const dataFiltered = DataBase.filter(
-        (item) => item.state === stateSelectedToDoMap
-      )
-        .filter((item) => item.policy === condition)
-        .map((item) => item.capacity);
-      return dataFiltered;
-    } else if (scenarioSelected) {
-      const dataFiltered = DataBase.filter(
-        (item) => item.state === stateSelectedToDoMap
-      )
-        .filter((item) => item.policy === condition)
-        .filter((item) => item.scenario === scenarioSelected)
-        .map((item) => item.capacity);
-      return dataFiltered;
-    } else if (technologySelected) {
-      const dataFiltered = DataBase.filter(
-        (item) => item.state === stateSelectedToDoMap
-      )
-        .filter((item) => item.policy === condition)
-        .filter((item) => item.techs === technologySelected)
-        .map((item) => item.capacity);
-      return dataFiltered;
-    } else if (technologySelected && scenarioSelected) {
-      const dataFiltered = DataBase.filter(
-        (item) => item.state === stateSelectedToDoMap
-      )
-        .filter((item) => item.policy === condition)
-        .filter((item) => item.techs === technologySelected)
-        .filter((item) => item.scenario === scenarioSelected)
-        .map((item) => item.capacity);
-      return dataFiltered;
+    let filteredData = DataBase;
+  
+    if (stateSelectedToDoMap) {
+      filteredData = filteredData.filter((item) => item.state === stateSelectedToDoMap);
+    }else{
+      filteredData = filteredData.filter(item => item.policy === condition)
     }
+  
+    if (condition) {
+      filteredData = filteredData.filter((item) => item.policy === condition);
+    }
+  
+    if (scenarioSelected) {
+      filteredData = filteredData.filter((item) => item.scenario === scenarioSelected);
+    } 
+    // else {
+    //   // Se scenarioSelected não está definido, filtramos pelos cenários "scenariobrasil" e "scenarioEUA"
+    //   filteredData = filteredData.filter((item) => item.scenario === "scenariobrasil" || item.scenario === "scenarioEUA");
+    // }
+  
+    if (technologySelected) {
+      filteredData = filteredData.filter((item) => item.techs === technologySelected);
+    }
+  
+    return filteredData.map((item) => item.capacity);
   };
+
+
   const dataFilteredToDoTechnologies = (condition: string): number[] | any => {
     if (!stateSelectedToDoMap) {
       const dataFiltered = DataBase.filter(
@@ -234,6 +264,7 @@ export const GraphicsSection = () => {
     let TotalPolicies = 0;
     let TotalScenarios = 0;
     let TotalTechs = 0;
+    console.log(dataFilteredToDoPolicies("100% RE"))
     // const primaryCondition =
     //   policiesSelected || technologySelected || scenarioSelected;
     // const secondaryCondition =

@@ -6,8 +6,6 @@ import {
   BarChartBig,
   LineChart,
   AreaChart,
-  Baseline,
-  Database,
 } from "lucide-react";
 import { Button } from "./ui/button";
 import {
@@ -69,78 +67,27 @@ export const GraphicsSection = () => {
   const [dataNumbers, setDataNumbers] = useState([0]);
   const StyleChartNotSelected = "bg-zinc-200 text-black hover:text-white";
 
-  const dataFilteredToDoFiltereds = (
-    primarycondition: string,
-    secondaryOption?: string,
-    terceryOption?: string
-  ): number[] => {
-    if (primarycondition && secondaryOption && terceryOption) {
-      const dataFiltered = DataBase.filter(
-        (item) => item.state === stateSelectedToDoMap
-      )
-        .filter((item) => item.policy === primarycondition)
-        .filter((item) => item.scenario === secondaryOption)
-        .filter((item) => item.techs === terceryOption)
-        .map((item) => item.capacity);
-      return dataFiltered;
-    } else if (primarycondition && secondaryOption) {
-      const dataFiltered = DataBase.filter(
-        (item) => item.state === stateSelectedToDoMap
-      )
-        .filter((item) => item.policy === primarycondition)
-        .filter((item) => item.techs === secondaryOption)
-        .map((item) => item.capacity);
-      return dataFiltered;
-    } else {
-      const dataFiltered = DataBase.filter(
-        (item) => item.state === stateSelectedToDoMap
-      )
-        .filter((item) => item.policy === primarycondition)
-        .map((item) => item.capacity);
-      return dataFiltered;
+  const dataFilteredToDoScenarios = (condition: string): number[] | any => {
+    let filteredData = DataBase;
+  
+    if (stateSelectedToDoMap) {
+      filteredData = filteredData.filter((item) => item.state === stateSelectedToDoMap);
+    }else{
+      filteredData = filteredData.filter(item => item.scenario === condition)
     }
+    if (condition) {
+      filteredData = filteredData.filter((item) => item.scenario === condition);
+    }
+  
+    if (policiesSelected) {
+      filteredData = filteredData.filter((item) => item.policy === policiesSelected);
+    } 
+    if (technologySelected) {
+      filteredData = filteredData.filter((item) => item.techs === technologySelected);
+    }
+  
+    return filteredData.map((item) => item.capacity);
   };
-
-  // const dataFilteredToDoPolicies = (condition: string): number[] | any => {
-  //   if (!stateSelectedToDoMap) {
-  //     const dataFiltered = DataBase.filter(
-  //       (item) => item.policy === condition
-  //     ).map((item) => item.capacity);
-  //     return dataFiltered;
-  //   } if (!scenarioSelected && !technologySelected) {
-  //     const dataFiltered = DataBase.filter(
-  //       (item) => item.state === stateSelectedToDoMap
-  //     )
-  //       .filter((item) => item.policy === condition)
-  //       .map((item) => item.capacity);
-  //     return dataFiltered;
-  //   } if (scenarioSelected) {
-  //     const dataFiltered = DataBase.filter(
-  //       (item) => item.state === stateSelectedToDoMap
-  //     )
-  //       .filter((item) => item.policy === condition)
-  //       .filter((item) => item.scenario === scenarioSelected)
-  //       .map((item) => item.capacity);
-  //     return dataFiltered;
-  //   } if (technologySelected) {
-  //     const dataFiltered = DataBase.filter(
-  //       (item) => item.state === stateSelectedToDoMap
-  //     )
-  //       .filter((item) => item.policy === condition)
-  //       .filter((item) => item.techs === technologySelected)
-  //       .map((item) => item.capacity);
-  //     return dataFiltered;
-  //   } else if (technologySelected && scenarioSelected) {
-  //     const dataFiltered = DataBase.filter(
-  //       (item) => item.state === stateSelectedToDoMap
-  //     )
-  //       .filter((item) => item.policy === condition)
-  //       .filter((item) => item.techs === technologySelected)
-  //       .filter((item) => item.scenario === scenarioSelected)
-  //       .map((item) => item.capacity);
-  //     return dataFiltered;
-  //   }
-  // };
 
   const dataFilteredToDoPolicies = (condition: string): number[] | any => {
     let filteredData = DataBase;
@@ -158,10 +105,6 @@ export const GraphicsSection = () => {
     if (scenarioSelected) {
       filteredData = filteredData.filter((item) => item.scenario === scenarioSelected);
     } 
-    // else {
-    //   // Se scenarioSelected não está definido, filtramos pelos cenários "scenariobrasil" e "scenarioEUA"
-    //   filteredData = filteredData.filter((item) => item.scenario === "scenariobrasil" || item.scenario === "scenarioEUA");
-    // }
   
     if (technologySelected) {
       filteredData = filteredData.filter((item) => item.techs === technologySelected);
@@ -170,86 +113,32 @@ export const GraphicsSection = () => {
     return filteredData.map((item) => item.capacity);
   };
 
-
   const dataFilteredToDoTechnologies = (condition: string): number[] | any => {
-    if (!stateSelectedToDoMap) {
-      const dataFiltered = DataBase.filter(
-        (item) => item.techs === condition
-      ).map((item) => item.capacity);
-      return dataFiltered;
-    } else if (!policiesSelected && !scenarioSelected) {
-      const dataFiltered = DataBase.filter(
-        (item) => item.state === stateSelectedToDoMap
-      )
-        .filter((item) => item.techs === condition)
-        .map((item) => item.capacity);
-      return dataFiltered;
-    } else if (scenarioSelected) {
-      const dataFiltered = DataBase.filter(
-        (item) => item.state === stateSelectedToDoMap
-      )
-        .filter((item) => item.techs === condition)
-        .filter((item) => item.scenario === scenarioSelected)
-        .map((item) => item.capacity);
-      return dataFiltered;
-    } else if (policiesSelected) {
-      const dataFiltered = DataBase.filter(
-        (item) => item.state === stateSelectedToDoMap
-      )
-        .filter((item) => item.techs === condition)
-        .filter((item) => item.policy === policiesSelected)
-        .map((item) => item.capacity);
-      return dataFiltered;
-    } else if (policiesSelected && scenarioSelected) {
-      const dataFiltered = DataBase.filter(
-        (item) => item.state === stateSelectedToDoMap
-      )
-        .filter((item) => item.techs === condition)
-        .filter((item) => item.policy === policiesSelected)
-        .filter((item) => item.scenario === scenarioSelected)
-        .map((item) => item.capacity);
-      return dataFiltered;
+    let filteredData = DataBase;
+  
+    if (stateSelectedToDoMap) {
+      filteredData = filteredData.filter((item) => item.state === stateSelectedToDoMap);
+    }else{
+      filteredData = filteredData.filter(item => item.techs === condition)
     }
-  };
-  const dataFilteredToDoScenarios = (condition: string): number[] | any => {
-    if (!stateSelectedToDoMap) {
-      const dataFiltered = DataBase.filter(
-        (item) => item.scenario === condition
-      ).map((item) => item.capacity);
-      return dataFiltered;
-    } else if (!policiesSelected && !technologySelected) {
-      const dataFiltered = DataBase.filter(
-        (item) => item.state === stateSelectedToDoMap
-      )
-        .filter((item) => item.scenario === condition)
-        .map((item) => item.capacity);
-      return dataFiltered;
-    } else if (policiesSelected) {
-      const dataFiltered = DataBase.filter(
-        (item) => item.state === stateSelectedToDoMap
-      )
-        .filter((item) => item.scenario === condition)
-        .filter((item) => item.policy === policiesSelected)
-        .map((item) => item.capacity);
-      return dataFiltered;
-    } else if (technologySelected) {
-      const dataFiltered = DataBase.filter(
-        (item) => item.state === stateSelectedToDoMap
-      )
-        .filter((item) => item.scenario === condition)
-        .filter((item) => item.techs === technologySelected)
-        .map((item) => item.capacity);
-      return dataFiltered;
-    } else if (technologySelected && policiesSelected) {
-      const dataFiltered = DataBase.filter(
-        (item) => item.state === stateSelectedToDoMap
-      )
-        .filter((item) => item.scenario === condition)
-        .filter((item) => item.techs === technologySelected)
-        .filter((item) => item.policy === policiesSelected)
-        .map((item) => item.capacity);
-      return dataFiltered;
+  
+    if (condition) {
+      filteredData = filteredData.filter((item) => item.techs === condition);
     }
+  
+    if (scenarioSelected) {
+      filteredData = filteredData.filter((item) => item.scenario === scenarioSelected);
+    } 
+    // else {
+    //   // Se scenarioSelected não está definido, filtramos pelos cenários "scenariobrasil" e "scenarioEUA"
+    //   filteredData = filteredData.filter((item) => item.scenario === "scenariobrasil" || item.scenario === "scenarioEUA");
+    // }
+  
+    if (policiesSelected) {
+      filteredData = filteredData.filter((item) => item.policy === policiesSelected);
+    }
+  
+    return filteredData.map((item) => item.capacity);
   };
 
   function SumArray(dataFiltered: number[]) {
@@ -264,13 +153,6 @@ export const GraphicsSection = () => {
     let TotalPolicies = 0;
     let TotalScenarios = 0;
     let TotalTechs = 0;
-    console.log(dataFilteredToDoPolicies("100% RE"))
-    // const primaryCondition =
-    //   policiesSelected || technologySelected || scenarioSelected;
-    // const secondaryCondition =
-    //   policiesSelected && technologySelected && scenarioSelected;
-
-    // if (primaryCondition || secondaryCondition) {
     setCCGT(SumArray(dataFilteredToDoTechnologies("CCGT")));
     setHygrogen(SumArray(dataFilteredToDoTechnologies("Hydrogen")));
     setNuclear(SumArray(dataFilteredToDoTechnologies("Nuclear")));
@@ -289,7 +171,6 @@ export const GraphicsSection = () => {
     setIntensiveElec(SumArray(dataFilteredToDoScenarios("Intensive elec.")));
     setLimitedElec(SumArray(dataFilteredToDoScenarios("Limited elec.")));
     setNetZero(SumArray(dataFilteredToDoScenarios("Net zero")));
-    // }
 
     if (groupBySelected === "Scenario") {
       Baseline != 0

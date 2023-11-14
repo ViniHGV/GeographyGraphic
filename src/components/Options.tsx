@@ -73,10 +73,7 @@ export const Options = () => {
           />
           <ComboboxDemo
             valueState={scenarioSelected}
-            setState={(ev) => {
-              console.log(scenarioSelected);
-              setScenarioSelected(ev);
-            }}
+            setState={(ev) => setScenarioSelected(ev)}
             name="Selected Scenarios"
             data={ScenariosData}
           />

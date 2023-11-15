@@ -2,11 +2,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Graphics } from "./Graphics";
 import { appContext } from "../../context/appContext";
-import {
-  BarChartBig,
-  LineChart,
-  AreaChart,
-} from "lucide-react";
+import { BarChartBig, LineChart, AreaChart } from "lucide-react";
 import { Button } from "./ui/button";
 import {
   DataBase,
@@ -60,6 +56,7 @@ export const GraphicsSection = () => {
     setIntensiveElec,
     setLimitedElec,
     setNetZero,
+    yearSelected,
   }: any = useContext(appContext);
 
   const [visible, setVisible] = useState(false);
@@ -69,75 +66,100 @@ export const GraphicsSection = () => {
 
   const dataFilteredToDoScenarios = (condition: string): number[] | any => {
     let filteredData = DataBase;
-  
+
     if (stateSelectedToDoMap) {
-      filteredData = filteredData.filter((item) => item.state === stateSelectedToDoMap);
-    }else{
-      filteredData = filteredData.filter(item => item.scenario === condition)
+      filteredData = filteredData.filter(
+        (item) => item.state === stateSelectedToDoMap
+      );
+    } else {
+      filteredData = filteredData.filter((item) => item.scenario === condition);
     }
     if (condition) {
       filteredData = filteredData.filter((item) => item.scenario === condition);
     }
-  
+
     if (policiesSelected) {
-      filteredData = filteredData.filter((item) => item.policy === policiesSelected);
-    } 
-    if (technologySelected) {
-      filteredData = filteredData.filter((item) => item.techs === technologySelected);
+      filteredData = filteredData.filter(
+        (item) => item.policy === policiesSelected
+      );
     }
-  
-    return filteredData.map((item) => item.capacity);
+    if (technologySelected) {
+      filteredData = filteredData.filter(
+        (item) => item.techs === technologySelected
+      );
+    }
+
+    return filteredData.map((item) => {
+      let capacityRemoveCaracter: string = item.capacity
+        .toString()
+        .replace(".", "");
+      let capacityInt: number = parseInt(capacityRemoveCaracter);
+      // console.log(capacityInt);
+      return capacityInt;
+    });
   };
 
   const dataFilteredToDoPolicies = (condition: string): number[] | any => {
     let filteredData = DataBase;
-  
+
     if (stateSelectedToDoMap) {
-      filteredData = filteredData.filter((item) => item.state === stateSelectedToDoMap);
-    }else{
-      filteredData = filteredData.filter(item => item.policy === condition)
+      filteredData = filteredData.filter(
+        (item) => item.state === stateSelectedToDoMap
+      );
+    } else {
+      filteredData = filteredData.filter((item) => item.policy === condition);
     }
-  
+
     if (condition) {
       filteredData = filteredData.filter((item) => item.policy === condition);
     }
-  
+
     if (scenarioSelected) {
-      filteredData = filteredData.filter((item) => item.scenario === scenarioSelected);
-    } 
-  
-    if (technologySelected) {
-      filteredData = filteredData.filter((item) => item.techs === technologySelected);
+      filteredData = filteredData.filter(
+        (item) => item.scenario === scenarioSelected
+      );
     }
-  
+
+    if (technologySelected) {
+      filteredData = filteredData.filter(
+        (item) => item.techs === technologySelected
+      );
+    }
+
     return filteredData.map((item) => item.capacity);
   };
 
   const dataFilteredToDoTechnologies = (condition: string): number[] | any => {
     let filteredData = DataBase;
-  
+
     if (stateSelectedToDoMap) {
-      filteredData = filteredData.filter((item) => item.state === stateSelectedToDoMap);
-    }else{
-      filteredData = filteredData.filter(item => item.techs === condition)
+      filteredData = filteredData.filter(
+        (item) => item.state === stateSelectedToDoMap
+      );
+    } else {
+      filteredData = filteredData.filter((item) => item.techs === condition);
     }
-  
+
     if (condition) {
       filteredData = filteredData.filter((item) => item.techs === condition);
     }
-  
+
     if (scenarioSelected) {
-      filteredData = filteredData.filter((item) => item.scenario === scenarioSelected);
-    } 
+      filteredData = filteredData.filter(
+        (item) => item.scenario === scenarioSelected
+      );
+    }
     // else {
     //   // Se scenarioSelected não está definido, filtramos pelos cenários "scenariobrasil" e "scenarioEUA"
     //   filteredData = filteredData.filter((item) => item.scenario === "scenariobrasil" || item.scenario === "scenarioEUA");
     // }
-  
+
     if (policiesSelected) {
-      filteredData = filteredData.filter((item) => item.policy === policiesSelected);
+      filteredData = filteredData.filter(
+        (item) => item.policy === policiesSelected
+      );
     }
-  
+
     return filteredData.map((item) => item.capacity);
   };
 
@@ -150,9 +172,9 @@ export const GraphicsSection = () => {
   }
 
   useEffect(() => {
-    let TotalPolicies = 0;
-    let TotalScenarios = 0;
-    let TotalTechs = 0;
+    // let TotalPolicies = 0;
+    // let TotalScenarios = 0;
+    // let TotalTechs = 0;
     setCCGT(SumArray(dataFilteredToDoTechnologies("CCGT")));
     setHygrogen(SumArray(dataFilteredToDoTechnologies("Hydrogen")));
     setNuclear(SumArray(dataFilteredToDoTechnologies("Nuclear")));
@@ -173,29 +195,31 @@ export const GraphicsSection = () => {
     setNetZero(SumArray(dataFilteredToDoScenarios("Net zero")));
 
     if (groupBySelected === "Scenario") {
-      Baseline != 0
-        ? (TotalScenarios = Baseline + IntensiveElec + LimitedElec + NetZero)
-        : null;
+      // Baseline != 0
+      //   ? (TotalScenarios = Baseline + IntensiveElec + LimitedElec + NetZero)
+      //   : null;
       setDataDescription(ScenariosData.map((item) => item.value));
       if (scenarioSelected === "Baseline") {
-        setDataNumbers([0, Baseline, 0, 0, 0]);
+        setDataNumbers([Baseline, 0, 0, 0]);
       } else if (scenarioSelected === "Intensive elec.") {
-        setDataNumbers([0, 0, IntensiveElec, 0, 0]);
+        setDataNumbers([0, IntensiveElec, 0, 0]);
       } else if (scenarioSelected === "Limited elec.") {
-        setDataNumbers([0, 0, 0, LimitedElec, 0]);
+        setDataNumbers([0, 0, LimitedElec, 0]);
       } else if (scenarioSelected === "Net zero") {
-        setDataNumbers([0, 0, 0, 0, NetZero]);
-      } else if (scenarioSelected === "All Scenarios") {
+        setDataNumbers([0, 0, 0, NetZero]);
+      }
+      // else if (scenarioSelected === "All Scenarios") {
+      //   setDataNumbers([
+      //     TotalScenarios,
+      //     Baseline,
+      //     IntensiveElec,
+      //     LimitedElec,
+      //     NetZero,
+      //   ]);
+      // }
+      else {
         setDataNumbers([
-          TotalScenarios,
-          Baseline,
-          IntensiveElec,
-          LimitedElec,
-          NetZero,
-        ]);
-      } else {
-        setDataNumbers([
-          TotalScenarios,
+          // TotalScenarios,
           Baseline,
           IntensiveElec,
           LimitedElec,
@@ -203,10 +227,16 @@ export const GraphicsSection = () => {
         ]);
       }
     } else if (groupBySelected === "Policy") {
-      sumDefaut != 0
-        ? (TotalPolicies = sumDefaut + sumLC + REPlusLC + fullRE)
-        : null;
-      setDataNumbers([TotalPolicies, sumLC, REPlusLC, fullRE]);
+      // sumDefaut != 0
+      //   ? (TotalPolicies = sumDefaut + sumLC + REPlusLC + fullRE)
+      //   : null;
+      setDataNumbers([
+        // TotalPolicies,
+        sumDefaut,
+        sumLC,
+        REPlusLC,
+        fullRE,
+      ]);
       setDataDescription(PolicyData.map((item) => item.value));
       if (policiesSelected === "Default") {
         setDataNumbers([sumDefaut, 0, 0, 0]);
@@ -216,25 +246,33 @@ export const GraphicsSection = () => {
         setDataNumbers([0, 0, REPlusLC, 0]);
       } else if (policiesSelected === "100% RE") {
         setDataNumbers([0, 0, 0, fullRE]);
-      } else if (policiesSelected === "All Policies") {
-        setDataNumbers([TotalPolicies, sumDefaut, sumLC, REPlusLC, fullRE]);
-      } else {
-        setDataNumbers([TotalPolicies, sumDefaut, sumLC, REPlusLC, fullRE]);
+      }
+      // else if (policiesSelected === "All Policies") {
+      //   setDataNumbers([TotalPolicies, sumDefaut, sumLC, REPlusLC, fullRE]);
+      // }
+      else {
+        setDataNumbers([
+          // TotalPolicies,
+          sumDefaut,
+          sumLC,
+          REPlusLC,
+          fullRE,
+        ]);
       }
     } else if (groupBySelected === "State") {
       setDataDescription(StateData.map((item) => item.value));
     } else if (groupBySelected === "Tecnologies") {
-      CCGT != 0 || CCGT == 0
-        ? (TotalTechs =
-            CCGT +
-            hydrogen +
-            Nuclear +
-            Onshorewind +
-            PVexisting +
-            Reservoir +
-            Runofriver +
-            UtilityscalePV)
-        : null;
+      // CCGT != 0 || CCGT == 0
+      //   ? (TotalTechs =
+      //       CCGT +
+      //       hydrogen +
+      //       Nuclear +
+      //       Onshorewind +
+      //       PVexisting +
+      //       Reservoir +
+      //       Runofriver +
+      //       UtilityscalePV)
+      //   : null;
       setDataDescription(TechsOptions.map((item) => item.value));
       if (technologySelected === "CCGT") {
         setDataNumbers([CCGT, 0, 0, 0, 0, 0, 0, 0]);
@@ -252,21 +290,23 @@ export const GraphicsSection = () => {
         setDataNumbers([0, 0, 0, 0, 0, 0, Runofriver, 0]);
       } else if (technologySelected === "Utility-scale PV") {
         setDataNumbers([0, 0, 0, 0, 0, 0, 0, UtilityscalePV]);
-      } else if (technologySelected === "All Techs") {
+      }
+      // else if (technologySelected === "All Techs") {
+      //   setDataNumbers([
+      //     TotalTechs,
+      //     CCGT,
+      //     hydrogen,
+      //     Nuclear,
+      //     Onshorewind,
+      //     PVexisting,
+      //     Reservoir,
+      //     Runofriver,
+      //     UtilityscalePV,
+      //   ]);
+      // }
+      else {
         setDataNumbers([
-          TotalTechs,
-          CCGT,
-          hydrogen,
-          Nuclear,
-          Onshorewind,
-          PVexisting,
-          Reservoir,
-          Runofriver,
-          UtilityscalePV,
-        ]);
-      } else {
-        setDataNumbers([
-          TotalTechs,
+          // TotalTechs,
           CCGT,
           hydrogen,
           Nuclear,
@@ -284,6 +324,7 @@ export const GraphicsSection = () => {
       setDataDescription(YearData.map((item) => item.value.toString()));
     }
   }, [
+    dataNumbers,
     groupBySelected,
     stateSelectedToDoMap,
     fullRE,
@@ -300,6 +341,7 @@ export const GraphicsSection = () => {
   useEffect(() => {
     setVisible(true);
   }, [
+    dataNumbers,
     visible,
     typeChart,
     stateSelectedToDoMap,

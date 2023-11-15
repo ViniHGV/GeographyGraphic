@@ -15,7 +15,7 @@ export const GroupByData: IOptionsData[] = [
 ];
 
 export const ScenariosData: IOptionsData[] = [
-  { value: "All Scenarios" },
+  // { value: "All Scenarios" },
   { value: "Baseline" },
   { value: "Intensive elec." },
   { value: "Limited elec." },
@@ -23,7 +23,7 @@ export const ScenariosData: IOptionsData[] = [
 ];
 
 export const PolicyData: IOptionsData[] = [
-  { value: "All Policies" },
+  // { value: "All Policies" },
   { value: "Default" },
   { value: "+LC" },
   { value: "100% RE+LC" },
@@ -60,7 +60,7 @@ export const StateData: IOptionsData[] = [
 ];
 
 export const TechsOptions: IOptionsData[] = [
-  { value: "All Techs" },
+  // { value: "All Techs" },
   { value: "CCGT" },
   { value: "Hydrogen" },
   { value: "Nuclear" },

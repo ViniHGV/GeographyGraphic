@@ -1,9 +1,8 @@
 "use client";
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { ComboboxDemo } from "./Selectors";
 import { Button } from "./ui/button";
 import {
-  DataBase,
   GroupByData,
   PolicyData,
   ScenariosData,
@@ -41,6 +40,7 @@ export const Options = () => {
     setScenarioSelected("");
     setPoliciesSelected("");
     setTechnologySelected("");
+    setStateSelectedToDoMap("");
     setYearSelected("");
   };
 
@@ -84,9 +84,9 @@ export const Options = () => {
             data={PolicyData}
           />
           <ComboboxDemo
-            valueState={stateSelectedToDoOption}
+            valueState={stateSelectedToDoMap}
             setState={(ev) => {
-              setStateSelectedToDoOption(ev);
+              // setStateSelectedToDoOption(ev);
               setStateSelectedToDoMap(ev);
             }}
             name="Selected State"

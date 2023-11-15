@@ -14,6 +14,7 @@ import { MapBrasil } from "./MapBrasil/MapBrasil";
 import { appContext } from "../../context/appContext";
 import { type } from "os";
 import { CheckboxDemo } from "./CheckboxDemo";
+import { ContainerOptions } from "./ContainerOptions";
 
 export const Options = () => {
   const {
@@ -83,59 +84,61 @@ export const Options = () => {
           <MapBrasil />
         </div>
         <div className="flex flex-col w-full col-span-2 justify-between items-end">
-          <div className="flex flex-col gap-3 w-full">
-            <p className="w-full font-medium">GroupBy</p>
-            <div className="flex gap-2 w-full items-center">
-              <ComboboxDemo
-                valueState={groupBySelected}
-                setState={(ev) => setGroupBySelected(ev)}
-                name="Selected Group By"
-                data={GroupByData}
-              />
-            </div>
-          </div>
+          <ContainerOptions title="Group By" isCheckbox={false}>
+            <ComboboxDemo
+              valueState={groupBySelected}
+              setState={(ev) => setGroupBySelected(ev)}
+              name="Selected Group By"
+              data={GroupByData}
+            />
+          </ContainerOptions>
           {/* <ComboboxDemo
             valueState={scenarioSelected}
             setState={(ev) => setScenarioSelected(ev)}
             name="Selected Scenarios"
             data={ScenariosData}
           /> */}
-          <div className="flex flex-col gap-3 w-full border-b border-gray-300 pb-3">
-            <p className="w-full font-medium">Scenaries</p>
-            <div className="flex gap-2 w-full items-center px-4 justify-between">
-              {ScenariosData.map((item, index) => (
-                <CheckboxDemo key={index} type={item.value} />
-              ))}
-            </div>
-          </div>
+          <ContainerOptions title="Scenaries" isCheckbox={true}>
+            {ScenariosData.map((item, index) => (
+              <CheckboxDemo key={index} type={item.value} />
+            ))}
+          </ContainerOptions>
 
-          <ComboboxDemo
-            valueState={policiesSelected}
-            setState={(ev) => setPoliciesSelected(ev)}
-            name="Selected Policies"
-            data={PolicyData}
-          />
-          <ComboboxDemo
-            valueState={stateSelectedToDoMap}
-            setState={(ev) => {
-              // setStateSelectedToDoOption(ev);
-              setStateSelectedToDoMap(ev);
-            }}
-            name="Selected State"
-            data={StateData}
-          />
-          <ComboboxDemo
-            valueState={technologySelected}
-            setState={(ev) => setTechnologySelected(ev)}
-            name="Selected Tecnologies"
-            data={TechsOptions}
-          />
-          <ComboboxDemo
-            valueState={yearSelected}
-            setState={(ev) => setYearSelected(ev)}
-            name="Selected Year of Data"
-            data={YearData}
-          />
+          <ContainerOptions title="Policies" isCheckbox={false}>
+            <ComboboxDemo
+              valueState={policiesSelected}
+              setState={(ev) => setPoliciesSelected(ev)}
+              name="Selected Policies"
+              data={PolicyData}
+            />
+          </ContainerOptions>
+          <ContainerOptions title="States" isCheckbox={false}>
+            <ComboboxDemo
+              valueState={stateSelectedToDoMap}
+              setState={(ev) => {
+                // setStateSelectedToDoOption(ev);
+                setStateSelectedToDoMap(ev);
+              }}
+              name="Selected State"
+              data={StateData}
+            />
+          </ContainerOptions>
+          <ContainerOptions title="Tecnologies" isCheckbox={false}>
+            <ComboboxDemo
+              valueState={technologySelected}
+              setState={(ev) => setTechnologySelected(ev)}
+              name="Selected Tecnologies"
+              data={TechsOptions}
+            />
+          </ContainerOptions>
+          <ContainerOptions title="Year of Data" isCheckbox={false}>
+            <ComboboxDemo
+              valueState={yearSelected}
+              setState={(ev) => setYearSelected(ev)}
+              name="Selected Year of Data"
+              data={YearData}
+            />
+          </ContainerOptions>
           <div className="w-full flex  gap-2">
             <Button onClick={handleResultToDoButton} className="w-full py-6">
               Geerated Your Graphic

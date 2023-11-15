@@ -94,7 +94,6 @@ export const GraphicsSection = () => {
         .toString()
         .replace(".", "");
       let capacityInt: number = parseInt(capacityRemoveCaracter);
-      // console.log(capacityInt);
       return capacityInt;
     });
   };
@@ -126,7 +125,13 @@ export const GraphicsSection = () => {
       );
     }
 
-    return filteredData.map((item) => item.capacity);
+    return filteredData.map((item) => {
+      let capacityRemoveCaracter: string = item.capacity
+        .toString()
+        .replace(".", "");
+      let capacityInt: number = parseInt(capacityRemoveCaracter);
+      return capacityInt;
+    });
   };
 
   const dataFilteredToDoTechnologies = (condition: string): number[] | any => {
@@ -160,7 +165,13 @@ export const GraphicsSection = () => {
       );
     }
 
-    return filteredData.map((item) => item.capacity);
+    return filteredData.map((item) => {
+      let capacityRemoveCaracter: string = item.capacity
+        .toString()
+        .replace(".", "");
+      let capacityInt: number = parseInt(capacityRemoveCaracter);
+      return capacityInt;
+    });
   };
 
   function SumArray(dataFiltered: number[]) {
@@ -324,13 +335,35 @@ export const GraphicsSection = () => {
       setDataDescription(YearData.map((item) => item.value.toString()));
     }
   }, [
-    dataNumbers,
+    // dataNumbers,
     groupBySelected,
     stateSelectedToDoMap,
     fullRE,
     scenarioSelected,
     policiesSelected,
     technologySelected,
+    sumLC,
+    sumDefaut,
+    REPlusLC,
+    fullRE,
+    groupBySelected,
+    stateSelectedToDoMap,
+    CCGT,
+    hydrogen,
+    Nuclear,
+    Onshorewind,
+    PVexisting,
+    Reservoir,
+    Runofriver,
+    UtilityscalePV,
+    Baseline,
+    IntensiveElec,
+    LimitedElec,
+    NetZero,
+    scenarioSelected,
+    policiesSelected,
+    technologySelected,
+    yearSelected,
   ]);
 
   const handleTypeChart = (value: string) => {
@@ -339,11 +372,12 @@ export const GraphicsSection = () => {
   };
 
   useEffect(() => {
-    setVisible(true);
+    if (!visible) {
+      setVisible(true);
+    }
   }, [
     dataNumbers,
     visible,
-    typeChart,
     stateSelectedToDoMap,
     groupBySelected,
     policiesSelected,

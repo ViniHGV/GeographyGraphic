@@ -12,9 +12,12 @@ import {
 } from "../../data/data";
 import { MapBrasil } from "./MapBrasil/MapBrasil";
 import { appContext } from "../../context/appContext";
+import { type } from "os";
 
 export const Options = () => {
   const {
+    selectedCheckboxes,
+    setSelectedCheckboxes,
     stateSelectedToDoMap,
     scenarioSelected,
     setScenarioSelected,
@@ -44,6 +47,16 @@ export const Options = () => {
     setYearSelected("");
   };
 
+  const handleChange = (event: any) => {
+    if (event.target.checked) {
+      setSelectedCheckboxes((prev: any) => [...prev, type]);
+    } else {
+      setSelectedCheckboxes((prev: object[]) =>
+        prev.filter((checkbox) => checkbox !== type)
+      );
+    }
+  };
+
   return (
     <div className="pt-20 px-36 flex flex-col gap-8 min-[450px]">
       <div className=" flex flex-col gap-2">
@@ -71,12 +84,13 @@ export const Options = () => {
             name="Selected Group By"
             data={GroupByData}
           />
-          <ComboboxDemo
+          {/* <ComboboxDemo
             valueState={scenarioSelected}
             setState={(ev) => setScenarioSelected(ev)}
             name="Selected Scenarios"
             data={ScenariosData}
-          />
+          /> */}
+
           <ComboboxDemo
             valueState={policiesSelected}
             setState={(ev) => setPoliciesSelected(ev)}

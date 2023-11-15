@@ -1,23 +1,36 @@
-// "use client";
-// import { Checkbox } from "@/components/ui/checkbox";
+"use client";
+import { useContext } from "react";
+import { appContext } from "../../context/appContext";
 
-// type ICheckboxDemo = {
-//   type: string;
-//   // id: string;
-//   // value: string;
-//   handleChange: (event: any) => void;
-// };
+export function CheckboxDemo({ type }: any) {
+  const { setSelectedCheckboxes }: string | any = useContext(appContext);
+  const handleChange = (event: any) => {
+    if (event.target.checked) {
+      setSelectedCheckboxes((prev: any) => [...prev, type]);
+    } else {
+      setSelectedCheckboxes((prev: any) =>
+        prev.filter((checkbox: any) => checkbox !== type)
+      );
+    }
+  };
 
-// export function CheckboxDemo({ type, handleChange }: ICheckboxDemo) {
-//   return (
-//     <div className="flex items-center space-x-2">
-//       <Checkbox id={type} value={type} onChange={(ev) => handleChange(ev)} />
-//       <label
-//         htmlFor={type}
-//         className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-//       >
-//         {type}
-//       </label>
-//     </div>
-//   );
-// }
+  return (
+    <div className="flex items-center space-x-2">
+      <input
+        type="checkbox"
+        id={type}
+        value={type}
+        onChange={handleChange}
+        className="w-4 h-4 accent-black"
+      />
+      {/* <Checkbox id={type} value={type} onChange={handleChange} /> */}
+
+      <label
+        htmlFor={type}
+        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+      >
+        {type}
+      </label>
+    </div>
+  );
+}

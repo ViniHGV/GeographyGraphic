@@ -57,6 +57,8 @@ export const GraphicsSection = () => {
     setLimitedElec,
     setNetZero,
     yearSelected,
+    selectedCheckboxes,
+    setSelectedCheckboxes,
   }: any = useContext(appContext);
 
   const [visible, setVisible] = useState(false);
@@ -113,11 +115,20 @@ export const GraphicsSection = () => {
       filteredData = filteredData.filter((item) => item.policy === condition);
     }
 
-    if (scenarioSelected) {
-      filteredData = filteredData.filter(
-        (item) => item.scenario === scenarioSelected
-      );
+    if (selectedCheckboxes.length > 0) {
+      // console.log(selectedCheckboxes);
+      filteredData = filteredData.filter((item) => {
+        // console.log(item.scenario);
+        return selectedCheckboxes.includes(item.scenario);
+      });
+      // console.log(filteredData);
     }
+
+    // if (scenarioSelected) {
+    //   filteredData = filteredData.filter(
+    //     (item) => item.scenario === scenarioSelected
+    //   );
+    // }
 
     if (technologySelected) {
       filteredData = filteredData.filter(
@@ -364,6 +375,7 @@ export const GraphicsSection = () => {
     policiesSelected,
     technologySelected,
     yearSelected,
+    selectedCheckboxes,
   ]);
 
   const handleTypeChart = (value: string) => {

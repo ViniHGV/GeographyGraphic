@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { ComboboxDemo } from "./Selectors";
 import { Button } from "./ui/button";
 import {
@@ -13,6 +13,7 @@ import {
 import { MapBrasil } from "./MapBrasil/MapBrasil";
 import { appContext } from "../../context/appContext";
 import { type } from "os";
+import { CheckboxDemo } from "./CheckboxDemo";
 
 export const Options = () => {
   const {
@@ -57,6 +58,10 @@ export const Options = () => {
     }
   };
 
+  useEffect(() => {
+    console.log(selectedCheckboxes);
+  }, [selectedCheckboxes]);
+
   return (
     <div className="pt-20 px-36 flex flex-col gap-8 min-[450px]">
       <div className=" flex flex-col gap-2">
@@ -90,6 +95,11 @@ export const Options = () => {
             name="Selected Scenarios"
             data={ScenariosData}
           /> */}
+          <div className="flex gap-2 w-full items-center">
+            {ScenariosData.map((item, index) => (
+              <CheckboxDemo keu={index} type={item.value} />
+            ))}
+          </div>
 
           <ComboboxDemo
             valueState={policiesSelected}

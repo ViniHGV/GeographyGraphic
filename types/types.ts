@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export type IDataNav = {
   name: string;
   url: string;
@@ -32,4 +34,10 @@ export type IDataBase = {
   policy: string;
   year: number;
   capacity: number;
+};
+
+export type IContainerOptions = {
+  title: string;
+  children: ReactNode;
+  isCheckbox: boolean;
 };

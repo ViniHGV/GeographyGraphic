@@ -48,19 +48,19 @@ export const Options = () => {
     setYearSelected("");
   };
 
-  const handleChange = (event: any) => {
-    if (event.target.checked) {
-      setSelectedCheckboxes((prev: any) => [...prev, type]);
-    } else {
-      setSelectedCheckboxes((prev: object[]) =>
-        prev.filter((checkbox) => checkbox !== type)
-      );
-    }
-  };
+  // const handleChange = (event: any) => {
+  //   if (event.target.checked) {
+  //     setSelectedCheckboxes((prev: any) => [...prev, type]);
+  //   } else {
+  //     setSelectedCheckboxes((prev: object[]) =>
+  //       prev.filter((checkbox) => checkbox !== type)
+  //     );
+  //   }
+  // };
 
-  useEffect(() => {
-    console.log(selectedCheckboxes);
-  }, [selectedCheckboxes]);
+  // useEffect(() => {
+  //   console.log(selectedCheckboxes);
+  // }, [selectedCheckboxes]);
 
   return (
     <div className="pt-20 px-36 flex flex-col gap-8 min-[450px]">
@@ -83,22 +83,30 @@ export const Options = () => {
           <MapBrasil />
         </div>
         <div className="flex flex-col w-full col-span-2 justify-between items-end">
-          <ComboboxDemo
-            valueState={groupBySelected}
-            setState={(ev) => setGroupBySelected(ev)}
-            name="Selected Group By"
-            data={GroupByData}
-          />
+          <div className="flex flex-col gap-3 w-full">
+            <p className="w-full font-medium">GroupBy</p>
+            <div className="flex gap-2 w-full items-center">
+              <ComboboxDemo
+                valueState={groupBySelected}
+                setState={(ev) => setGroupBySelected(ev)}
+                name="Selected Group By"
+                data={GroupByData}
+              />
+            </div>
+          </div>
           {/* <ComboboxDemo
             valueState={scenarioSelected}
             setState={(ev) => setScenarioSelected(ev)}
             name="Selected Scenarios"
             data={ScenariosData}
           /> */}
-          <div className="flex gap-2 w-full items-center">
-            {ScenariosData.map((item, index) => (
-              <CheckboxDemo keu={index} type={item.value} />
-            ))}
+          <div className="flex flex-col gap-3 w-full border-b border-gray-300 pb-3">
+            <p className="w-full font-medium">Scenaries</p>
+            <div className="flex gap-2 w-full items-center px-4 justify-between">
+              {ScenariosData.map((item, index) => (
+                <CheckboxDemo key={index} type={item.value} />
+              ))}
+            </div>
           </div>
 
           <ComboboxDemo

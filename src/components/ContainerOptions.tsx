@@ -13,9 +13,11 @@ export const ContainerOptions = ({
         isCheckbox && "px-4 border-b border-gray-300 pb-3"
       }`}
     >
-      <p className={`w-full font-semibold text-sm ${!isCheckbox && "pl-4"}`}>
-        {title}
-      </p>
+      {isCheckbox && (
+        <p className={`w-full font-semibold text-sm ${!isCheckbox && "pl-4"}`}>
+          {title}
+        </p>
+      )}
       <div
         className={`flex gap-2 w-full items-center ${
           isCheckbox && " justify-between"

@@ -1,37 +1,42 @@
 "use client";
 import React from "react";
 import Chart from "react-apexcharts";
-import { IGraphics } from "../../types/types";
+import { IGraphics, TestType } from "../../types/types";
 
 export const Graphics = ({
   typeChart,
   dataNumbers,
   dataDescriptions,
 }: IGraphics) => {
-  const test = {
-    options: {
-      chart: {
-        id: "basic-bar",
-        //Para  Stacked
-        // stacked: true,
-        // toolbar: {
-        //   show: true,
-        // },
-      },
-      colors: ["#000"],
-      xaxis: { categories: dataDescriptions },
-    },
-    series: [
-      {
-        name: `Total capacity`,
-        data: dataNumbers,
-      },
-    ],
+  let test: TestType = {
+    series: dataNumbers,
+    labels: dataDescriptions,
   };
+
+  typeChart != "pie"
+    ? (test = {
+        options: {
+          chart: {
+            id: "basic-bar",
+          },
+          colors: ["#000"],
+          xaxis: { categories: dataDescriptions },
+        },
+        series: [
+          {
+            name: `Total capacity`,
+            data: dataNumbers,
+          },
+        ],
+      })
+    : (test = {
+        series: dataNumbers,
+        labels: dataDescriptions,
+      });
   return (
     <Chart
       style={{ chart: { background: "red" } }}
-      options={test.options}
+      options={typeChart != "pie" ? test.options : test}
       series={test.series}
       type={typeChart}
       width="100%"

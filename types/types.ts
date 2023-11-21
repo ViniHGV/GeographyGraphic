@@ -41,3 +41,25 @@ export type IContainerOptions = {
   children: ReactNode;
   isCheckbox: boolean;
 };
+
+export type TestType =
+  | {
+      options?: {
+        chart: {
+          id: string;
+        };
+        colors: string[];
+        xaxis: {
+          categories: string[];
+        };
+      };
+      series: {
+        name: string;
+        data: number[];
+      }[];
+    }
+  | {
+      options?: ApexCharts.ApexOptions;
+      series: number[];
+      labels: string[];
+    };

@@ -34,10 +34,16 @@ export const AppContextProvider = ({ children }: IAppContextProvider) => {
   const [LimitedElec, setLimitedElec] = useState(0);
   const [NetZero, setNetZero] = useState(0);
   const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
+  const [selectedCheckboxesTechs, setSelectedCheckboxesTechs] = useState([]);
+  const [selectedCheckboxesState, setSelectedCheckboxesState] = useState([]);
 
   return (
     <appContext.Provider
       value={{
+        selectedCheckboxesState,
+        setSelectedCheckboxesState,
+        selectedCheckboxesTechs,
+        setSelectedCheckboxesTechs,
         selectedCheckboxes,
         setSelectedCheckboxes,
         fullRE,

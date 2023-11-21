@@ -1,16 +1,19 @@
 "use client";
-import { useContext } from "react";
-import { appContext } from "../../context/appContext";
 
-export function CheckboxDemo({ type }: any) {
-  const { setSelectedCheckboxes }: string | any = useContext(appContext);
+export function CheckboxDemo({ type, setState }: any) {
+  // const { setSelectedCheckboxes }: string | any = useContext(appContext);
+
   const handleChange = (event: any) => {
     if (event.target.checked) {
-      setSelectedCheckboxes((prev: any) => [...prev, type]);
+      setState((prev: any) => [...prev, type]);
+      // setSelectedCheckboxes((prev: any) => [...prev, type]);
     } else {
-      setSelectedCheckboxes((prev: any) =>
+      setState((prev: any) =>
         prev.filter((checkbox: any) => checkbox !== type)
       );
+      // setSelectedCheckboxes((prev: any) =>
+      // prev.filter((checkbox: any) => checkbox !== type)
+      // );
     }
   };
 

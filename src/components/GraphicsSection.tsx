@@ -2,7 +2,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Graphics } from "./Graphics";
 import { appContext } from "../../context/appContext";
-import { BarChartBig, LineChart, AreaChart } from "lucide-react";
+import { BarChartBig, LineChart, AreaChart, Baseline } from "lucide-react";
 import { Button } from "./ui/button";
 import {
   DataBase,
@@ -15,6 +15,8 @@ import {
 
 export const GraphicsSection = () => {
   const {
+    selectedCheckboxesState,
+    selectedCheckboxesTechs,
     sumTotalCapacityState,
     sumLC,
     sumDefaut,
@@ -69,10 +71,13 @@ export const GraphicsSection = () => {
   const dataFilteredToDoScenarios = (condition: string): number[] | any => {
     let filteredData = DataBase;
 
-    if (stateSelectedToDoMap) {
-      filteredData = filteredData.filter(
-        (item) => item.state === stateSelectedToDoMap
-      );
+    if (selectedCheckboxesState.length > 0) {
+      // console.log(selectedCheckboxes);
+      filteredData = filteredData.filter((item) => {
+        // console.log(item.scenario);
+        return selectedCheckboxesState.includes(item.state);
+      });
+      // console.log(filteredData);
     } else {
       filteredData = filteredData.filter((item) => item.scenario === condition);
     }
@@ -85,10 +90,13 @@ export const GraphicsSection = () => {
         (item) => item.policy === policiesSelected
       );
     }
-    if (technologySelected) {
-      filteredData = filteredData.filter(
-        (item) => item.techs === technologySelected
-      );
+    if (selectedCheckboxesTechs.length > 0) {
+      // console.log(selectedCheckboxes);
+      filteredData = filteredData.filter((item) => {
+        // console.log(item.scenario);
+        return selectedCheckboxesTechs.includes(item.techs);
+      });
+      // console.log(filteredData);
     }
 
     return filteredData.map((item) => {
@@ -103,10 +111,13 @@ export const GraphicsSection = () => {
   const dataFilteredToDoPolicies = (condition: string): number[] | any => {
     let filteredData = DataBase;
 
-    if (stateSelectedToDoMap) {
-      filteredData = filteredData.filter(
-        (item) => item.state === stateSelectedToDoMap
-      );
+    if (selectedCheckboxesState.length > 0) {
+      // console.log(selectedCheckboxes);
+      filteredData = filteredData.filter((item) => {
+        // console.log(item.scenario);
+        return selectedCheckboxesState.includes(item.state);
+      });
+      // console.log(filteredData);
     } else {
       filteredData = filteredData.filter((item) => item.policy === condition);
     }
@@ -115,27 +126,29 @@ export const GraphicsSection = () => {
       filteredData = filteredData.filter((item) => item.policy === condition);
     }
 
-    if (selectedCheckboxes.length > 0) {
-      // console.log(selectedCheckboxes);
-      filteredData = filteredData.filter((item) => {
-        // console.log(item.scenario);
-        return selectedCheckboxes.includes(item.scenario);
-      });
-      // console.log(filteredData);
-    }
-
-    // if (scenarioSelected) {
-    //   filteredData = filteredData.filter(
-    //     (item) => item.scenario === scenarioSelected
-    //   );
+    // if (selectedCheckboxes.length > 0) {
+    //   // console.log(selectedCheckboxes);
+    //   filteredData = filteredData.filter((item) => {
+    //     // console.log(item.scenario);
+    //     return selectedCheckboxes.includes(item.scenario);
+    //   });
+    //   // console.log(filteredData);
     // }
 
-    if (technologySelected) {
+    if (scenarioSelected) {
       filteredData = filteredData.filter(
-        (item) => item.techs === technologySelected
+        (item) => item.scenario === scenarioSelected
       );
     }
 
+    if (selectedCheckboxesTechs.length > 0) {
+      // console.log(selectedCheckboxes);
+      filteredData = filteredData.filter((item) => {
+        // console.log(item.scenario);
+        return selectedCheckboxesTechs.includes(item.techs);
+      });
+      // console.log(filteredData);
+    }
     return filteredData.map((item) => {
       let capacityRemoveCaracter: string = item.capacity
         .toString()
@@ -148,10 +161,13 @@ export const GraphicsSection = () => {
   const dataFilteredToDoTechnologies = (condition: string): number[] | any => {
     let filteredData = DataBase;
 
-    if (stateSelectedToDoMap) {
-      filteredData = filteredData.filter(
-        (item) => item.state === stateSelectedToDoMap
-      );
+    if (selectedCheckboxesState.length > 0) {
+      // console.log(selectedCheckboxes);
+      filteredData = filteredData.filter((item) => {
+        // console.log(item.scenario);
+        return selectedCheckboxesState.includes(item.state);
+      });
+      // console.log(filteredData);
     } else {
       filteredData = filteredData.filter((item) => item.techs === condition);
     }
@@ -160,15 +176,23 @@ export const GraphicsSection = () => {
       filteredData = filteredData.filter((item) => item.techs === condition);
     }
 
+    // if (selectedCheckboxes.length > 0) {
+    //   // console.log(selectedCheckboxes);
+    //   filteredData = filteredData.filter((item) => {
+    //     // console.log(item.scenario);
+    //     return selectedCheckboxes.includes(item.scenario);
+    //   });
+    //   // console.log(filteredData);
+    // }
+    // else {
+    //   // Se scenarioSelected não está definido, filtramos pelos cenários "scenariobrasil" e "scenarioEUA"
+    //   filteredData = filteredData.filter((item) => item.scenario === "scenariobrasil" || item.scenario === "scenarioEUA");
+    // }
     if (scenarioSelected) {
       filteredData = filteredData.filter(
         (item) => item.scenario === scenarioSelected
       );
     }
-    // else {
-    //   // Se scenarioSelected não está definido, filtramos pelos cenários "scenariobrasil" e "scenarioEUA"
-    //   filteredData = filteredData.filter((item) => item.scenario === "scenariobrasil" || item.scenario === "scenarioEUA");
-    // }
 
     if (policiesSelected) {
       filteredData = filteredData.filter(
@@ -337,9 +361,6 @@ export const GraphicsSection = () => {
           Reservoir,
           Runofriver,
           UtilityscalePV,
-          technologySelected,
-          policiesSelected,
-          scenarioSelected,
         ]);
       }
     } else if (groupBySelected === "Year of Data") {
@@ -376,6 +397,8 @@ export const GraphicsSection = () => {
     technologySelected,
     yearSelected,
     selectedCheckboxes,
+    selectedCheckboxesTechs,
+    selectedCheckboxesState,
   ]);
 
   const handleTypeChart = (value: string) => {
@@ -401,9 +424,10 @@ export const GraphicsSection = () => {
     <div className="pt-12 mt-16 px-36">
       <div className="flex items-center justify-between">
         <div className="flex flex-col gap-2">
-          <h2 className="text-5xl font-bold">Graphics the your Selections!</h2>
+          <h2 className="text-5xl font-bold">Your final dashboard</h2>
           <p className="font-medium text-[#7F7F7F] ">
-            Hand-picked themes that you can copy and paste into your apps.
+            Choose the best way to see the information, change the visibility
+            models, export for your own use and create as you can!
           </p>
         </div>
         <div className="flex gap-2">
@@ -422,6 +446,12 @@ export const GraphicsSection = () => {
           <Button
             className={`${typeChart === "area" ? "" : StyleChartNotSelected}`}
             onClick={() => handleTypeChart("area")}
+          >
+            <AreaChart />
+          </Button>
+          <Button
+            className={`${typeChart === "pie" ? "" : StyleChartNotSelected}`}
+            onClick={() => handleTypeChart("pie")}
           >
             <AreaChart />
           </Button>

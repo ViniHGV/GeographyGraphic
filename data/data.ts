@@ -1,9 +1,8 @@
 import { IDataBase, IDataNav, IOptionsData, IYearData } from "../types/types";
 
 export const dataNav: IDataNav[] = [
-  { name: "Publication", url: "" },
-  { name: "Citation", url: "" },
-  { name: "Download Data", url: "" },
+  { name: "Create Dashboard", url: "#options" },
+  { name: "Final dashboard", url: "#graphics" },
 ];
 
 export const GroupByData: IOptionsData[] = [
@@ -79,7 +78,7 @@ export const DataBase: IDataBase[] = [
     scenario: "Baseline",
     policy: "Default",
     state: "AM",
-    year: 2019,
+    year: 2020,
     capacity: 295408651604124,
   },
   {
@@ -191,7 +190,7 @@ export const DataBase: IDataBase[] = [
     scenario: "Intensive elec.",
     policy: "+LC",
     state: "ES",
-    year: 2019,
+    year: 2020,
     capacity: 341046977830491,
   },
   {
@@ -3071,7 +3070,7 @@ export const DataBase: IDataBase[] = [
     scenario: "Net zero",
     policy: "100% RE+LC",
     state: "CE",
-    year: 2019,
+    year: 2020,
     capacity: 253362,
   },
   {

@@ -14,7 +14,7 @@ export default function Home() {
         <section id="options">
           <Options />
         </section>
-        <section>
+        <section id="graphics">
           <GraphicsSection />
         </section>
       </main>

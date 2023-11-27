@@ -2,7 +2,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Graphics } from "./Graphics";
 import { appContext } from "../../context/appContext";
-import { BarChartBig, LineChart, AreaChart, Baseline } from "lucide-react";
+import { BarChartBig, LineChart, AreaChart, PieChart } from "lucide-react";
 import { Button } from "./ui/button";
 import {
   DataBase,
@@ -61,6 +61,10 @@ export const GraphicsSection = () => {
     yearSelected,
     selectedCheckboxes,
     setSelectedCheckboxes,
+    filterYear2019,
+    setFilterYear2019,
+    filterYear2020,
+    setFilterYear2020,
   }: any = useContext(appContext);
 
   const [visible, setVisible] = useState(false);
@@ -96,8 +100,12 @@ export const GraphicsSection = () => {
         // console.log(item.scenario);
         return selectedCheckboxesTechs.includes(item.techs);
       });
-      // console.log(filteredData);
     }
+
+    if (yearSelected) {
+      filteredData = filteredData.filter((item) => item.year === yearSelected);
+    }
+    // console.log(filteredData);
 
     return filteredData.map((item) => {
       let capacityRemoveCaracter: string = item.capacity
@@ -149,6 +157,11 @@ export const GraphicsSection = () => {
       });
       // console.log(filteredData);
     }
+
+    if (yearSelected) {
+      filteredData = filteredData.filter((item) => item.year === yearSelected);
+    }
+
     return filteredData.map((item) => {
       let capacityRemoveCaracter: string = item.capacity
         .toString()
@@ -174,6 +187,61 @@ export const GraphicsSection = () => {
 
     if (condition) {
       filteredData = filteredData.filter((item) => item.techs === condition);
+    }
+
+    // if (selectedCheckboxes.length > 0) {
+    //   // console.log(selectedCheckboxes);
+    //   filteredData = filteredData.filter((item) => {
+    //     // console.log(item.scenario);
+    //     return selectedCheckboxes.includes(item.scenario);
+    //   });
+    //   // console.log(filteredData);
+    // }
+    // else {
+    //   // Se scenarioSelected não está definido, filtramos pelos cenários "scenariobrasil" e "scenarioEUA"
+    //   filteredData = filteredData.filter((item) => item.scenario === "scenariobrasil" || item.scenario === "scenarioEUA");
+    // }
+    if (scenarioSelected) {
+      filteredData = filteredData.filter(
+        (item) => item.scenario === scenarioSelected
+      );
+    }
+
+    if (policiesSelected) {
+      filteredData = filteredData.filter(
+        (item) => item.policy === policiesSelected
+      );
+    }
+
+    if (yearSelected) {
+      filteredData = filteredData.filter((item) => item.year === yearSelected);
+    }
+
+    return filteredData.map((item) => {
+      let capacityRemoveCaracter: string = item.capacity
+        .toString()
+        .replace(".", "");
+      let capacityInt: number = parseInt(capacityRemoveCaracter);
+      return capacityInt;
+    });
+  };
+
+  const dataFilteredToDoYearData = (condition: number): number[] | any => {
+    let filteredData = DataBase;
+
+    if (selectedCheckboxesState.length > 0) {
+      // console.log(selectedCheckboxes);
+      filteredData = filteredData.filter((item) => {
+        // console.log(item.scenario);
+        return selectedCheckboxesState.includes(item.state);
+      });
+      // console.log(filteredData);
+    } else {
+      filteredData = filteredData.filter((item) => item.year === condition);
+    }
+
+    if (condition) {
+      filteredData = filteredData.filter((item) => item.year === condition);
     }
 
     // if (selectedCheckboxes.length > 0) {
@@ -239,6 +307,8 @@ export const GraphicsSection = () => {
     setIntensiveElec(SumArray(dataFilteredToDoScenarios("Intensive elec.")));
     setLimitedElec(SumArray(dataFilteredToDoScenarios("Limited elec.")));
     setNetZero(SumArray(dataFilteredToDoScenarios("Net zero")));
+    setFilterYear2019(SumArray(dataFilteredToDoYearData(2019)));
+    setFilterYear2020(SumArray(dataFilteredToDoYearData(2020)));
 
     if (groupBySelected === "Scenario") {
       // Baseline != 0
@@ -365,6 +435,7 @@ export const GraphicsSection = () => {
       }
     } else if (groupBySelected === "Year of Data") {
       setDataDescription(YearData.map((item) => item.value.toString()));
+      setDataNumbers([filterYear2019, filterYear2020]);
     }
   }, [
     // dataNumbers,
@@ -399,6 +470,9 @@ export const GraphicsSection = () => {
     selectedCheckboxes,
     selectedCheckboxesTechs,
     selectedCheckboxesState,
+    filterYear2019,
+    filterYear2020,
+    yearSelected,
   ]);
 
   const handleTypeChart = (value: string) => {
@@ -421,8 +495,8 @@ export const GraphicsSection = () => {
   ]);
 
   return (
-    <div className="pt-12 mt-16 px-36">
-      <div className="flex items-center justify-between">
+    <div className="pt-40 px-5 lg:px-36">
+      <div className="flex items-center flex-col lg:flex-row justify-between">
         <div className="flex flex-col gap-2">
           <h2 className="text-5xl font-bold">Your final dashboard</h2>
           <p className="font-medium text-[#7F7F7F] ">
@@ -430,7 +504,7 @@ export const GraphicsSection = () => {
             models, export for your own use and create as you can!
           </p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 py-5">
           <Button
             className={`${typeChart === "bar" ? "" : StyleChartNotSelected}`}
             onClick={() => handleTypeChart("bar")}
@@ -453,7 +527,7 @@ export const GraphicsSection = () => {
             className={`${typeChart === "pie" ? "" : StyleChartNotSelected}`}
             onClick={() => handleTypeChart("pie")}
           >
-            <AreaChart />
+            <PieChart />
           </Button>
         </div>
       </div>

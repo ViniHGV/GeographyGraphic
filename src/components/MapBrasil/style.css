@@ -9,12 +9,12 @@
   color: #ff0000;
 }
 .svg-map__location {
-  fill: #000000;
+  fill: #313131;
   cursor: pointer;
 }
 .svg-map__location:focus,
 .svg-map__location:hover {
-  fill: #313131;
+  fill: #000;
   outline: 0;
 }
 .svg-map__location[aria-checked="true"] {

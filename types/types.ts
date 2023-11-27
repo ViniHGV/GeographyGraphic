@@ -25,6 +25,14 @@ export type IGraphics = {
   dataNumbers: number[];
   dataDescriptions: string[];
   typeChart: string | any;
+  plotOptions?:
+    | {
+        bar: {
+          borderRadius: number;
+          horizontal: boolean;
+        };
+      }
+    | any;
 };
 
 export type IDataBase = {

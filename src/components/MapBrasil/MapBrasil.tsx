@@ -50,6 +50,7 @@ export const MapBrasil = () => {
     setIntensiveElec,
     setLimitedElec,
     setNetZero,
+    setSelectedCheckboxesState,
   }: any = useContext(appContext);
 
   const dataFilteredCapacityTotal = DataBase.filter(
@@ -95,6 +96,7 @@ export const MapBrasil = () => {
     if (groupBySelected) {
       setTooltipState({ show: false, x: 0, y: 0, text: "" });
       handleLocationMouseOver(ev);
+      setSelectedCheckboxesState(ev.target.id.toUpperCase());
       setStateSelectedToDoMap(ev.target.id.toUpperCase());
       setFullRE(SumArray(dataFilteredToDoPolicies("100% RE")));
       setREPlusLC(SumArray(dataFilteredToDoPolicies("100% RE+LC")));
@@ -169,7 +171,7 @@ export const MapBrasil = () => {
             {" "}
             State: {stateSelectedToDoMap.toUpperCase()}
           </p>
-          <p className="text-sm py-1">Capacity: {sumTotalCapacityState}</p>
+          {/* <p className="text-sm py-1">Capacity: {sumTotalCapacityState}</p> */}
           <p className="text-sm py-1">Default: {sumDefaut} </p>
           <p className="text-sm py-1">+LC: {sumLC}</p>
           <p className="text-sm py-1">100% RE+LC: {REPlusLC}</p>

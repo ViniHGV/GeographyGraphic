@@ -76,16 +76,16 @@ export const Options = () => {
   // }, [selectedCheckboxes]);
 
   return (
-    <div className="pt-20 px-36 flex flex-col gap-8 min-[450px]">
-      <div className=" flex flex-col gap-2">
+    <div className="pt-40 px-5 lg:px-36 flex flex-col gap-8 min-[450px]">
+      <div className="flex flex-col gap-2">
         <h2 className="text-5xl font-bold">Create your dashboard</h2>
         <p className="font-medium text-gray-500">
           Know more about our potencials technologies and how we’re working with
           them in Brazil
         </p>
       </div>
-      <div className="grid grid-cols-5 gap-24">
-        <div className="flex flex-col col-span-3 justify-center gap-2">
+      <div className="lg:grid lg:grid-cols-5 gap-24">
+        <div className="flex flex-col lg:col-span-3 justify-center gap-2">
           {/* <p className="font-medium">
             Selected Capacity (GW){" "}
             <span className="font-bold">
@@ -96,7 +96,7 @@ export const Options = () => {
 
           <MapBrasil />
         </div>
-        <div className="flex flex-col w-full col-span-2 gap-4 justify-between items-end">
+        <div className="flex flex-col w-full lg:col-span-2 gap-4 justify-between items-end">
           {!refresh && (
             <>
               <ContainerOptions title="Group By" isCheckbox={false}>

@@ -19,7 +19,8 @@ export const ContainerOptions = ({
       )}
       <div
         className={`flex flex-wrap gap-2 w-full ${
-          isCheckbox && "grid grid-cols-4 align-items-center"
+          isCheckbox &&
+          "grid grid-cols-4 lg:grid-cols-2 xl:grid-cols-3 align-items-center"
         }`}
       >
         {children}

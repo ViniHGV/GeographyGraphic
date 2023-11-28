@@ -2,7 +2,13 @@
 import { useContext, useEffect, useState } from "react";
 import { Graphics } from "./Graphics";
 import { appContext } from "../../context/appContext";
-import { BarChartBig, LineChart, AreaChart, PieChart } from "lucide-react";
+import {
+  BarChartBig,
+  LineChart,
+  AreaChart,
+  PieChart,
+  Table,
+} from "lucide-react";
 import { Button } from "./ui/button";
 import {
   DataBase,
@@ -12,6 +18,7 @@ import {
   TechsOptions,
   YearData,
 } from "../../data/data";
+import { TableDemo } from "./Table";
 
 export const GraphicsSection = () => {
   const {
@@ -70,6 +77,7 @@ export const GraphicsSection = () => {
   const [visible, setVisible] = useState(false);
   const [dataDescription, setDataDescription] = useState([""]);
   const [dataNumbers, setDataNumbers] = useState([0]);
+  const [exibitionTable, setExibitionTable] = useState(false);
   const StyleChartNotSelected = "bg-zinc-200 text-black hover:text-white";
 
   const dataFilteredToDoScenarios = (condition: string): number[] | any => {
@@ -289,6 +297,7 @@ export const GraphicsSection = () => {
     // let TotalPolicies = 0;
     // let TotalScenarios = 0;
     // let TotalTechs = 0;
+    let sumTotal = 0;
     setCCGT(SumArray(dataFilteredToDoTechnologies("CCGT")));
     setHygrogen(SumArray(dataFilteredToDoTechnologies("Hydrogen")));
     setNuclear(SumArray(dataFilteredToDoTechnologies("Nuclear")));
@@ -309,6 +318,24 @@ export const GraphicsSection = () => {
     setNetZero(SumArray(dataFilteredToDoScenarios("Net zero")));
     setFilterYear2019(SumArray(dataFilteredToDoYearData(2019)));
     setFilterYear2020(SumArray(dataFilteredToDoYearData(2020)));
+    sumTotal =
+      sumLC +
+      sumDefaut +
+      REPlusLC +
+      fullRE +
+      Baseline +
+      IntensiveElec +
+      LimitedElec +
+      NetZero +
+      CCGT +
+      hydrogen +
+      Nuclear +
+      Onshorewind +
+      PVexisting +
+      Reservoir +
+      Runofriver +
+      UtilityscalePV;
+    setSumTotalCapacityState(sumTotal);
 
     if (groupBySelected === "Scenario") {
       // Baseline != 0
@@ -473,6 +500,7 @@ export const GraphicsSection = () => {
     filterYear2019,
     filterYear2020,
     yearSelected,
+    sumTotalCapacityState,
   ]);
 
   const handleTypeChart = (value: string) => {
@@ -506,34 +534,68 @@ export const GraphicsSection = () => {
         </div>
         <div className="flex gap-2 py-5">
           <Button
-            className={`${typeChart === "bar" ? "" : StyleChartNotSelected}`}
-            onClick={() => handleTypeChart("bar")}
+            className={`${
+              typeChart === "bar" && !exibitionTable
+                ? ""
+                : StyleChartNotSelected
+            }`}
+            onClick={() => {
+              handleTypeChart("bar");
+              setExibitionTable(false);
+            }}
           >
             <BarChartBig />
           </Button>
           <Button
-            className={`${typeChart === "line" ? "" : StyleChartNotSelected}`}
-            onClick={() => handleTypeChart("line")}
+            className={`${
+              typeChart === "line" && !exibitionTable
+                ? ""
+                : StyleChartNotSelected
+            }`}
+            onClick={() => {
+              handleTypeChart("line");
+              setExibitionTable(false);
+            }}
           >
             <LineChart />
           </Button>
           <Button
-            className={`${typeChart === "area" ? "" : StyleChartNotSelected}`}
-            onClick={() => handleTypeChart("area")}
+            className={`${
+              typeChart === "area" && !exibitionTable
+                ? ""
+                : StyleChartNotSelected
+            }`}
+            onClick={() => {
+              handleTypeChart("area");
+              setExibitionTable(false);
+            }}
           >
             <AreaChart />
           </Button>
           <Button
-            className={`${typeChart === "pie" ? "" : StyleChartNotSelected}`}
-            onClick={() => handleTypeChart("pie")}
+            className={`${
+              typeChart === "pie" && !exibitionTable
+                ? ""
+                : StyleChartNotSelected
+            }`}
+            onClick={() => {
+              handleTypeChart("pie");
+              setExibitionTable(false);
+            }}
           >
             <PieChart />
+          </Button>
+          <Button
+            className={`${exibitionTable ? "" : StyleChartNotSelected}`}
+            onClick={() => setExibitionTable(true)}
+          >
+            <Table />
           </Button>
         </div>
       </div>
       <div className="grid gap-6 mt-10">
         <div className="w-full">
-          {visible && (
+          {visible && !exibitionTable && (
             <Graphics
               dataDescriptions={dataDescription}
               dataNumbers={dataNumbers}
@@ -545,6 +607,15 @@ export const GraphicsSection = () => {
               dataDescriptions={dataDescription}
               dataNumbers={[0, 0, 0, 0]}
               typeChart={typeChart}
+            />
+          )}
+          {visible && exibitionTable && (
+            <TableDemo
+              DataRow={dataDescription}
+              DataNumbers={dataNumbers}
+              totalCapacity={
+                (SumArray(dataNumbers) / sumTotalCapacityState) * 100
+              }
             />
           )}
         </div>

@@ -100,6 +100,7 @@ export const Options = () => {
           {!refresh && (
             <>
               <ContainerOptions title="Group By" isCheckbox={false}>
+                <p className="w-full font-semibold text-sm pl-4">Group By</p>
                 <ComboboxDemo
                   valueState={groupBySelected}
                   setState={(ev) => setGroupBySelected(ev)}
@@ -112,7 +113,7 @@ export const Options = () => {
                 <ComboboxDemo
                   valueState={scenarioSelected}
                   setState={(ev) => setScenarioSelected(ev)}
-                  name="Selected Scenarios"
+                  name="Filter by Scenaries"
                   data={ScenariosData}
                 />
                 {/* {ScenariosData.map((item, index) => (
@@ -203,7 +204,7 @@ export const Options = () => {
                 <ComboboxDemo
                   valueState={scenarioSelected}
                   setState={(ev) => setScenarioSelected(ev)}
-                  name="Selected Scenarios"
+                  name="Filter by Scenaries"
                   data={ScenariosData}
                 />
                 {/* {ScenariosData.map((item, index) => (

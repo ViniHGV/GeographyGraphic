@@ -39,9 +39,9 @@ export const Options = () => {
     yearSelected,
     setYearSelected,
     setStateSelectedToDoMap,
+    refresh,
+    setRefresh,
   }: string | any = useContext(appContext);
-
-  const [refresh, setRefresh] = useState(true);
 
   const resetFilters = () => {
     setRefresh(true);
@@ -137,6 +137,7 @@ export const Options = () => {
               <ContainerOptions title="Filter by States" isCheckbox={true}>
                 {StateData.map((item, index) => (
                   <CheckboxDemo
+                    // state={selectedCheckboxes}
                     key={index}
                     type={item.value}
                     setState={(ev: string[]) => setSelectedCheckboxesState(ev)}

@@ -74,11 +74,13 @@ export const GraphicsSection = () => {
     setFilterYear2020,
     totalForState,
     setTotalForState,
+    dataDescription,
+    setDataDescription,
+    dataNumbers,
+    setDataNumbers,
   }: any = useContext(appContext);
 
   const [visible, setVisible] = useState(false);
-  const [dataDescription, setDataDescription] = useState([""]);
-  const [dataNumbers, setDataNumbers] = useState([0]);
   const [exibitionTable, setExibitionTable] = useState(false);
   const StyleChartNotSelected = "bg-zinc-200 text-black hover:text-white";
   const stateCapacity: Record<string, number> = {};

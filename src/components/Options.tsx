@@ -208,13 +208,6 @@ export const Options = () => {
                   name="Filter by Scenaries"
                   data={ScenariosData}
                 />
-                {/* {ScenariosData.map((item, index) => (
-          <CheckboxDemo
-            key={index}
-            type={item.value}
-            setState={(ev: string[]) => setSelectedCheckboxes(ev)}
-          />
-        ))} */}
               </ContainerOptions>
 
               <ContainerOptions title="Policies" isCheckbox={false}>

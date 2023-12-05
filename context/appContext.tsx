@@ -38,10 +38,13 @@ export const AppContextProvider = ({ children }: IAppContextProvider) => {
   const [selectedCheckboxesState, setSelectedCheckboxesState] = useState([]);
   const [filterYear2019, setFilterYear2019] = useState(0);
   const [filterYear2020, setFilterYear2020] = useState(0);
+  const [refresh, setRefresh] = useState(true);
 
   return (
     <appContext.Provider
       value={{
+        refresh,
+        setRefresh,
         filterYear2019,
         setFilterYear2019,
         filterYear2020,

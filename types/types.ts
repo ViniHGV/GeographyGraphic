@@ -71,3 +71,8 @@ export type TestType =
       series: number[];
       labels: string[];
     };
+
+export type ICheckboxDemo = {
+  type: string;
+  setState: (prev: any) => void;
+};

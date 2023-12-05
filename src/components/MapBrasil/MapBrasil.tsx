@@ -94,15 +94,34 @@ export const MapBrasil = () => {
     return sum;
   }
 
+  const handleChange = (
+    event?: React.ChangeEvent<HTMLInputElement>,
+    type?: string
+  ) => {
+    setSelectedCheckboxesState((prev: string[]) => {
+      if (event?.target.id) {
+        // Se o checkbox está marcado e o tipo não está presente no estado, adiciona ao estado
+        if (!prev.includes(type)) {
+          return [...prev, type];
+        }
+      } else {
+        // Se o checkbox está desmarcado, remove o tipo do estado
+        return prev.filter((checkbox) => checkbox !== type);
+      }
+
+      return prev; // Retorna o estado inalterado se nenhuma alteração for feita
+    });
+  };
+
   const handleStatesMap = (ev: Event | any) => {
     if (groupBySelected) {
       setTooltipState({ show: false, x: 0, y: 0, text: "" });
       handleLocationMouseOver(ev);
       // setSelectedCheckboxesState(ev.target.id.toUpperCase());
-      setSelectedCheckboxesState((prev: any) => [
-        ...prev,
-        ev.target.id.toUpperCase(),
-      ]);
+      // setSelectedCheckboxesState((prev: any) => [
+      //   ...prev,
+      //   ev.target.id.toUpperCase(),
+      // ]);
       setStateSelectedToDoMap(ev.target.id.toUpperCase());
       setFullRE(SumArray(dataFilteredToDoPolicies("100% RE")));
       setREPlusLC(SumArray(dataFilteredToDoPolicies("100% RE+LC")));
@@ -136,6 +155,8 @@ export const MapBrasil = () => {
       });
   };
 
+  console.log(selectedCheckboxesState);
+
   const handleLocationMouseOver = (e: any) => {
     const stateName = e.target.id;
 
@@ -162,6 +183,7 @@ export const MapBrasil = () => {
         map={Brazil}
         onLocationClick={(ev) => {
           handleStatesMap(ev);
+          handleChange(ev, ev.target.id.toUpperCase());
         }}
       />
       {tooltipState.show && (
@@ -175,7 +197,7 @@ export const MapBrasil = () => {
         >
           <p className="text-sm py-1">
             {" "}
-            State: {stateSelectedToDoMap.toUpperCase()}
+            States selected: {selectedCheckboxesState.join(", ")}
           </p>
           {/* <p className="text-sm py-1">Capacity: {sumTotalCapacityState}</p> */}
           <p className="text-sm py-1">Default: {sumDefaut} </p>

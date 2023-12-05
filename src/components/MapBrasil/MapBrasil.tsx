@@ -6,6 +6,7 @@ import "./style.css";
 import { DataBase } from "../../../data/data";
 import { appContext } from "../../../context/appContext";
 import { toast } from "react-toastify";
+import { type } from "os";
 
 type IMapBrasil = {
   HandleStateProp: (ev: any) => void;
@@ -50,6 +51,7 @@ export const MapBrasil = () => {
     setIntensiveElec,
     setLimitedElec,
     setNetZero,
+    selectedCheckboxesState,
     setSelectedCheckboxesState,
   }: any = useContext(appContext);
 
@@ -96,7 +98,11 @@ export const MapBrasil = () => {
     if (groupBySelected) {
       setTooltipState({ show: false, x: 0, y: 0, text: "" });
       handleLocationMouseOver(ev);
-      setSelectedCheckboxesState(ev.target.id.toUpperCase());
+      // setSelectedCheckboxesState(ev.target.id.toUpperCase());
+      setSelectedCheckboxesState((prev: any) => [
+        ...prev,
+        ev.target.id.toUpperCase(),
+      ]);
       setStateSelectedToDoMap(ev.target.id.toUpperCase());
       setFullRE(SumArray(dataFilteredToDoPolicies("100% RE")));
       setREPlusLC(SumArray(dataFilteredToDoPolicies("100% RE+LC")));

@@ -6,7 +6,6 @@ import "./style.css";
 import { DataBase } from "../../../data/data";
 import { appContext } from "../../../context/appContext";
 import { toast } from "react-toastify";
-import { type } from "os";
 
 type IMapBrasil = {
   HandleStateProp: (ev: any) => void;
@@ -53,6 +52,8 @@ export const MapBrasil = () => {
     setNetZero,
     selectedCheckboxesState,
     setSelectedCheckboxesState,
+    dataNumbers,
+    dataDescription,
   }: any = useContext(appContext);
 
   const dataFilteredCapacityTotal = DataBase.filter(
@@ -200,10 +201,13 @@ export const MapBrasil = () => {
             States selected: {selectedCheckboxesState.join(", ")}
           </p>
           {/* <p className="text-sm py-1">Capacity: {sumTotalCapacityState}</p> */}
-          <p className="text-sm py-1">Default: {sumDefaut} </p>
-          <p className="text-sm py-1">+LC: {sumLC}</p>
-          <p className="text-sm py-1">100% RE+LC: {REPlusLC}</p>
-          <p className="text-sm py-1">100%RE: {fullRE}</p>
+
+          {dataDescription.map((item, index) => (
+            <p key={index}>
+              <span>{item}: </span>
+              {dataNumbers[index] && <span>{dataNumbers[index]}</span>}
+            </p>
+          ))}
         </div>
       )}
     </div>

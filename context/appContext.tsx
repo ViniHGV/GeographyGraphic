@@ -39,10 +39,13 @@ export const AppContextProvider = ({ children }: IAppContextProvider) => {
   const [filterYear2019, setFilterYear2019] = useState(0);
   const [filterYear2020, setFilterYear2020] = useState(0);
   const [refresh, setRefresh] = useState(true);
+  const [totalForState, setTotalForState] = useState({});
 
   return (
     <appContext.Provider
       value={{
+        totalForState,
+        setTotalForState,
         refresh,
         setRefresh,
         filterYear2019,

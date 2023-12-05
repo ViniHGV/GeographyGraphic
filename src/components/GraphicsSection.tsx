@@ -72,6 +72,8 @@ export const GraphicsSection = () => {
     setFilterYear2019,
     filterYear2020,
     setFilterYear2020,
+    totalForState,
+    setTotalForState,
   }: any = useContext(appContext);
 
   const [visible, setVisible] = useState(false);
@@ -79,6 +81,38 @@ export const GraphicsSection = () => {
   const [dataNumbers, setDataNumbers] = useState([0]);
   const [exibitionTable, setExibitionTable] = useState(false);
   const StyleChartNotSelected = "bg-zinc-200 text-black hover:text-white";
+  const stateCapacity: Record<string, number> = {};
+  const stateCapacityEntries = Object.entries(stateCapacity);
+  let StateDataSort = StateData.sort((a, b) => a.value.localeCompare(b.value));
+
+  DataBase.forEach((entry) => {
+    const { state, capacity } = entry;
+    const stateObject: any = StateDataSort.find((obj) => obj.value === state);
+
+    // // Se o estado ainda não estiver no objeto stateCapacity, inicializa com 0
+    // if (!stateCapacity[state]) {
+    //   stateCapacity[state] = 0;
+    // }
+
+    // // Acumula a capacidade para o estado atual
+    // stateCapacity[state] += capacity;
+
+    if (!stateObject) {
+      return;
+    }
+
+    // Se a propriedade 'totalCapacity' ainda não existir, inicializa com 0
+    if (!stateObject.totalCapacity) {
+      stateObject.totalCapacity = 0;
+    }
+
+    // Acumula a capacidade para o estado atual
+    stateObject.totalCapacity += capacity;
+  });
+
+  // console.log(totalForState);
+  // console.log(StateDataSort);
+  // console.log(stateCapacity);
 
   const dataFilteredToDoScenarios = (condition: string): number[] | any => {
     let filteredData = DataBase;
@@ -297,6 +331,7 @@ export const GraphicsSection = () => {
     // let TotalPolicies = 0;
     // let TotalScenarios = 0;
     // let TotalTechs = 0;
+    setTotalForState(StateDataSort);
     let sumTotal = 0;
     setCCGT(SumArray(dataFilteredToDoTechnologies("CCGT")));
     setHygrogen(SumArray(dataFilteredToDoTechnologies("Hydrogen")));
@@ -404,6 +439,7 @@ export const GraphicsSection = () => {
       }
     } else if (groupBySelected === "State") {
       setDataDescription(StateData.map((item) => item.value));
+      setDataNumbers(totalForState.map((item: any) => item.totalCapacity));
     } else if (groupBySelected === "Tecnologies") {
       // CCGT != 0 || CCGT == 0
       //   ? (TotalTechs =

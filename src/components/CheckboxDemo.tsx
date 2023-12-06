@@ -1,11 +1,12 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 // import { useContext, useEffect, useState } from "react";
 // import { appContext } from "../../context/appContext";
 import { ICheckboxDemo } from "../../types/types";
+import { appContext } from "../../context/appContext";
 
 export function CheckboxDemo({ type, setState }: ICheckboxDemo) {
-  // const { selectedCheckboxes }: string | any = useContext(appContext);
+  const { selectedCheckboxesState }: string | any = useContext(appContext);
 
   // const handleChange = (event?: any) => {
   //   if (event) {
@@ -25,6 +26,7 @@ export function CheckboxDemo({ type, setState }: ICheckboxDemo) {
   //     // );
   //   }
   // };
+  const isChecked = selectedCheckboxesState.includes(type);
 
   const handleChange = (
     event?: React.ChangeEvent<HTMLInputElement>,
@@ -50,6 +52,7 @@ export function CheckboxDemo({ type, setState }: ICheckboxDemo) {
         value={type}
         onChange={(ev) => handleChange(ev, type)}
         className="w-4 h-4 accent-black"
+        checked={isChecked}
       />
       {/* <Checkbox id={type} value={type} onChange={handleChange} /> */}
 

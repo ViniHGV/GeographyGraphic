@@ -5,28 +5,12 @@ import { useContext, useEffect, useState } from "react";
 import { ICheckboxDemo } from "../../types/types";
 import { appContext } from "../../context/appContext";
 
-export function CheckboxDemo({ type, setState }: ICheckboxDemo) {
-  const { selectedCheckboxesState }: string | any = useContext(appContext);
-
-  // const handleChange = (event?: any) => {
-  //   if (event) {
-  //     if (event.target.checked) {
-  //       setState((prev: any) => [...prev, type]);
-  //     } else {
-  //       setState((prev: any) => [...prev]);
-  //     }
-
-  //     // setSelectedCheckboxes((prev: any) => [...prev, type]);
-  //   } else {
-  //     setState((prev: any) =>
-  //       prev.filter((checkbox: any) => checkbox !== type)
-  //     );
-  //     // setSelectedCheckboxes((prev: any) =>
-  //     // prev.filter((checkbox: any) => checkbox !== type)
-  //     // );
-  //   }
-  // };
-  const isChecked = selectedCheckboxesState.includes(type);
+export function CheckboxDemo({
+  type,
+  setState,
+  checkboxSelected,
+}: ICheckboxDemo) {
+  const isChecked = checkboxSelected.includes(type);
 
   const handleChange = (
     event?: React.ChangeEvent<HTMLInputElement>,

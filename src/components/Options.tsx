@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { ComboboxDemo } from "./Selectors";
 import { Button } from "./ui/button";
 import {
@@ -7,15 +7,20 @@ import {
   PolicyData,
   ScenariosData,
   StateData,
-  // StateData,
   TechsOptions,
   YearData,
 } from "../../data/data";
 import { MapBrasil } from "./MapBrasil/MapBrasil";
 import { appContext } from "../../context/appContext";
-import { type } from "os";
 import { CheckboxDemo } from "./CheckboxDemo";
 import { ContainerOptions } from "./ContainerOptions";
+import { IOptionsData } from "../../types/types";
+import { fetchPoliciesData } from "@/services/policy";
+import { fetchScenariosData } from "@/services/scenario";
+import { fetchStatesData } from "@/services/state";
+import { fetchTechsData } from "@/services/techs";
+import { fetchYearsData } from "@/services/years";
+import { ApiContext } from "../../context/apiContext";
 
 export const Options = () => {
   const {
@@ -23,18 +28,12 @@ export const Options = () => {
     setSelectedCheckboxesState,
     selectedCheckboxesTechs,
     setSelectedCheckboxesTechs,
-    selectedCheckboxes,
-    setSelectedCheckboxes,
-    stateSelectedToDoMap,
     scenarioSelected,
     setScenarioSelected,
     policiesSelected,
     setPoliciesSelected,
     groupBySelected,
     setGroupBySelected,
-    stateSelectedToDoOption,
-    setStateSelectedToDoOption,
-    technologySelected,
     setTechnologySelected,
     yearSelected,
     setYearSelected,
@@ -42,6 +41,37 @@ export const Options = () => {
     refresh,
     setRefresh,
   }: string | any = useContext(appContext);
+
+  const apiContext = useContext(ApiContext);
+
+  if (!apiContext) {
+    return null;
+  }
+
+  const {
+    scenariosDataAPI,
+    setScenariosDataAPI,
+    policyDataAPI,
+    setPolicyDataAPI,
+    stateDataAPI,
+    setStateDataAPI,
+    techsDataAPI,
+    setTechsDataAPI,
+    yearsDataAPI,
+    setYearsDataAPI,
+  } = apiContext;
+
+  const fetchDataState = async (
+    stateProp: React.Dispatch<React.SetStateAction<IOptionsData[]>>,
+    fetchAPI: () => Promise<IOptionsData[]>
+  ) => {
+    try {
+      const data = await fetchAPI();
+      stateProp(data);
+    } catch (error) {
+      throw error;
+    }
+  };
 
   const resetFilters = () => {
     setRefresh(true);
@@ -56,44 +86,28 @@ export const Options = () => {
   };
 
   useEffect(() => {
+    fetchDataState(setStateDataAPI, fetchStatesData);
+    fetchDataState(setPolicyDataAPI, fetchPoliciesData);
+    fetchDataState(setTechsDataAPI, fetchTechsData);
+    fetchDataState(setScenariosDataAPI, fetchScenariosData);
+    fetchDataState(setYearsDataAPI, fetchYearsData);
+
     if (refresh) {
       setRefresh(false);
     }
   }, [refresh]);
-
-  // const handleChange = (event: any) => {
-  //   if (event.target.checked) {
-  //     setSelectedCheckboxes((prev: any) => [...prev, type]);
-  //   } else {
-  //     setSelectedCheckboxes((prev: object[]) =>
-  //       prev.filter((checkbox) => checkbox !== type)
-  //     );
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   console.log(selectedCheckboxes);
-  // }, [selectedCheckboxes]);
 
   return (
     <div className="pt-40 px-5 lg:px-36 flex flex-col gap-8 min-[450px]">
       <div className="flex flex-col gap-2">
         <h2 className="text-5xl font-bold">Create your dashboard</h2>
         <p className="font-medium text-gray-500">
-          Know more about our potencials technologies and how we’re working with
+          Know more about our potencials technologies and how we're working with
           them in Brazil
         </p>
       </div>
       <div className="lg:grid lg:grid-cols-5 gap-24">
         <div className="flex flex-col lg:col-span-3 justify-center gap-2">
-          {/* <p className="font-medium">
-            Selected Capacity (GW){" "}
-            <span className="font-bold">
-              {" "}
-              {stateSelectedToDoMap?.toUpperCase()}
-            </span>
-          </p> */}
-
           <MapBrasil />
         </div>
         <div className="flex flex-col w-full lg:col-span-2 gap-4 justify-between items-end">
@@ -114,15 +128,8 @@ export const Options = () => {
                   valueState={scenarioSelected}
                   setState={(ev) => setScenarioSelected(ev)}
                   name="Filter by Scenaries"
-                  data={ScenariosData}
+                  data={scenariosDataAPI}
                 />
-                {/* {ScenariosData.map((item, index) => (
-              <CheckboxDemo
-                key={index}
-                type={item.value}
-                setState={(ev: string[]) => setSelectedCheckboxes(ev)}
-              />
-            ))} */}
               </ContainerOptions>
 
               <ContainerOptions title="Policies" isCheckbox={false}>
@@ -130,57 +137,39 @@ export const Options = () => {
                   valueState={policiesSelected}
                   setState={(ev) => setPoliciesSelected(ev)}
                   name="Filter by Policies"
-                  data={PolicyData}
+                  data={policyDataAPI}
                 />
               </ContainerOptions>
 
               <ContainerOptions title="Filter by States" isCheckbox={true}>
-                {StateData.map((item, index) => (
+                {stateDataAPI.map((item, index) => (
                   <CheckboxDemo
-                    // state={selectedCheckboxes}
                     key={index}
                     type={item.value}
                     setState={(ev: string[]) => setSelectedCheckboxesState(ev)}
+                    checkboxSelected={selectedCheckboxesState}
                   />
                 ))}
-                {/* <ComboboxDemo
-              valueState={stateSelectedToDoMap}
-              setState={(ev) => {
-                // setStateSelectedToDoOption(ev);
-                setStateSelectedToDoMap(ev);
-              }}
-              name="Filter by State"
-              data={StateData}
-            /> */}
               </ContainerOptions>
-
               <ContainerOptions title="Filter by Tecnologies" isCheckbox={true}>
-                {TechsOptions.map((item, index) => (
+                {techsDataAPI.map((item, index) => (
                   <CheckboxDemo
                     key={index}
                     type={item.value}
                     setState={(ev: string[]) => setSelectedCheckboxesTechs(ev)}
+                    checkboxSelected={selectedCheckboxesTechs}
                   />
                 ))}
-                {/* <ComboboxDemo
-              valueState={technologySelected}
-              setState={(ev) => setTechnologySelected(ev)}
-              name="Filter by Tecnologies"
-              data={TechsOptions}
-            /> */}
               </ContainerOptions>
               <ContainerOptions title="Year of Data" isCheckbox={false}>
                 <ComboboxDemo
                   valueState={yearSelected}
                   setState={(ev) => setYearSelected(ev)}
                   name="Filter by Year of Data"
-                  data={YearData}
+                  data={yearsDataAPI}
                 />
               </ContainerOptions>
               <div className="w-full flex  gap-2">
-                {/* <Button onClick={handleResultToDoButton} className="w-full py-6">
-              Geerated Your Graphic
-            </Button> */}
                 <Button
                   onClick={resetFilters}
                   className="w-full py-6 bg-black hover:bg-opacity-70"
@@ -225,33 +214,19 @@ export const Options = () => {
                     key={index}
                     type={item.value}
                     setState={(ev: string[]) => setSelectedCheckboxesState(ev)}
+                    checkboxSelected={selectedCheckboxesState}
                   />
                 ))}
-                {/* <ComboboxDemo
-          valueState={stateSelectedToDoMap}
-          setState={(ev) => {
-            // setStateSelectedToDoOption(ev);
-            setStateSelectedToDoMap(ev);
-          }}
-          name="Filter by State"
-          data={StateData}
-        /> */}
               </ContainerOptions>
-
               <ContainerOptions title="Filter by Tecnologies" isCheckbox={true}>
                 {TechsOptions.map((item, index) => (
                   <CheckboxDemo
                     key={index}
                     type={item.value}
                     setState={(ev: string[]) => setSelectedCheckboxesTechs(ev)}
+                    checkboxSelected={selectedCheckboxesTechs}
                   />
                 ))}
-                {/* <ComboboxDemo
-          valueState={technologySelected}
-          setState={(ev) => setTechnologySelected(ev)}
-          name="Filter by Tecnologies"
-          data={TechsOptions}
-        /> */}
               </ContainerOptions>
               <ContainerOptions title="Year of Data" isCheckbox={false}>
                 <ComboboxDemo
@@ -262,9 +237,6 @@ export const Options = () => {
                 />
               </ContainerOptions>
               <div className="w-full flex  gap-2">
-                {/* <Button onClick={handleResultToDoButton} className="w-full py-6">
-          Geerated Your Graphic
-        </Button> */}
                 <Button
                   onClick={resetFilters}
                   className="w-full py-6 bg-black hover:bg-opacity-70"

@@ -44,6 +44,16 @@ export type IDataBase = {
   capacity: number;
 };
 
+export type IDataBaseV2 = {
+  techs: string;
+  scenario: string;
+  state: string;
+  policy: string;
+  year: number;
+  capacity: number;
+  costs: string;
+};
+
 export type IContainerOptions = {
   title: string;
   children: ReactNode;
@@ -73,6 +83,7 @@ export type TestType =
     };
 
 export type ICheckboxDemo = {
+  checkboxSelected: string[];
   type: string;
   setState: (prev: any) => void;
 };

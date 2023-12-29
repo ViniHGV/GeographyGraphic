@@ -83,8 +83,8 @@ export const GraphicsSection = () => {
   const [visible, setVisible] = useState(false);
   const [exibitionTable, setExibitionTable] = useState(false);
   const StyleChartNotSelected = "bg-zinc-200 text-black hover:text-white";
-  const stateCapacity: Record<string, number> = {};
-  const stateCapacityEntries = Object.entries(stateCapacity);
+  // const stateCapacity: Record<string, number> = {};
+  // const stateCapacityEntries = Object.entries(stateCapacity);
   let StateDataSort = StateData.sort((a, b) => a.value.localeCompare(b.value));
 
   DataBase.forEach((entry) => {

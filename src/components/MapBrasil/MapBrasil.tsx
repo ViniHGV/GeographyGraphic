@@ -4,8 +4,9 @@ import { SVGMap } from "react-svg-map";
 import Brazil from "@svg-maps/Brazil";
 import "./style.css";
 import { DataBase } from "../../../data/data";
-import { appContext } from "../../../context/appContext";
 import { toast } from "react-toastify";
+import { appContext } from "../../../context/appContext";
+import { useApiContext } from "../../../context/apiContext";
 
 type IMapBrasil = {
   HandleStateProp: (ev: any) => void;
@@ -23,21 +24,11 @@ export const MapBrasil = () => {
     text: "",
   });
   const {
-    sumLC,
-    sumTotalCapacityState,
-    sumDefaut,
-    setSumTotalCapacityState,
     setSumDefaut,
     setSumLC,
-    stateSelectedToDoMap,
     setStateSelectedToDoMap,
-    REPlusLC,
     setREPlusLC,
-    fullRE,
     setFullRE,
-    scenarioSelected,
-    policiesSelected,
-    groupBySelected,
     setCCGT,
     setHygrogen,
     setNuclear,
@@ -56,44 +47,7 @@ export const MapBrasil = () => {
     dataDescription,
   }: any = useContext(appContext);
 
-  const dataFilteredCapacityTotal = DataBase.filter(
-    (item) => item.state === stateSelectedToDoMap
-  ).map((item) => item.capacity);
-
-  const dataFilteredToDoPolicies = (condition: string): number[] => {
-    const dataFiltered = DataBase.filter(
-      (item) => item.state === stateSelectedToDoMap
-    )
-      .filter((item) => item.policy === condition)
-      .map((item) => item.capacity);
-    return dataFiltered;
-  };
-
-  const dataFilteredToDoTechnologies = (condition: string): number[] => {
-    const dataFiltered = DataBase.filter(
-      (item) => item.state === stateSelectedToDoMap
-    )
-      .filter((item) => item.techs === condition)
-      .map((item) => item.capacity);
-    return dataFiltered;
-  };
-
-  const dataFilteredToDoScenarios = (condition: string): number[] => {
-    const dataFiltered = DataBase.filter(
-      (item) => item.state === stateSelectedToDoMap
-    )
-      .filter((item) => item.scenario === condition)
-      .map((item) => item.capacity);
-    return dataFiltered;
-  };
-
-  function SumArray(dataFiltered: number[]) {
-    let sum = 0;
-    for (let i = 0; i < dataFiltered.length; i++) {
-      sum += dataFiltered[i];
-    }
-    return sum;
-  }
+  const { setUrlFetchApiFilter, dataFilteredAPI } = useApiContext();
 
   const handleChange = (
     event?: React.ChangeEvent<HTMLInputElement>,
@@ -115,48 +69,32 @@ export const MapBrasil = () => {
   };
 
   const handleStatesMap = (ev: Event | any) => {
-    if (groupBySelected) {
-      setTooltipState({ show: false, x: 0, y: 0, text: "" });
-      handleLocationMouseOver(ev);
-      // setSelectedCheckboxesState(ev.target.id.toUpperCase());
-      // setSelectedCheckboxesState((prev: any) => [
-      //   ...prev,
-      //   ev.target.id.toUpperCase(),
-      // ]);
-      setStateSelectedToDoMap(ev.target.id.toUpperCase());
-      setFullRE(SumArray(dataFilteredToDoPolicies("100% RE")));
-      setREPlusLC(SumArray(dataFilteredToDoPolicies("100% RE+LC")));
-      setSumLC(SumArray(dataFilteredToDoPolicies("+LC")));
-      setSumDefaut(SumArray(dataFilteredToDoPolicies("Default")));
-      setSumTotalCapacityState(SumArray(dataFilteredCapacityTotal));
-      setCCGT(SumArray(dataFilteredToDoTechnologies("CCGT")));
-      setHygrogen(SumArray(dataFilteredToDoTechnologies("Hydrogen")));
-      setNuclear(SumArray(dataFilteredToDoTechnologies("Nuclear")));
-      setOnshorewind(SumArray(dataFilteredToDoTechnologies("Onshore wind")));
-      setPVexisting(SumArray(dataFilteredToDoTechnologies("PV-existing")));
-      setReservoir(SumArray(dataFilteredToDoTechnologies("Reservoir")));
-      setRunofriver(SumArray(dataFilteredToDoTechnologies("Run-of-river")));
-      setUtilityscalePV(
-        SumArray(dataFilteredToDoTechnologies("Utility-scale PV"))
-      );
-      setBaseline(SumArray(dataFilteredToDoScenarios("Baseline")));
-      setIntensiveElec(SumArray(dataFilteredToDoScenarios("Intensive elec.")));
-      setLimitedElec(SumArray(dataFilteredToDoScenarios("Limited elec.")));
-      setNetZero(SumArray(dataFilteredToDoScenarios("Net zero")));
-    } else
-      toast.error("Selecione o Group By para Prosseguir!", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
-  };
+    let state = ev.target.id.toUpperCase();
 
-  console.log(selectedCheckboxesState);
+    setTooltipState({ show: false, x: 0, y: 0, text: "" });
+    handleLocationMouseOver(ev);
+
+    setStateSelectedToDoMap(state);
+    setUrlFetchApiFilter((prev) => prev.concat(`&state=${state}`));
+    setFullRE(dataFilteredAPI.totals?.policy["100% RE"]);
+    setREPlusLC(dataFilteredAPI.totals?.policy["100% RE + LC"]);
+    setSumLC(dataFilteredAPI.totals?.policy["+LC"]);
+    setSumDefaut(dataFilteredAPI.totals?.policy["Default"]);
+
+    setCCGT(dataFilteredAPI.totals?.techs["CCGT"]);
+    setHygrogen(dataFilteredAPI.totals?.techs["Hydrogen"]);
+    setNuclear(dataFilteredAPI.totals?.techs["Nuclear"]);
+    setOnshorewind(dataFilteredAPI.totals?.techs["Onshore wind"]);
+    setPVexisting(dataFilteredAPI.totals?.techs["PV-existing"]);
+    setReservoir(dataFilteredAPI.totals?.techs["Reservoir"]);
+    setRunofriver(dataFilteredAPI.totals?.techs["Run-of-river"]);
+    setUtilityscalePV(dataFilteredAPI.totals?.techs["Utility-scale PV"]);
+
+    setBaseline(dataFilteredAPI.totals?.scenario["Baseline"]);
+    setIntensiveElec(dataFilteredAPI.totals?.scenario["Intensive elec"]);
+    setLimitedElec(dataFilteredAPI.totals?.scenario["Limited elec"]);
+    setNetZero(dataFilteredAPI.totals?.scenario["Net zero"]);
+  };
 
   const handleLocationMouseOver = (e: any) => {
     const stateName = e.target.id;
@@ -200,9 +138,7 @@ export const MapBrasil = () => {
             {" "}
             States selected: {selectedCheckboxesState.join(", ")}
           </p>
-          {/* <p className="text-sm py-1">Capacity: {sumTotalCapacityState}</p> */}
-
-          {dataDescription.map((item, index) => (
+          {dataDescription.map((item: any, index: number) => (
             <p key={index}>
               <span>{item}: </span>
               {dataNumbers[index] && <span>{dataNumbers[index]}</span>}

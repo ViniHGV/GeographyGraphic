@@ -2,28 +2,25 @@
 import React, { useContext, useEffect } from "react";
 import { ComboboxDemo } from "./Selectors";
 import { Button } from "./ui/button";
-import {
-  GroupByData,
-  PolicyData,
-  ScenariosData,
-  StateData,
-  TechsOptions,
-  YearData,
-} from "../../data/data";
+import { GroupByData } from "../../data/data";
 import { MapBrasil } from "./MapBrasil/MapBrasil";
 import { appContext } from "../../context/appContext";
 import { CheckboxDemo } from "./CheckboxDemo";
 import { ContainerOptions } from "./ContainerOptions";
-import { IOptionsData } from "../../types/types";
+import { IDataBaseV2, IOptionsData } from "../../@types/types";
 import { fetchPoliciesData } from "@/services/policy";
 import { fetchScenariosData } from "@/services/scenario";
 import { fetchStatesData } from "@/services/state";
 import { fetchTechsData } from "@/services/techs";
 import { fetchYearsData } from "@/services/years";
-import { ApiContext } from "../../context/apiContext";
+import { useApiContext } from "../../context/apiContext";
+import { fetchCostsData } from "@/services/costs";
+import { fetchDataFilterApi } from "@/services/dataFilterApi";
 
 export const Options = () => {
   const {
+    selectedCheckboxesCosts,
+    setSelectedCheckboxesCosts,
     selectedCheckboxesState,
     setSelectedCheckboxesState,
     selectedCheckboxesTechs,
@@ -35,18 +32,13 @@ export const Options = () => {
     groupBySelected,
     setGroupBySelected,
     setTechnologySelected,
-    yearSelected,
     setYearSelected,
     setStateSelectedToDoMap,
     refresh,
     setRefresh,
+    selectedCheckboxesYears,
+    setSelectedCheckboxesYears,
   }: string | any = useContext(appContext);
-
-  const apiContext = useContext(ApiContext);
-
-  if (!apiContext) {
-    return null;
-  }
 
   const {
     scenariosDataAPI,
@@ -59,14 +51,32 @@ export const Options = () => {
     setTechsDataAPI,
     yearsDataAPI,
     setYearsDataAPI,
-  } = apiContext;
+    costsDataAPI,
+    setCostsDatadAPI,
+    urlFetchApiFilter,
+    setUrlFetchApiFilter,
+    setDataFilteredAPI,
+  } = useApiContext();
 
   const fetchDataState = async (
     stateProp: React.Dispatch<React.SetStateAction<IOptionsData[]>>,
     fetchAPI: () => Promise<IOptionsData[]>
   ) => {
     try {
-      const data = await fetchAPI();
+      const data: any = await fetchAPI();
+      stateProp(data);
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  const fetchDataFilterAPi = async (
+    stateProp: React.Dispatch<React.SetStateAction<IDataBaseV2>>,
+    fetchAPI: (filters: any) => Promise<IDataBaseV2>,
+    filters: any
+  ) => {
+    try {
+      const data: any = await fetchAPI(filters);
       stateProp(data);
     } catch (error) {
       throw error;
@@ -83,19 +93,42 @@ export const Options = () => {
     setYearSelected("");
     setSelectedCheckboxesTechs([]);
     setSelectedCheckboxesState([]);
+    setSelectedCheckboxesCosts([]);
+    setSelectedCheckboxesYears([]);
+    setUrlFetchApiFilter("");
   };
 
   useEffect(() => {
+    const filterParams = [
+      policiesSelected && `policy=${policiesSelected}`,
+      scenarioSelected && `scenario=${scenarioSelected}`,
+      selectedCheckboxesState.length > 0 &&
+        `state=${selectedCheckboxesState.join("&state=")}`,
+      selectedCheckboxesTechs.length > 0 &&
+        `techs=${selectedCheckboxesTechs.join("&techs=")}`,
+      selectedCheckboxesCosts.length > 0 &&
+        `costs=${selectedCheckboxesCosts.join("&costs=")}`,
+      selectedCheckboxesYears.length > 0 &&
+        `year=${selectedCheckboxesYears.join("&year=")}`,
+    ];
+
     fetchDataState(setStateDataAPI, fetchStatesData);
     fetchDataState(setPolicyDataAPI, fetchPoliciesData);
     fetchDataState(setTechsDataAPI, fetchTechsData);
     fetchDataState(setScenariosDataAPI, fetchScenariosData);
     fetchDataState(setYearsDataAPI, fetchYearsData);
+    fetchDataState(setYearsDataAPI, fetchYearsData);
+    fetchDataState(setCostsDatadAPI, fetchCostsData);
+    fetchDataFilterAPi(
+      setDataFilteredAPI,
+      fetchDataFilterApi,
+      `${filterParams.filter(Boolean).join("&")}`
+    );
 
     if (refresh) {
       setRefresh(false);
     }
-  }, [refresh]);
+  }, [refresh, urlFetchApiFilter]);
 
   return (
     <div className="pt-40 px-5 lg:px-36 flex flex-col gap-8 min-[450px]">
@@ -126,7 +159,9 @@ export const Options = () => {
               <ContainerOptions title="Filter by Scenaries" isCheckbox={false}>
                 <ComboboxDemo
                   valueState={scenarioSelected}
-                  setState={(ev) => setScenarioSelected(ev)}
+                  setState={(ev: string) => {
+                    setScenarioSelected(ev);
+                  }}
                   name="Filter by Scenaries"
                   data={scenariosDataAPI}
                 />
@@ -135,7 +170,9 @@ export const Options = () => {
               <ContainerOptions title="Policies" isCheckbox={false}>
                 <ComboboxDemo
                   valueState={policiesSelected}
-                  setState={(ev) => setPoliciesSelected(ev)}
+                  setState={(ev) => {
+                    setPoliciesSelected(ev);
+                  }}
                   name="Filter by Policies"
                   data={policyDataAPI}
                 />
@@ -146,7 +183,13 @@ export const Options = () => {
                   <CheckboxDemo
                     key={index}
                     type={item.value}
-                    setState={(ev: string[]) => setSelectedCheckboxesState(ev)}
+                    setState={(ev: string[]) => {
+                      setSelectedCheckboxesState(ev);
+                      setUrlFetchApiFilter(
+                        // (prev) => prev + `&state=${item.value}`
+                        (prev) => prev.concat(`&state=${item.value}`)
+                      );
+                    }}
                     checkboxSelected={selectedCheckboxesState}
                   />
                 ))}
@@ -156,18 +199,45 @@ export const Options = () => {
                   <CheckboxDemo
                     key={index}
                     type={item.value}
-                    setState={(ev: string[]) => setSelectedCheckboxesTechs(ev)}
+                    setState={(ev: string[]) => {
+                      setSelectedCheckboxesTechs(ev);
+                      setUrlFetchApiFilter((prev) =>
+                        prev.concat(`&techs=${item.value}`)
+                      );
+                    }}
                     checkboxSelected={selectedCheckboxesTechs}
                   />
                 ))}
               </ContainerOptions>
-              <ContainerOptions title="Year of Data" isCheckbox={false}>
-                <ComboboxDemo
-                  valueState={yearSelected}
-                  setState={(ev) => setYearSelected(ev)}
-                  name="Filter by Year of Data"
-                  data={yearsDataAPI}
-                />
+              <ContainerOptions title="Filter by Costs" isCheckbox={true}>
+                {costsDataAPI.map((item, index) => (
+                  <CheckboxDemo
+                    key={index}
+                    type={item.value}
+                    setState={(ev: string[]) => {
+                      setSelectedCheckboxesCosts(ev);
+                      setUrlFetchApiFilter((prev) =>
+                        prev.concat(`&costs=${item.value}`)
+                      );
+                    }}
+                    checkboxSelected={selectedCheckboxesCosts}
+                  />
+                ))}
+              </ContainerOptions>
+              <ContainerOptions title="Filter by Years" isCheckbox={true}>
+                {yearsDataAPI.map((item, index) => (
+                  <CheckboxDemo
+                    key={index}
+                    type={item.value}
+                    setState={(ev: string[]) => {
+                      setSelectedCheckboxesYears(ev);
+                      setUrlFetchApiFilter((prev) =>
+                        prev.concat(`&year=${item.value}`)
+                      );
+                    }}
+                    checkboxSelected={selectedCheckboxesYears}
+                  />
+                ))}
               </ContainerOptions>
               <div className="w-full flex  gap-2">
                 <Button
@@ -182,6 +252,7 @@ export const Options = () => {
           {refresh && (
             <>
               <ContainerOptions title="Group By" isCheckbox={false}>
+                <p className="w-full font-semibold text-sm pl-4">Group By</p>
                 <ComboboxDemo
                   valueState={groupBySelected}
                   setState={(ev) => setGroupBySelected(ev)}
@@ -193,48 +264,90 @@ export const Options = () => {
               <ContainerOptions title="Filter by Scenaries" isCheckbox={false}>
                 <ComboboxDemo
                   valueState={scenarioSelected}
-                  setState={(ev) => setScenarioSelected(ev)}
+                  setState={(ev) => {
+                    setScenarioSelected(ev);
+                    setUrlFetchApiFilter((prev) =>
+                      prev.concat(`&scenario=${ev}`)
+                    );
+                  }}
                   name="Filter by Scenaries"
-                  data={ScenariosData}
+                  data={scenariosDataAPI}
                 />
               </ContainerOptions>
 
               <ContainerOptions title="Policies" isCheckbox={false}>
                 <ComboboxDemo
                   valueState={policiesSelected}
-                  setState={(ev) => setPoliciesSelected(ev)}
+                  setState={(ev) => {
+                    setPoliciesSelected(ev);
+                    setUrlFetchApiFilter((prev) =>
+                      prev.concat(`&policy=${ev}`)
+                    );
+                  }}
                   name="Filter by Policies"
-                  data={PolicyData}
+                  data={policyDataAPI}
                 />
               </ContainerOptions>
 
               <ContainerOptions title="Filter by States" isCheckbox={true}>
-                {StateData.map((item, index) => (
+                {stateDataAPI.map((item, index) => (
                   <CheckboxDemo
                     key={index}
                     type={item.value}
-                    setState={(ev: string[]) => setSelectedCheckboxesState(ev)}
+                    setState={(ev: string[]) => {
+                      setSelectedCheckboxesState(ev);
+                      setUrlFetchApiFilter((prev) =>
+                        prev.concat(`&state=${item.value}`)
+                      );
+                    }}
                     checkboxSelected={selectedCheckboxesState}
                   />
                 ))}
               </ContainerOptions>
               <ContainerOptions title="Filter by Tecnologies" isCheckbox={true}>
-                {TechsOptions.map((item, index) => (
+                {techsDataAPI.map((item, index) => (
                   <CheckboxDemo
                     key={index}
                     type={item.value}
-                    setState={(ev: string[]) => setSelectedCheckboxesTechs(ev)}
+                    setState={(ev: string[]) => {
+                      setSelectedCheckboxesTechs(ev);
+                      setUrlFetchApiFilter((prev) =>
+                        prev.concat(`&techs=${item.value}`)
+                      );
+                    }}
                     checkboxSelected={selectedCheckboxesTechs}
                   />
                 ))}
               </ContainerOptions>
-              <ContainerOptions title="Year of Data" isCheckbox={false}>
-                <ComboboxDemo
-                  valueState={yearSelected}
-                  setState={(ev) => setYearSelected(ev)}
-                  name="Filter by Year of Data"
-                  data={YearData}
-                />
+              <ContainerOptions title="Filter by Costs" isCheckbox={true}>
+                {costsDataAPI.map((item, index) => (
+                  <CheckboxDemo
+                    key={index}
+                    type={item.value}
+                    setState={(ev: string[]) => {
+                      setSelectedCheckboxesCosts(ev);
+                      setUrlFetchApiFilter((prev) =>
+                        prev.concat(`&costs=${item.value}`)
+                      );
+                    }}
+                    checkboxSelected={selectedCheckboxesCosts}
+                  />
+                ))}
+              </ContainerOptions>
+              <ContainerOptions title="Filter by Years" isCheckbox={true}>
+                {yearsDataAPI.map((item, index) => (
+                  <CheckboxDemo
+                    key={index}
+                    type={item.value}
+                    setState={(ev: string[]) => {
+                      setSelectedCheckboxesYears(ev);
+                      setUrlFetchApiFilter((prev) =>
+                        prev.concat(`&year=${item.value}`)
+                      );
+                    }}
+                    checkboxSelected={selectedCheckboxesYears}
+                  />
+                ))}
               </ContainerOptions>
               <div className="w-full flex  gap-2">
                 <Button

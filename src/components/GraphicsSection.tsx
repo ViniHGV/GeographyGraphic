@@ -10,316 +10,45 @@ import {
   Table,
 } from "lucide-react";
 import { Button } from "./ui/button";
-import {
-  DataBase,
-  PolicyData,
-  ScenariosData,
-  StateData,
-  TechsOptions,
-  YearData,
-} from "../../data/data";
 import { TableDemo } from "./Table";
+import { useApiContext } from "../../context/apiContext";
+import { IOptionsData } from "../../@types/types";
 
 export const GraphicsSection = () => {
   const {
+    selectedCheckboxesCosts,
+    selectedCheckboxesYears,
     selectedCheckboxesState,
     selectedCheckboxesTechs,
     sumTotalCapacityState,
-    sumLC,
-    sumDefaut,
-    REPlusLC,
-    fullRE,
     typeChart,
     setTypeChart,
     groupBySelected,
     stateSelectedToDoMap,
-    CCGT,
-    hydrogen,
-    Nuclear,
-    Onshorewind,
-    PVexisting,
-    Reservoir,
-    Runofriver,
-    UtilityscalePV,
-    Baseline,
-    IntensiveElec,
-    LimitedElec,
-    NetZero,
     scenarioSelected,
     policiesSelected,
     technologySelected,
-    setFullRE,
-    setREPlusLC,
-    setSumLC,
-    setSumDefaut,
-    setSumTotalCapacityState,
-    setCCGT,
-    setHygrogen,
-    setNuclear,
-    setOnshorewind,
-    setPVexisting,
-    setReservoir,
-    setRunofriver,
-    setUtilityscalePV,
-    setBaseline,
-    setIntensiveElec,
-    setLimitedElec,
-    setNetZero,
     yearSelected,
-    selectedCheckboxes,
-    setSelectedCheckboxes,
-    filterYear2019,
-    setFilterYear2019,
-    filterYear2020,
-    setFilterYear2020,
-    totalForState,
-    setTotalForState,
     dataDescription,
     setDataDescription,
     dataNumbers,
     setDataNumbers,
   }: any = useContext(appContext);
 
+  const {
+    dataFilteredAPI,
+    costsDataAPI,
+    yearsDataAPI,
+    stateDataAPI,
+    scenariosDataAPI,
+    policyDataAPI,
+    techsDataAPI,
+  } = useApiContext();
+
   const [visible, setVisible] = useState(false);
   const [exibitionTable, setExibitionTable] = useState(false);
+  const [loadingDates, setLoadingDates] = useState(true);
   const StyleChartNotSelected = "bg-zinc-200 text-black hover:text-white";
-  // const stateCapacity: Record<string, number> = {};
-  // const stateCapacityEntries = Object.entries(stateCapacity);
-  let StateDataSort = StateData.sort((a, b) => a.value.localeCompare(b.value));
-
-  DataBase.forEach((entry) => {
-    const { state, capacity } = entry;
-    const stateObject: any = StateDataSort.find((obj) => obj.value === state);
-
-    // // Se o estado ainda não estiver no objeto stateCapacity, inicializa com 0
-    // if (!stateCapacity[state]) {
-    //   stateCapacity[state] = 0;
-    // }
-
-    // // Acumula a capacidade para o estado atual
-    // stateCapacity[state] += capacity;
-
-    if (!stateObject) {
-      return;
-    }
-
-    // Se a propriedade 'totalCapacity' ainda não existir, inicializa com 0
-    if (!stateObject.totalCapacity) {
-      stateObject.totalCapacity = 0;
-    }
-
-    // Acumula a capacidade para o estado atual
-    stateObject.totalCapacity += capacity;
-  });
-
-  // console.log(totalForState);
-  // console.log(StateDataSort);
-  // console.log(stateCapacity);
-
-  const dataFilteredToDoScenarios = (condition: string): number[] | any => {
-    let filteredData = DataBase;
-
-    if (selectedCheckboxesState.length > 0) {
-      // console.log(selectedCheckboxes);
-      filteredData = filteredData.filter((item) => {
-        // console.log(item.scenario);
-        return selectedCheckboxesState.includes(item.state);
-      });
-      // console.log(filteredData);
-    } else {
-      filteredData = filteredData.filter((item) => item.scenario === condition);
-    }
-    if (condition) {
-      filteredData = filteredData.filter((item) => item.scenario === condition);
-    }
-
-    if (policiesSelected) {
-      filteredData = filteredData.filter(
-        (item) => item.policy === policiesSelected
-      );
-    }
-    if (selectedCheckboxesTechs.length > 0) {
-      // console.log(selectedCheckboxes);
-      filteredData = filteredData.filter((item) => {
-        // console.log(item.scenario);
-        return selectedCheckboxesTechs.includes(item.techs);
-      });
-    }
-
-    if (yearSelected) {
-      filteredData = filteredData.filter((item) => item.year === yearSelected);
-    }
-    // console.log(filteredData);
-
-    return filteredData.map((item) => {
-      let capacityRemoveCaracter: string = item.capacity
-        .toString()
-        .replace(".", "");
-      let capacityInt: number = parseInt(capacityRemoveCaracter);
-      return capacityInt;
-    });
-  };
-
-  const dataFilteredToDoPolicies = (condition: string): number[] | any => {
-    let filteredData = DataBase;
-
-    if (selectedCheckboxesState.length > 0) {
-      // console.log(selectedCheckboxes);
-      filteredData = filteredData.filter((item) => {
-        // console.log(item.scenario);
-        return selectedCheckboxesState.includes(item.state);
-      });
-      // console.log(filteredData);
-    } else {
-      filteredData = filteredData.filter((item) => item.policy === condition);
-    }
-
-    if (condition) {
-      filteredData = filteredData.filter((item) => item.policy === condition);
-    }
-
-    // if (selectedCheckboxes.length > 0) {
-    //   // console.log(selectedCheckboxes);
-    //   filteredData = filteredData.filter((item) => {
-    //     // console.log(item.scenario);
-    //     return selectedCheckboxes.includes(item.scenario);
-    //   });
-    //   // console.log(filteredData);
-    // }
-
-    if (scenarioSelected) {
-      filteredData = filteredData.filter(
-        (item) => item.scenario === scenarioSelected
-      );
-    }
-
-    if (selectedCheckboxesTechs.length > 0) {
-      // console.log(selectedCheckboxes);
-      filteredData = filteredData.filter((item) => {
-        // console.log(item.scenario);
-        return selectedCheckboxesTechs.includes(item.techs);
-      });
-      // console.log(filteredData);
-    }
-
-    if (yearSelected) {
-      filteredData = filteredData.filter((item) => item.year === yearSelected);
-    }
-
-    return filteredData.map((item) => {
-      let capacityRemoveCaracter: string = item.capacity
-        .toString()
-        .replace(".", "");
-      let capacityInt: number = parseInt(capacityRemoveCaracter);
-      return capacityInt;
-    });
-  };
-
-  const dataFilteredToDoTechnologies = (condition: string): number[] | any => {
-    let filteredData = DataBase;
-
-    if (selectedCheckboxesState.length > 0) {
-      // console.log(selectedCheckboxes);
-      filteredData = filteredData.filter((item) => {
-        // console.log(item.scenario);
-        return selectedCheckboxesState.includes(item.state);
-      });
-      // console.log(filteredData);
-    } else {
-      filteredData = filteredData.filter((item) => item.techs === condition);
-    }
-
-    if (condition) {
-      filteredData = filteredData.filter((item) => item.techs === condition);
-    }
-
-    // if (selectedCheckboxes.length > 0) {
-    //   // console.log(selectedCheckboxes);
-    //   filteredData = filteredData.filter((item) => {
-    //     // console.log(item.scenario);
-    //     return selectedCheckboxes.includes(item.scenario);
-    //   });
-    //   // console.log(filteredData);
-    // }
-    // else {
-    //   // Se scenarioSelected não está definido, filtramos pelos cenários "scenariobrasil" e "scenarioEUA"
-    //   filteredData = filteredData.filter((item) => item.scenario === "scenariobrasil" || item.scenario === "scenarioEUA");
-    // }
-    if (scenarioSelected) {
-      filteredData = filteredData.filter(
-        (item) => item.scenario === scenarioSelected
-      );
-    }
-
-    if (policiesSelected) {
-      filteredData = filteredData.filter(
-        (item) => item.policy === policiesSelected
-      );
-    }
-
-    if (yearSelected) {
-      filteredData = filteredData.filter((item) => item.year === yearSelected);
-    }
-
-    return filteredData.map((item) => {
-      let capacityRemoveCaracter: string = item.capacity
-        .toString()
-        .replace(".", "");
-      let capacityInt: number = parseInt(capacityRemoveCaracter);
-      return capacityInt;
-    });
-  };
-
-  const dataFilteredToDoYearData = (condition: number): number[] | any => {
-    let filteredData = DataBase;
-
-    if (selectedCheckboxesState.length > 0) {
-      // console.log(selectedCheckboxes);
-      filteredData = filteredData.filter((item) => {
-        // console.log(item.scenario);
-        return selectedCheckboxesState.includes(item.state);
-      });
-      // console.log(filteredData);
-    } else {
-      filteredData = filteredData.filter((item) => item.year === condition);
-    }
-
-    if (condition) {
-      filteredData = filteredData.filter((item) => item.year === condition);
-    }
-
-    // if (selectedCheckboxes.length > 0) {
-    //   // console.log(selectedCheckboxes);
-    //   filteredData = filteredData.filter((item) => {
-    //     // console.log(item.scenario);
-    //     return selectedCheckboxes.includes(item.scenario);
-    //   });
-    //   // console.log(filteredData);
-    // }
-    // else {
-    //   // Se scenarioSelected não está definido, filtramos pelos cenários "scenariobrasil" e "scenarioEUA"
-    //   filteredData = filteredData.filter((item) => item.scenario === "scenariobrasil" || item.scenario === "scenarioEUA");
-    // }
-    if (scenarioSelected) {
-      filteredData = filteredData.filter(
-        (item) => item.scenario === scenarioSelected
-      );
-    }
-
-    if (policiesSelected) {
-      filteredData = filteredData.filter(
-        (item) => item.policy === policiesSelected
-      );
-    }
-
-    return filteredData.map((item) => {
-      let capacityRemoveCaracter: string = item.capacity
-        .toString()
-        .replace(".", "");
-      let capacityInt: number = parseInt(capacityRemoveCaracter);
-      return capacityInt;
-    });
-  };
 
   function SumArray(dataFiltered: number[]) {
     let sum = 0;
@@ -330,215 +59,86 @@ export const GraphicsSection = () => {
   }
 
   useEffect(() => {
-    // let TotalPolicies = 0;
-    // let TotalScenarios = 0;
-    // let TotalTechs = 0;
-    setTotalForState(StateDataSort);
-    let sumTotal = 0;
-    setCCGT(SumArray(dataFilteredToDoTechnologies("CCGT")));
-    setHygrogen(SumArray(dataFilteredToDoTechnologies("Hydrogen")));
-    setNuclear(SumArray(dataFilteredToDoTechnologies("Nuclear")));
-    setOnshorewind(SumArray(dataFilteredToDoTechnologies("Onshore wind")));
-    setPVexisting(SumArray(dataFilteredToDoTechnologies("PV-existing")));
-    setReservoir(SumArray(dataFilteredToDoTechnologies("Reservoir")));
-    setRunofriver(SumArray(dataFilteredToDoTechnologies("Run-of-river")));
-    setUtilityscalePV(
-      SumArray(dataFilteredToDoTechnologies("Utility-scale PV"))
-    );
-    setFullRE(SumArray(dataFilteredToDoPolicies("100% RE")));
-    setREPlusLC(SumArray(dataFilteredToDoPolicies("100% RE+LC")));
-    setSumLC(SumArray(dataFilteredToDoPolicies("+LC")));
-    setSumDefaut(SumArray(dataFilteredToDoPolicies("Default")));
-    setBaseline(SumArray(dataFilteredToDoScenarios("Baseline")));
-    setIntensiveElec(SumArray(dataFilteredToDoScenarios("Intensive elec.")));
-    setLimitedElec(SumArray(dataFilteredToDoScenarios("Limited elec.")));
-    setNetZero(SumArray(dataFilteredToDoScenarios("Net zero")));
-    setFilterYear2019(SumArray(dataFilteredToDoYearData(2019)));
-    setFilterYear2020(SumArray(dataFilteredToDoYearData(2020)));
-    sumTotal =
-      sumLC +
-      sumDefaut +
-      REPlusLC +
-      fullRE +
-      Baseline +
-      IntensiveElec +
-      LimitedElec +
-      NetZero +
-      CCGT +
-      hydrogen +
-      Nuclear +
-      Onshorewind +
-      PVexisting +
-      Reservoir +
-      Runofriver +
-      UtilityscalePV;
-    setSumTotalCapacityState(sumTotal);
-
+    let dataNumbersGroupBy = [];
+    let dataDescriptionGroupBy = [];
     if (groupBySelected === "Scenario") {
-      // Baseline != 0
-      //   ? (TotalScenarios = Baseline + IntensiveElec + LimitedElec + NetZero)
-      //   : null;
-      setDataDescription(ScenariosData.map((item) => item.value));
-      if (scenarioSelected === "Baseline") {
-        setDataNumbers([Baseline, 0, 0, 0]);
-      } else if (scenarioSelected === "Intensive elec.") {
-        setDataNumbers([0, IntensiveElec, 0, 0]);
-      } else if (scenarioSelected === "Limited elec.") {
-        setDataNumbers([0, 0, LimitedElec, 0]);
-      } else if (scenarioSelected === "Net zero") {
-        setDataNumbers([0, 0, 0, NetZero]);
+      for (const key of scenariosDataAPI.map((item) => item.value)) {
+        let numberScenarie = dataFilteredAPI.totals?.scenario[key];
+
+        if (numberScenarie != null || numberScenarie != undefined) {
+          dataDescriptionGroupBy.push(key);
+          dataNumbersGroupBy.push(numberScenarie);
+        }
       }
-      // else if (scenarioSelected === "All Scenarios") {
-      //   setDataNumbers([
-      //     TotalScenarios,
-      //     Baseline,
-      //     IntensiveElec,
-      //     LimitedElec,
-      //     NetZero,
-      //   ]);
-      // }
-      else {
-        setDataNumbers([
-          // TotalScenarios,
-          Baseline,
-          IntensiveElec,
-          LimitedElec,
-          NetZero,
-        ]);
-      }
+      setDataDescription(dataDescriptionGroupBy.map((item) => item));
+      setDataNumbers(dataNumbersGroupBy.map((item) => item));
     } else if (groupBySelected === "Policy") {
-      // sumDefaut != 0
-      //   ? (TotalPolicies = sumDefaut + sumLC + REPlusLC + fullRE)
-      //   : null;
-      setDataNumbers([
-        // TotalPolicies,
-        sumDefaut,
-        sumLC,
-        REPlusLC,
-        fullRE,
-      ]);
-      setDataDescription(PolicyData.map((item) => item.value));
-      if (policiesSelected === "Default") {
-        setDataNumbers([sumDefaut, 0, 0, 0]);
-      } else if (policiesSelected === "+LC") {
-        setDataNumbers([0, sumLC, 0, 0]);
-      } else if (policiesSelected === "100% RE+LC") {
-        setDataNumbers([0, 0, REPlusLC, 0]);
-      } else if (policiesSelected === "100% RE") {
-        setDataNumbers([0, 0, 0, fullRE]);
+      for (const key of policyDataAPI.map((item) => item.value)) {
+        let numberPolicy = dataFilteredAPI.totals?.policy[key];
+
+        if (numberPolicy != null || numberPolicy != undefined) {
+          dataDescriptionGroupBy.push(key);
+          dataNumbersGroupBy.push(numberPolicy);
+        }
       }
-      // else if (policiesSelected === "All Policies") {
-      //   setDataNumbers([TotalPolicies, sumDefaut, sumLC, REPlusLC, fullRE]);
-      // }
-      else {
-        setDataNumbers([
-          // TotalPolicies,
-          sumDefaut,
-          sumLC,
-          REPlusLC,
-          fullRE,
-        ]);
-      }
+      setDataDescription(dataDescriptionGroupBy.map((item) => item));
+      setDataNumbers(dataNumbersGroupBy.map((item) => item));
     } else if (groupBySelected === "State") {
-      setDataDescription(StateData.map((item) => item.value));
-      setDataNumbers(totalForState.map((item: any) => item.totalCapacity));
+      for (const key of stateDataAPI.map((item) => item.value)) {
+        let numberState = dataFilteredAPI.totals?.state[key];
+
+        if (numberState != null || numberState != undefined) {
+          dataNumbersGroupBy.push(numberState);
+          dataDescriptionGroupBy.push(key);
+        }
+      }
+      setDataDescription(dataDescriptionGroupBy.map((item) => item));
+      setDataNumbers(dataNumbersGroupBy.map((item) => item));
     } else if (groupBySelected === "Tecnologies") {
-      // CCGT != 0 || CCGT == 0
-      //   ? (TotalTechs =
-      //       CCGT +
-      //       hydrogen +
-      //       Nuclear +
-      //       Onshorewind +
-      //       PVexisting +
-      //       Reservoir +
-      //       Runofriver +
-      //       UtilityscalePV)
-      //   : null;
-      setDataDescription(TechsOptions.map((item) => item.value));
-      if (technologySelected === "CCGT") {
-        setDataNumbers([CCGT, 0, 0, 0, 0, 0, 0, 0]);
-      } else if (technologySelected === "Hydrogen") {
-        setDataNumbers([0, hydrogen, 0, 0, 0, 0, 0, 0]);
-      } else if (technologySelected === "Nuclear") {
-        setDataNumbers([0, 0, Nuclear, 0, 0, 0, 0, 0]);
-      } else if (technologySelected === "Onshore wind") {
-        setDataNumbers([0, 0, 0, Onshorewind, 0, 0, 0, 0]);
-      } else if (technologySelected === "PV-existing") {
-        setDataNumbers([0, 0, 0, 0, PVexisting, 0, 0, 0]);
-      } else if (technologySelected === "Reservoir") {
-        setDataNumbers([0, 0, 0, 0, 0, Reservoir, 0, 0]);
-      } else if (technologySelected === "Run-of-river") {
-        setDataNumbers([0, 0, 0, 0, 0, 0, Runofriver, 0]);
-      } else if (technologySelected === "Utility-scale PV") {
-        setDataNumbers([0, 0, 0, 0, 0, 0, 0, UtilityscalePV]);
+      for (const key of techsDataAPI.map((item) => item.value)) {
+        let numberTech = dataFilteredAPI.totals?.techs[key];
+
+        if (numberTech != null || numberTech != undefined) {
+          dataNumbersGroupBy.push(numberTech);
+          dataDescriptionGroupBy.push(key);
+        }
       }
-      // else if (technologySelected === "All Techs") {
-      //   setDataNumbers([
-      //     TotalTechs,
-      //     CCGT,
-      //     hydrogen,
-      //     Nuclear,
-      //     Onshorewind,
-      //     PVexisting,
-      //     Reservoir,
-      //     Runofriver,
-      //     UtilityscalePV,
-      //   ]);
-      // }
-      else {
-        setDataNumbers([
-          // TotalTechs,
-          CCGT,
-          hydrogen,
-          Nuclear,
-          Onshorewind,
-          PVexisting,
-          Reservoir,
-          Runofriver,
-          UtilityscalePV,
-        ]);
+      setDataDescription(dataDescriptionGroupBy.map((item) => item));
+      setDataNumbers(dataNumbersGroupBy.map((item) => item));
+    } else if (groupBySelected === "Costs") {
+      for (const key of costsDataAPI.map((item) => item.value)) {
+        let total = dataFilteredAPI.totals?.costs[key];
+
+        if (total != undefined || total != null) {
+          dataDescriptionGroupBy.push(key);
+          dataNumbersGroupBy.push(total);
+        }
       }
+      setDataDescription(dataDescriptionGroupBy.map((item) => item));
+      setDataNumbers(dataNumbersGroupBy.map((item) => item));
     } else if (groupBySelected === "Year of Data") {
-      setDataDescription(YearData.map((item) => item.value.toString()));
-      setDataNumbers([filterYear2019, filterYear2020]);
+      for (const key of yearsDataAPI.map((item) => item.value)) {
+        let numberYears = dataFilteredAPI.totals?.year[key];
+
+        if (numberYears != null || numberYears != undefined) {
+          dataDescriptionGroupBy.push(key);
+          dataNumbersGroupBy.push(numberYears);
+        }
+      }
+      setDataDescription(dataDescriptionGroupBy.map((item) => item));
+      setDataNumbers(dataNumbersGroupBy.map((item) => item));
     }
   }, [
-    // dataNumbers,
+    dataFilteredAPI,
     groupBySelected,
-    stateSelectedToDoMap,
-    fullRE,
-    scenarioSelected,
-    policiesSelected,
-    technologySelected,
-    sumLC,
-    sumDefaut,
-    REPlusLC,
-    fullRE,
-    groupBySelected,
-    stateSelectedToDoMap,
-    CCGT,
-    hydrogen,
-    Nuclear,
-    Onshorewind,
-    PVexisting,
-    Reservoir,
-    Runofriver,
-    UtilityscalePV,
-    Baseline,
-    IntensiveElec,
-    LimitedElec,
-    NetZero,
     scenarioSelected,
     policiesSelected,
     technologySelected,
     yearSelected,
-    selectedCheckboxes,
     selectedCheckboxesTechs,
     selectedCheckboxesState,
-    filterYear2019,
-    filterYear2020,
-    yearSelected,
-    sumTotalCapacityState,
+    selectedCheckboxesCosts,
+    selectedCheckboxesYears,
   ]);
 
   const handleTypeChart = (value: string) => {
@@ -547,6 +147,9 @@ export const GraphicsSection = () => {
   };
 
   useEffect(() => {
+    setTimeout(() => {
+      setLoadingDates(false);
+    }, 3500);
     if (!visible) {
       setVisible(true);
     }
@@ -633,7 +236,7 @@ export const GraphicsSection = () => {
       </div>
       <div className="grid gap-6 mt-10">
         <div className="w-full">
-          {visible && !exibitionTable && (
+          {visible && !exibitionTable && dataDescription.length > 0 && (
             <Graphics
               dataDescriptions={dataDescription}
               dataNumbers={dataNumbers}
@@ -646,6 +249,16 @@ export const GraphicsSection = () => {
               dataNumbers={[0, 0, 0, 0]}
               typeChart={typeChart}
             />
+          )}
+          {visible && !loadingDates && dataDescription.length == 0 && (
+            <h1 className="text-2xl font-semibold">
+              There is no result for the filter combination performed!
+            </h1>
+          )}
+          {visible && loadingDates && dataDescription.length == 0 && (
+            <h1 className="text-2xl font-semibold">
+              Loading data into the chart view!
+            </h1>
           )}
           {visible && exibitionTable && (
             <TableDemo

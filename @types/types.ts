@@ -9,7 +9,7 @@ export type IComboboxDemo = {
   name: string;
   data: IOptionsData[] | IYearData[];
   valueState: string | number;
-  setState: (ev: string | number) => void;
+  setState: (ev: string) => void;
 };
 
 export type IOptionsData = {
@@ -45,6 +45,20 @@ export type IDataBase = {
 };
 
 export type IDataBaseV2 = {
+  data: DataFilterApi[];
+  totals: TotalsFilterApi;
+};
+
+type TotalsFilterApi = {
+  techs: { [key: string]: number };
+  policy: { [key: string]: number };
+  scenario: { [key: string]: number };
+  year: { [key: string]: number };
+  costs: { [key: string]: number };
+  state: { [key: string]: number };
+};
+
+type DataFilterApi = {
   techs: string;
   scenario: string;
   state: string;

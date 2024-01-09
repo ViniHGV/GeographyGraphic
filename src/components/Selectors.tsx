@@ -17,7 +17,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { IComboboxDemo } from "../../types/types";
+import { IComboboxDemo } from "../../@types/types";
 
 export function ComboboxDemo({
   name,

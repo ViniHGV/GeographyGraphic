@@ -1,4 +1,4 @@
-import { IDataBase, IDataNav, IOptionsData, IYearData } from "../types/types";
+import { IDataBase, IDataNav, IOptionsData, IYearData } from "../@types/types";
 
 export const dataNav: IDataNav[] = [
   { name: "Create Dashboard", url: "#options" },
@@ -10,6 +10,7 @@ export const GroupByData: IOptionsData[] = [
   { value: "Policy" },
   { value: "State" },
   { value: "Tecnologies" },
+  { value: "Costs" },
   { value: "Year of Data" },
 ];
 

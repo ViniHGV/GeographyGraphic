@@ -1,5 +1,5 @@
 import httpClient from "@/api/axios";
-import { IOptionsData } from "../../types/types";
+import { IOptionsData } from "../../@types/types";
 
 export const fetchStatesData = async (): Promise<IOptionsData[]> => {
   try {

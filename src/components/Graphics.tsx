@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
-import { IGraphics, TestType } from "../../types/types";
+import { IGraphics, TestType } from "../../@types/types";
 
 export const Graphics = ({
   typeChart,

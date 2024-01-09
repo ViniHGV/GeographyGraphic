@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { IContainerOptions } from "../../types/types";
+import { IContainerOptions } from "../../@types/types";
 
 export const ContainerOptions = ({
   title,

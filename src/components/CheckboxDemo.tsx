@@ -2,7 +2,7 @@
 import { useContext, useEffect, useState } from "react";
 // import { useContext, useEffect, useState } from "react";
 // import { appContext } from "../../context/appContext";
-import { ICheckboxDemo } from "../../types/types";
+import { ICheckboxDemo } from "../../@types/types";
 import { appContext } from "../../context/appContext";
 
 export function CheckboxDemo({

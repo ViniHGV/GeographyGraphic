@@ -36,6 +36,9 @@ export const AppContextProvider = ({ children }: IAppContextProvider) => {
   const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
   const [selectedCheckboxesTechs, setSelectedCheckboxesTechs] = useState([]);
   const [selectedCheckboxesState, setSelectedCheckboxesState] = useState([]);
+  const [selectedCheckboxesCosts, setSelectedCheckboxesCosts] = useState([]);
+  const [selectedCheckboxesYears, setSelectedCheckboxesYears] = useState([]);
+  
   const [filterYear2019, setFilterYear2019] = useState(0);
   const [filterYear2020, setFilterYear2020] = useState(0);
   const [refresh, setRefresh] = useState(true);
@@ -46,6 +49,10 @@ export const AppContextProvider = ({ children }: IAppContextProvider) => {
   return (
     <appContext.Provider
       value={{
+        selectedCheckboxesYears, 
+        setSelectedCheckboxesYears,
+        selectedCheckboxesCosts,
+        setSelectedCheckboxesCosts,
         dataNumbers,
         setDataNumbers,
         dataDescription,

@@ -38,6 +38,7 @@ export const Options = () => {
     setRefresh,
     selectedCheckboxesYears,
     setSelectedCheckboxesYears,
+    setToolbarStateMap,
   }: string | any = useContext(appContext);
 
   const {
@@ -96,6 +97,12 @@ export const Options = () => {
     setSelectedCheckboxesCosts([]);
     setSelectedCheckboxesYears([]);
     setUrlFetchApiFilter("");
+    setToolbarStateMap({
+      show: false,
+      x: 0,
+      y: 0,
+      text: "",
+    });
   };
 
   useEffect(() => {
@@ -124,7 +131,9 @@ export const Options = () => {
       fetchDataFilterApi,
       `${filterParams.filter(Boolean).join("&")}`
     );
+  }, [refresh, urlFetchApiFilter, selectedCheckboxesState]);
 
+  useEffect(() => {
     if (refresh) {
       setRefresh(false);
     }

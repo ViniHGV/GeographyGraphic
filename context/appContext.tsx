@@ -8,48 +8,41 @@ type IAppContextProvider = {
 };
 
 export const AppContextProvider = ({ children }: IAppContextProvider) => {
-  const [stateSelectedToDoMap, setStateSelectedToDoMap] = useState("");
-  const [sumLC, setSumLC] = useState(0);
-  const [sumTotalCapacityState, setSumTotalCapacityState] = useState(0);
-  const [sumDefaut, setSumDefaut] = useState(0);
-  const [REPlusLC, setREPlusLC] = useState(0);
-  const [fullRE, setFullRE] = useState(0);
   const [scenarioSelected, setScenarioSelected] = useState("");
   const [policiesSelected, setPoliciesSelected] = useState("");
   const [stateSelectedToDoOption, setStateSelectedToDoOption] = useState("");
+  const [stateSelectedToDoMap, setStateSelectedToDoMap] = useState("");
   const [technologySelected, setTechnologySelected] = useState("");
   const [yearSelected, setYearSelected] = useState("");
-  const [typeChart, setTypeChart] = useState("bar");
   const [groupBySelected, setGroupBySelected] = useState("Scenario");
-  const [CCGT, setCCGT] = useState(0);
-  const [hydrogen, setHygrogen] = useState(0);
-  const [Nuclear, setNuclear] = useState(0);
-  const [Onshorewind, setOnshorewind] = useState(0);
-  const [PVexisting, setPVexisting] = useState(0);
-  const [Reservoir, setReservoir] = useState(0);
-  const [Runofriver, setRunofriver] = useState(0);
-  const [UtilityscalePV, setUtilityscalePV] = useState(0);
-  const [Baseline, setBaseline] = useState(0);
-  const [IntensiveElec, setIntensiveElec] = useState(0);
-  const [LimitedElec, setLimitedElec] = useState(0);
-  const [NetZero, setNetZero] = useState(0);
+  const [toolbarStateMap, setToolbarStateMap] = useState({
+    show: false,
+    x: 0,
+    y: 0,
+    text: "",
+  });
+  const [typeChart, setTypeChart] = useState("bar");
+
   const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
   const [selectedCheckboxesTechs, setSelectedCheckboxesTechs] = useState([]);
   const [selectedCheckboxesState, setSelectedCheckboxesState] = useState([]);
   const [selectedCheckboxesCosts, setSelectedCheckboxesCosts] = useState([]);
   const [selectedCheckboxesYears, setSelectedCheckboxesYears] = useState([]);
-  
-  const [filterYear2019, setFilterYear2019] = useState(0);
-  const [filterYear2020, setFilterYear2020] = useState(0);
   const [refresh, setRefresh] = useState(true);
-  const [totalForState, setTotalForState] = useState({});
+
   const [dataDescription, setDataDescription] = useState([""]);
   const [dataNumbers, setDataNumbers] = useState([0]);
 
   return (
     <appContext.Provider
       value={{
-        selectedCheckboxesYears, 
+        refresh,
+        setRefresh,
+        stateSelectedToDoMap,
+        setStateSelectedToDoMap,
+        toolbarStateMap,
+        setToolbarStateMap,
+        selectedCheckboxesYears,
         setSelectedCheckboxesYears,
         selectedCheckboxesCosts,
         setSelectedCheckboxesCosts,
@@ -57,32 +50,12 @@ export const AppContextProvider = ({ children }: IAppContextProvider) => {
         setDataNumbers,
         dataDescription,
         setDataDescription,
-        totalForState,
-        setTotalForState,
-        refresh,
-        setRefresh,
-        filterYear2019,
-        setFilterYear2019,
-        filterYear2020,
-        setFilterYear2020,
         selectedCheckboxesState,
         setSelectedCheckboxesState,
         selectedCheckboxesTechs,
         setSelectedCheckboxesTechs,
         selectedCheckboxes,
         setSelectedCheckboxes,
-        fullRE,
-        setFullRE,
-        stateSelectedToDoMap,
-        setStateSelectedToDoMap,
-        sumLC,
-        setSumLC,
-        sumTotalCapacityState,
-        setSumTotalCapacityState,
-        sumDefaut,
-        setSumDefaut,
-        REPlusLC,
-        setREPlusLC,
         scenarioSelected,
         setScenarioSelected,
         policiesSelected,
@@ -97,30 +70,6 @@ export const AppContextProvider = ({ children }: IAppContextProvider) => {
         setTechnologySelected,
         yearSelected,
         setYearSelected,
-        CCGT,
-        setCCGT,
-        hydrogen,
-        setHygrogen,
-        Nuclear,
-        setNuclear,
-        Onshorewind,
-        setOnshorewind,
-        PVexisting,
-        setPVexisting,
-        Reservoir,
-        setReservoir,
-        Runofriver,
-        setRunofriver,
-        UtilityscalePV,
-        setUtilityscalePV,
-        Baseline,
-        setBaseline,
-        IntensiveElec,
-        setIntensiveElec,
-        LimitedElec,
-        setLimitedElec,
-        NetZero,
-        setNetZero,
       }}
     >
       {children}

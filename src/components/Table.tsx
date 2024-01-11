@@ -35,7 +35,6 @@ export function TableDemo({
               {item}
             </TableHead>
           ))}
-          <TableHead className="">Total</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -45,9 +44,6 @@ export function TableDemo({
               {item}
             </TableCell>
           ))}
-          <TableCell className="font-medium">
-            {totalCapacity.toFixed(2)}%
-          </TableCell>
         </TableRow>
       </TableBody>
     </Table>

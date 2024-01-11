@@ -1,9 +1,5 @@
 "use client";
-import { useContext, useEffect, useState } from "react";
-// import { useContext, useEffect, useState } from "react";
-// import { appContext } from "../../context/appContext";
 import { ICheckboxDemo } from "../../@types/types";
-import { appContext } from "../../context/appContext";
 
 export function CheckboxDemo({
   type,
@@ -38,7 +34,6 @@ export function CheckboxDemo({
         className="w-4 h-4 accent-black"
         checked={isChecked}
       />
-      {/* <Checkbox id={type} value={type} onChange={handleChange} /> */}
 
       <label
         htmlFor={type}

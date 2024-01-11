@@ -12,7 +12,6 @@ import {
 import { Button } from "./ui/button";
 import { TableDemo } from "./Table";
 import { useApiContext } from "../../context/apiContext";
-import { IOptionsData } from "../../@types/types";
 
 export const GraphicsSection = () => {
   const {
@@ -149,7 +148,7 @@ export const GraphicsSection = () => {
   useEffect(() => {
     setTimeout(() => {
       setLoadingDates(false);
-    }, 3500);
+    }, 4500);
     if (!visible) {
       setVisible(true);
     }

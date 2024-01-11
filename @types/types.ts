@@ -8,7 +8,7 @@ export type IDataNav = {
 export type IComboboxDemo = {
   name: string;
   data: IOptionsData[] | IYearData[];
-  valueState: string | number;
+  valueState: string | number | any;
   setState: (ev: string) => void;
 };
 
@@ -21,7 +21,6 @@ export type IYearData = {
 };
 
 export type IGraphics = {
-  // data: IDataBase[];
   dataNumbers: number[];
   dataDescriptions: string[];
   typeChart: string | any;
@@ -33,15 +32,6 @@ export type IGraphics = {
         };
       }
     | any;
-};
-
-export type IDataBase = {
-  techs: string;
-  scenario: string;
-  state: string;
-  policy: string;
-  year: number;
-  capacity: number;
 };
 
 export type IDataBaseV2 = {

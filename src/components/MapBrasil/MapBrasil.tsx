@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { SVGMap } from "react-svg-map";
 import Brazil from "@svg-maps/Brazil";
 import "./style.css";
@@ -18,7 +18,7 @@ export const MapBrasil = () => {
 
   const handleChange = (
     event?: React.ChangeEvent<HTMLInputElement>,
-    type?: string
+    type?: string | any
   ) => {
     setSelectedCheckboxesState((prev: string[]) => {
       if (event?.target.id) {

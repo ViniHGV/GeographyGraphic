@@ -131,7 +131,16 @@ export const Options = () => {
       fetchDataFilterApi,
       `${filterParams.filter(Boolean).join("&")}`
     );
-  }, [refresh, urlFetchApiFilter, selectedCheckboxesState]);
+  }, [
+    refresh,
+    urlFetchApiFilter,
+    selectedCheckboxesState,
+    selectedCheckboxesCosts,
+    selectedCheckboxesTechs,
+    selectedCheckboxesYears,
+    scenarioSelected,
+    policiesSelected,
+  ]);
 
   useEffect(() => {
     if (refresh) {

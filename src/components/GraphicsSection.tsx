@@ -162,6 +162,9 @@ export const GraphicsSection = () => {
     scenarioSelected,
   ]);
 
+  const validationSelectedPolicyAndScenary =
+    !policiesSelected || !scenarioSelected;
+
   return (
     <div className="pt-40 px-5 lg:px-36">
       <div className="flex items-center flex-col lg:flex-row justify-between">
@@ -235,19 +238,28 @@ export const GraphicsSection = () => {
       </div>
       <div className="grid gap-6 mt-10">
         <div className="w-full">
-          {visible && !exibitionTable && dataDescription.length > 0 && (
-            <Graphics
-              dataDescriptions={dataDescription}
-              dataNumbers={dataNumbers}
-              typeChart={typeChart}
-            />
-          )}
+          {visible &&
+            !exibitionTable &&
+            dataDescription.length > 0 &&
+            policiesSelected &&
+            scenarioSelected && (
+              <Graphics
+                dataDescriptions={dataDescription}
+                dataNumbers={dataNumbers}
+                typeChart={typeChart}
+              />
+            )}
           {!visible && (
             <Graphics
               dataDescriptions={dataDescription}
               dataNumbers={[0, 0, 0, 0]}
               typeChart={typeChart}
             />
+          )}
+          {visible && !exibitionTable && validationSelectedPolicyAndScenary && (
+            <h1 className="text-2xl font-semibold">
+              Select policy and scenary to continue!
+            </h1>
           )}
           {visible && !loadingDates && dataDescription.length == 0 && (
             <h1 className="text-2xl font-semibold">

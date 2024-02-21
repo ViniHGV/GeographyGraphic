@@ -203,9 +203,8 @@ export const Options = () => {
                     type={item.value}
                     setState={(ev: string[]) => {
                       setSelectedCheckboxesState(ev);
-                      setUrlFetchApiFilter(
-                        // (prev) => prev + `&state=${item.value}`
-                        (prev) => prev.concat(`&state=${item.value}`)
+                      setUrlFetchApiFilter((prev) =>
+                        prev.concat(`&state=${item.value}`)
                       );
                     }}
                     checkboxSelected={selectedCheckboxesState}
